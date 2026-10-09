@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<title>Dr Clara Manisse, chirurgien-dentiste à Epagny Metz-Tessy (maquette)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;family=Figtree:wght@400;500;600;700&amp;family=Young+Serif&amp;display=swap">
+<style>
+body{margin:0;background:#FCFAFF}
+*{box-sizing:border-box}
+a{color:#4A32A8}a:hover{color:#2E1D78}
+.navlinks a{position:relative;padding:10px 14px;border-radius:999px;transition:background-color .22s ease, transform .22s ease}
+.navlinks a::after{content:"";position:absolute;left:14px;right:14px;bottom:5px;height:3px;border-radius:3px;background:#E58AAE;transform:scaleX(0);transform-origin:left center;transition:transform .28s cubic-bezier(.3,.7,.3,1)}
+.navlinks a:hover{background:#F1EAFF;transform:translateY(-1px)}
+.navlinks a:hover::after{transform:scaleX(1)}
+.phonebtn svg{transition:transform .3s ease}
+.phonebtn:hover svg{transform:rotate(-14deg) scale(1.1)}
+.case{transition:transform .18s ease, box-shadow .18s ease, background-color .18s ease;cursor:pointer}
+.case:hover{transform:translateY(-3px);box-shadow:0 12px 24px -12px rgba(34,27,51,.45)}
+.case[data-on="true"]{background:#221B33 !important;color:#FFFFFF !important}
+.case[data-on="true"] .case-sub{color:#E3DAFF !important}
+.case[data-on="true"] .case-ico{background:#F6C6D6 !important;color:#221B33 !important}
+.seg{cursor:pointer;transition:background-color .15s ease}
+.seg[data-on="true"]{background:#221B33 !important;color:#FFFFFF !important}
+.btn{transition:transform .15s ease, box-shadow .15s ease;text-decoration:none}
+.btn:hover{transform:translateY(-2px)}
+.dh[data-today="true"]{background:#221B33 !important;color:#FFFFFF !important}
+.slot[data-open="true"]{background:#B5ACE2;border:1.5px solid #221B33}
+.slot[data-open="false"]{background:repeating-linear-gradient(135deg,#F3F0F8 0 6px,#E7E2F0 6px 12px);border:1.5px solid transparent}
+.slot[data-now="true"]{background:#5B3FC4;border-color:#221B33;animation:nowpulse 2s ease-in-out infinite}
+@keyframes nowpulse{0%,100%{box-shadow:0 0 0 0 rgba(91,63,196,.45)}50%{box-shadow:0 0 0 7px rgba(91,63,196,0)}}
+.hs{position:absolute;z-index:2}
+.hs[data-hot="true"], .hs:hover, .hs:focus-within{z-index:6}
+.hs-dot{position:relative;width:36px;height:36px;border-radius:50%;border:2px solid #221B33;background:#FFFFFF;color:#221B33;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:transform .2s ease, background-color .2s ease}
+.hs-dot::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid #FFFFFF;opacity:.9;animation:ring 2.4s ease-out infinite}
+@keyframes ring{0%{transform:scale(.8);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+.hs:hover .hs-dot{transform:scale(1.12)}
+.hs[data-hot="true"] .hs-dot{transform:scale(1.18);background:#221B33 !important;color:#FFFFFF !important}
+.ctl{width:44px;height:44px;border-radius:14px;border:1.5px solid #221B33;background:#FFFFFF;color:#221B33;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:transform .15s ease, background-color .15s ease}
+.ctl:hover{background:#F1EAFF;transform:translateY(-1px)}
+.num{flex:none;width:36px;height:36px;border-radius:50%;background:#221B33;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-weight:700}
+.step:hover{background:#FFFFFF}
+.step[data-hot="true"]{background:#FFFFFF}
+.route{stroke-dasharray:18 12;animation:dash 1.4s linear infinite}
+.walk{stroke-dasharray:2 12;animation:walk 1.4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-60}}
+@keyframes walk{to{stroke-dashoffset:-56}}
+.mbar{display:none !important}
+:focus-visible{outline:3px solid #E58AAE;outline-offset:3px}
+@media (prefers-reduced-motion: reduce){.route,.walk,.hs-dot::before,.slot[data-now="true"]{animation:none}}
+@media (max-width: 760px){
+  .mbar{display:flex !important}
+  .navlinks{display:none !important}
+  .root{font-size:16px !important}
+  .h1{font-size:34px !important}
+  .h2{font-size:28px !important}
+  .sec{padding-top:40px !important;padding-left:16px !important;padding-right:16px !important;gap:18px !important}
+  .secp{padding:4px 16px 28px !important}
+  #acces{padding:40px 0 32px !important;border-radius:32px 32px 0 0 !important}
+  .inner{padding:0 16px !important;gap:16px !important}
+  .panel{padding:20px !important;gap:18px !important;border-radius:26px !important}
+  .panel h2{font-size:24px !important}
+  .soin{min-height:0 !important;padding:16px 18px !important;gap:6px !important}
+  .case{min-height:68px !important;padding:12px 14px !important}
+  .heroimg{order:-1}
+  .heroimg img{max-width:200px !important}
+  .phonebtn{display:none !important}
+  .brand-sub{font-size:12px !important}
+  .dh{font-size:11px !important;letter-spacing:-.2px}
+  .photo{max-width:220px !important}
+  .heroimg > span{display:none !important}
+  .segwrap{width:100%;flex-wrap:nowrap !important;gap:4px !important;padding:4px !important}
+  .seg{flex:1 1 0;justify-content:center;padding:8px 4px !important;font-size:14px !important;gap:5px !important;min-height:42px !important}
+  .seg svg{width:17px;height:17px}
+  .ctlwrap{flex-direction:row !important;gap:6px !important;left:8px !important;top:8px !important}
+  .ctl{width:34px !important;height:34px !important;border-radius:10px !important}
+  .ctl svg{width:16px;height:16px}
+  .northb{width:30px !important;height:30px !important;right:8px !important;top:8px !important;font-size:10px !important}
+  .hs-dot{width:28px !important;height:28px !important;border-width:1.5px !important}
+  .hs-dot svg{width:14px;height:14px}
+  .hs-dot::before{inset:-4px}
+  .mapinfo-over{display:none !important}
+  .mapinfo-below{display:flex !important}
+  .mapcap{font-size:12px !important;gap:4px 12px !important;padding:0 4px 2px !important}
+  .mapcap svg{width:24px}
+  .mapcap > span{gap:4px 12px !important}
+  .hide-m{display:none !important}
+  .step{padding:8px 6px !important}
+  .num{width:30px !important;height:30px !important;font-size:14px}
+}
+
+html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:84px}
+#app{visibility:hidden}
+#app.ready{visibility:visible}
+</style>
+</head>
+<body>
+<div id="app">
+
+<div class="root" style="font-family: 'Figtree', 'Segoe UI', system-ui, sans-serif; color: #221B33; background: #FCFAFF; font-size: 18px; line-height: 1.55; width: 100%; overflow-x: clip">
+
+  <header style="position: sticky; top: 0; z-index: 20; background: rgba(252,250,255,.92); backdrop-filter: blur(8px); border-bottom: 1.5px solid #ECE6FA">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+      <a href="#accueil" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #221B33">
+        <span style="width: 44px; height: 44px; border-radius: 58% 42% 50% 50% / 50% 52% 48% 50%; background: #B5ACE2; display: flex; align-items: center; justify-content: center; border: 1.5px solid #221B33">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF" stroke="#221B33" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3c-2.5 0-4 2-4 4.5 0 3 1.5 4.5 2 7 .5 3 1 6.5 3 6.5s2-4 4-4 2 4 4 4 2.5-3.5 3-6.5c.5-2.5 2-4 2-7C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z"></path></svg>
+        </span>
+        <span style="display: flex; flex-direction: column; line-height: 1.15">
+          <span style="font-family: 'Young Serif', Georgia, serif; font-size: 20px">Dr Clara Manisse</span>
+          <span class="brand-sub" style="font-size: 14px; color: #5E5672">Chirurgien-dentiste à Epagny Metz-Tessy</span>
+        </span>
+      </a>
+      <nav class="navlinks" aria-label="Navigation principale" style="display: flex; gap: 4px; font-size: 16px; font-weight: 500">
+        <a href="#acces" style="color: #221B33; text-decoration: none">Accès</a>
+        <a href="#horaires" style="color: #221B33; text-decoration: none">Horaires</a>
+        <a href="#soins" style="color: #221B33; text-decoration: none">Soins</a>
+        <a href="#tarifs" style="color: #221B33; text-decoration: none">Tarifs</a>
+        <a href="#docteur" style="color: #221B33; text-decoration: none">Le docteur</a>
+      </nav>
+      <a class="btn phonebtn" href="tel:0450675514" style="display: flex; align-items: center; gap: 10px; background: {{accent}}; color: #FFFFFF; padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: 17px; min-height: 48px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg>
+        04 50 67 55 14
+      </a>
+    </div>
+  </header>
+
+  <section id="accueil" class="sec" style="max-width: 1240px; margin: 0 auto; padding: 56px 24px 24px">
+    <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
+
+      <div style="flex: 3 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+        <h1 class="h1" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 56px; line-height: 1.1; letter-spacing: -0.5px; text-wrap: balance">
+          Bonjour, comment peut-on
+          <span style="position: relative; white-space: nowrap">vous aider&#160;?<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; left: 0; bottom: -10px; width: 100%; height: 16px"><path d="M3 12 C 50 4, 90 18, 140 10 S 230 4, 297 11" fill="none" stroke="#F2A7C3" stroke-width="6" stroke-linecap="round"></path></svg></span>
+        </h1>
+        <p style="margin: 0; font-size: 20px; color: #4D4563; max-width: 560px; text-wrap: pretty">Choisissez votre situation : la bonne information et le bon bouton s’affichent tout de suite.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr)); gap: 12px; margin-top: 4px">
+          <button type="button" class="case" data-on="{{on.new}}" onClick="{{pick.new}}" style="font: inherit; text-align: left; display: flex; align-items: center; gap: 14px; padding: 16px 18px; min-height: 88px; border-radius: 26px 30px 24px 32px; border: 1.5px solid #221B33; background: #FFFFFF; color: #221B33">
+            <span class="case-ico" style="flex: none; width: 46px; height: 46px; border-radius: 50% 46% 54% 48%; background: #EAE2FF; display: flex; align-items: center; justify-content: center; color: #221B33">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"></rect><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"></path></svg>
+            </span>
+            <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+              <span style="font-weight: 700; font-size: 18px; line-height: 1.25; text-wrap: balance">Premier rendez-vous</span>
+              <span class="case-sub" style="font-size: 15px; color: #5E5672">Je suis nouveau patient</span>
+            </span>
+          </button>
+
+          <button type="button" class="case" data-on="{{on.rdv}}" onClick="{{pick.rdv}}" style="font: inherit; text-align: left; display: flex; align-items: center; gap: 14px; padding: 16px 18px; min-height: 88px; border-radius: 30px 24px 32px 26px; border: 1.5px solid #221B33; background: #FFFFFF; color: #221B33">
+            <span class="case-ico" style="flex: none; width: 46px; height: 46px; border-radius: 46% 54% 48% 52%; background: #DDD8F5; display: flex; align-items: center; justify-content: center; color: #221B33">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg>
+            </span>
+            <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+              <span style="font-weight: 700; font-size: 18px; line-height: 1.25; text-wrap: balance">Prendre ou déplacer un RDV</span>
+              <span class="case-sub" style="font-size: 15px; color: #5E5672">Je suis déjà patient</span>
+            </span>
+          </button>
+
+          <button type="button" class="case" data-on="{{on.pain}}" onClick="{{pick.pain}}" style="font: inherit; text-align: left; display: flex; align-items: center; gap: 14px; padding: 16px 18px; min-height: 88px; border-radius: 24px 32px 26px 30px; border: 1.5px solid #221B33; background: #FFFFFF; color: #221B33">
+            <span class="case-ico" style="flex: none; width: 46px; height: 46px; border-radius: 52% 48% 46% 54%; background: #FDE3EC; display: flex; align-items: center; justify-content: center; color: #221B33">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(-1 2) scale(.82)" stroke-width="2.4"><path d="M7.5 3.5c-2.4 0-4 1.9-4 4.4 0 2.6 1.3 4 1.8 6.3.5 2.6.9 6.3 2.7 6.3 1.7 0 1.6-3.7 4-3.7s2.3 3.7 4 3.7c1.8 0 2.2-3.7 2.7-6.3.5-2.3 1.8-3.7 1.8-6.3 0-2.5-1.6-4.4-4-4.4-1.8 0-2.6.9-4.5.9s-2.7-.9-4.5-.9z"></path><path d="M12.3 4.7l-1.4 2.5 1.8 1.7-1.2 2.6"></path></g><path d="M19.2 6.2l2.3-1.6M19.8 10.4h2.6M19.2 14.6l2.3 1.6"></path></svg>
+            </span>
+            <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+              <span style="font-weight: 700; font-size: 18px; line-height: 1.25; text-wrap: balance">J’ai mal, c’est urgent</span>
+              <span class="case-sub" style="font-size: 15px; color: #5E5672">Que faire maintenant&#160;?</span>
+            </span>
+          </button>
+
+          <button type="button" class="case" data-on="{{on.come}}" onClick="{{pick.come}}" style="font: inherit; text-align: left; display: flex; align-items: center; gap: 14px; padding: 16px 18px; min-height: 88px; border-radius: 32px 26px 30px 24px; border: 1.5px solid #221B33; background: #FFFFFF; color: #221B33">
+            <span class="case-ico" style="flex: none; width: 46px; height: 46px; border-radius: 48% 52% 54% 46%; background: #EAE2FF; display: flex; align-items: center; justify-content: center; color: #221B33">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+            </span>
+            <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+              <span style="font-weight: 700; font-size: 18px; line-height: 1.25; text-wrap: balance">Venir au cabinet</span>
+              <span class="case-sub" style="font-size: 15px; color: #5E5672">GPS, parking, bus</span>
+            </span>
+          </button>
+
+          <button type="button" class="case" data-on="{{on.cost}}" onClick="{{pick.cost}}" style="font: inherit; text-align: left; display: flex; align-items: center; gap: 14px; padding: 16px 18px; min-height: 88px; border-radius: 26px 32px 24px 30px; border: 1.5px solid #221B33; background: #FFFFFF; color: #221B33">
+            <span class="case-ico" style="flex: none; width: 46px; height: 46px; border-radius: 54% 46% 50% 50%; background: #DDD8F5; display: flex; align-items: center; justify-content: center; color: #221B33">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"></rect><path d="M2 10h20M6 15h4"></path></svg>
+            </span>
+            <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+              <span style="font-weight: 700; font-size: 18px; line-height: 1.25; text-wrap: balance">Tarifs et remboursement</span>
+              <span class="case-sub" style="font-size: 15px; color: #5E5672">Carte Vitale, mutuelle</span>
+            </span>
+          </button>
+
+          <button type="button" class="case" data-on="{{on.care}}" onClick="{{pick.care}}" style="font: inherit; text-align: left; display: flex; align-items: center; gap: 14px; padding: 16px 18px; min-height: 88px; border-radius: 30px 26px 32px 24px; border: 1.5px solid #221B33; background: #FFFFFF; color: #221B33">
+            <span class="case-ico" style="flex: none; width: 46px; height: 46px; border-radius: 50% 50% 46% 54%; background: #FDE3EC; display: flex; align-items: center; justify-content: center; color: #221B33">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(-0.5 3) scale(.84)" stroke-width="2.4"><path d="M7.5 3.5c-2.4 0-4 1.9-4 4.4 0 2.6 1.3 4 1.8 6.3.5 2.6.9 6.3 2.7 6.3 1.7 0 1.6-3.7 4-3.7s2.3 3.7 4 3.7c1.8 0 2.2-3.7 2.7-6.3.5-2.3 1.8-3.7 1.8-6.3 0-2.5-1.6-4.4-4-4.4-1.8 0-2.6.9-4.5.9s-2.7-.9-4.5-.9z"></path><path d="M7 8.2c.2-1.4 1-2.3 2.3-2.5"></path></g><path d="M19.5 2v4.5M17.25 4.25h4.5"></path></svg>
+            </span>
+            <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+              <span style="font-weight: 700; font-size: 18px; line-height: 1.25; text-wrap: balance">Un soin en particulier</span>
+              <span class="case-sub" style="font-size: 15px; color: #5E5672">Implant, blanchiment, facettes</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="heroimg" style="flex: 2 1 360px; min-width: 0; position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px">
+        <div style="position: absolute; inset: 6% 2% 16% 4%; background: #F4EFFF; border-radius: 62% 38% 46% 54% / 48% 55% 45% 52%"></div>
+        <img src="assets/cabinet-illustration.webp" alt="Illustration : une dentiste souriante examine une patiente détendue dans le fauteuil" style="position: relative; width: 100%; max-width: 560px; height: auto; mix-blend-mode: multiply">
+        <span style="position: relative; font-family: 'Caveat', cursive; font-size: 26px; line-height: 1.2; color: #6B4FCF; transform: rotate(-3deg); text-align: center">Montée C, 2ᵉ étage avec ascenseur</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-live="polite" class="secp" ref="{{panelRef}}" style="scroll-margin-top: 84px; max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px">
+
+    <sc-if value="{{show.new}}" hint-placeholder-val="{{ true }}">
+      <div class="panel" style="background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 34px 40px 36px 42px; padding: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 32px; box-shadow: 0 24px 48px -32px rgba(91,63,196,.45)">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <span style="font-family: 'Caveat', cursive; font-size: 26px; color: #B0306A">Bienvenue !</span>
+          <h2 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.15">Le cabinet accepte les nouveaux patients.</h2>
+          <p style="margin: 0; color: #4D4563">La prise de rendez-vous en ligne est réservée aux nouveaux patients. Pas de créneau qui vous convient ? Il y en a davantage par téléphone.</p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px">
+            <a class="btn" href="{{doctolibUrl}}" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #FFFFFF; padding: 14px 24px; border-radius: 999px; font-weight: 600; min-height: 52px">
+              Réserver sur Doctolib
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+            <a class="btn" href="tel:0450675514" style="display: inline-flex; align-items: center; gap: 10px; background: #FFFFFF; color: #221B33; border: 1.5px solid #221B33; padding: 14px 22px; border-radius: 999px; font-weight: 600; min-height: 52px">Appeler le 04 50 67 55 14</a>
+          </div>
+        </div>
+        <div style="background: #F4EFFF; border-radius: 28px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+          <span style="font-weight: 700">Le jour du rendez-vous</span>
+          <div style="display: flex; gap: 12px; align-items: flex-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B3FC4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 3px"><path d="M5 12l4 4 10-10"></path></svg><span>Apportez votre <strong>carte Vitale à jour</strong> (mise à jour possible en pharmacie).</span></div>
+          <div style="display: flex; gap: 12px; align-items: flex-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B3FC4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 3px"><path d="M5 12l4 4 10-10"></path></svg><span>Parking : prenez un ticket à la <strong>barrière Patients, à gauche</strong> de la barrière Abonnés. Il vous sera <strong>remboursé à l’accueil</strong>.</span></div>
+          <div style="display: flex; gap: 12px; align-items: flex-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5B3FC4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 3px"><path d="M5 12l4 4 10-10"></path></svg><span>Entrée <strong>Montée C</strong>, puis ascenseur jusqu’au <strong>2ᵉ étage</strong>.</span></div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{show.rdv}}" hint-placeholder-val="{{ false }}">
+      <div class="panel" style="background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 40px 34px 42px 36px; padding: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 32px; box-shadow: 0 24px 48px -32px rgba(91,63,196,.45)">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <span style="font-family: 'Caveat', cursive; font-size: 26px; color: #B0306A">Déjà patient</span>
+          <h2 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.15">Un simple appel suffit.</h2>
+          <p style="margin: 0; color: #4D4563">Pour prendre, déplacer ou annuler un rendez-vous, appelez le cabinet : c’est par téléphone qu’il y a le plus de créneaux disponibles.</p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px">
+            <a class="btn" href="tel:0450675514" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #FFFFFF; padding: 14px 24px; border-radius: 999px; font-weight: 600; min-height: 52px">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg>
+              Appeler le 04 50 67 55 14
+            </a>
+          </div>
+        </div>
+        <div style="background: #F4EFFF; border-radius: 28px; padding: 22px; display: flex; flex-direction: column; gap: 14px; min-width: 0">
+          <span style="font-weight: 700">Quand appeler ?</span>
+          <div style="display: flex; gap: 8px; min-width: 0">
+            <div style="flex: none; display: flex; flex-direction: column; gap: 6px; font-size: 13px; line-height: 1.2; color: #4D4563">
+              <span style="height: 28px"></span>
+              <span style="height: 46px; display: flex; flex-direction: column; justify-content: center">Matin<strong style="color: #221B33">8h00 à 12h30</strong></span>
+              <span style="height: 46px; display: flex; flex-direction: column; justify-content: center">Après-midi<strong style="color: #221B33">13h30 à 18h00</strong></span>
+            </div>
+            <div style="flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px">
+              <sc-for list="{{week}}" as="d" hint-placeholder-count="7">
+                <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+                  <span class="dh" data-today="{{d.today}}" style="height: 28px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #221B33">{{d.short}}</span>
+                  <span class="slot" data-open="{{d.open}}" data-now="{{d.amNow}}" style="height: 46px; border-radius: 12px"></span>
+                  <span class="slot" data-open="{{d.open}}" data-now="{{d.pmNow}}" style="height: 46px; border-radius: 12px"></span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <span style="display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: {{statusFg}}"><span style="flex: none; width: 9px; height: 9px; border-radius: 50%; background: {{statusDot}}"></span>{{statusText}}</span>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{show.pain}}" hint-placeholder-val="{{ false }}">
+      <div class="panel" style="background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 36px 42px 34px 40px; padding: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 32px; box-shadow: 0 24px 48px -32px rgba(176,48,106,.45)">
+        <sc-if value="{{isOpen}}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 14px">
+            <span style="font-family: 'Caveat', cursive; font-size: 26px; color: #1F7A55">Le cabinet est ouvert</span>
+            <h2 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.15">Appelez-nous maintenant.</h2>
+            <p style="margin: 0; color: #4D4563">Expliquez ce que vous ressentez : nous vous indiquerons la marche à suivre.</p>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px">
+              <a class="btn" href="tel:0450675514" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #FFFFFF; padding: 14px 24px; border-radius: 999px; font-weight: 600; min-height: 52px">Appeler le 04 50 67 55 14</a>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{isClosed}}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-direction: column; gap: 14px">
+            <span style="font-family: 'Caveat', cursive; font-size: 26px; color: #B0306A">Le cabinet est fermé en ce moment</span>
+            <h2 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.15">En cas d’urgence, composez le&#160;15.</h2>
+            <p style="margin: 0; color: #4D4563">Le 15 (Samu) vous oriente à toute heure. Pour un rendez-vous, rappelez le cabinet {{nextOpen}}.</p>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px">
+              <a class="btn" href="tel:15" style="display: inline-flex; align-items: center; gap: 10px; background: #B0306A; color: #FFFFFF; padding: 14px 24px; border-radius: 999px; font-weight: 700; min-height: 52px">Appeler le 15 (Samu)</a>
+              <a class="btn" href="tel:0450675514" style="display: inline-flex; align-items: center; gap: 10px; background: #FFFFFF; color: #221B33; border: 1.5px solid #221B33; padding: 14px 22px; border-radius: 999px; font-weight: 600; min-height: 52px">Cabinet : 04 50 67 55 14</a>
+            </div>
+          </div>
+        </sc-if>
+        <div style="background: #FDE3EC; border-radius: 28px; padding: 22px; display: flex; flex-direction: column; gap: 14px; min-width: 0">
+          <span style="font-weight: 700">Horaires du cabinet</span>
+          <div style="display: flex; gap: 8px; min-width: 0">
+            <div style="flex: none; display: flex; flex-direction: column; gap: 6px; font-size: 13px; line-height: 1.2; color: #6A2A47">
+              <span style="height: 28px"></span>
+              <span style="height: 46px; display: flex; flex-direction: column; justify-content: center">Matin<strong style="color: #221B33">8h00 à 12h30</strong></span>
+              <span style="height: 46px; display: flex; flex-direction: column; justify-content: center">Après-midi<strong style="color: #221B33">13h30 à 18h00</strong></span>
+            </div>
+            <div style="flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px">
+              <sc-for list="{{week}}" as="d" hint-placeholder-count="7">
+                <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+                  <span class="dh" data-today="{{d.today}}" style="height: 28px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #221B33">{{d.short}}</span>
+                  <span class="slot" data-open="{{d.open}}" data-now="{{d.amNow}}" style="height: 46px; border-radius: 12px"></span>
+                  <span class="slot" data-open="{{d.open}}" data-now="{{d.pmNow}}" style="height: 46px; border-radius: 12px"></span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <span style="color: #6A2A47; font-size: 16px">En dehors de ces horaires : 15 (Samu).</span>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{show.come}}" hint-placeholder-val="{{ false }}">
+      <div class="panel" style="background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 42px 36px 40px 34px; padding: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 32px; box-shadow: 0 24px 48px -32px rgba(91,63,196,.45)">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <span style="font-family: 'Caveat', cursive; font-size: 26px; color: #B0306A">Dans votre GPS, tapez « Dr MANISSE Clara »</span>
+          <h2 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.15">1 allée de la Mandallaz, 74370 Epagny Metz-Tessy</h2>
+          <p style="margin: 0; color: #4D4563">Cabinet dentaire du Pericles, Montée C, 2ᵉ étage avec ascenseur.</p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px">
+            <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Dr%20MANISSE%20Clara%2C%201%20All%C3%A9e%20de%20la%20Mandallaz%2C%2074370%20Epagny%20Metz-Tessy" style="display: inline-flex; align-items: center; gap: 8px; background: {{accent}}; color: #FFFFFF; padding: 13px 20px; border-radius: 999px; font-weight: 600; min-height: 50px">Google Maps</a>
+            <a class="btn" href="https://waze.com/ul?q=1%20All%C3%A9e%20de%20la%20Mandallaz%2074370%20Epagny%20Metz-Tessy&amp;navigate=yes" style="display: inline-flex; align-items: center; gap: 8px; background: {{accent}}; color: #FFFFFF; padding: 13px 20px; border-radius: 999px; font-weight: 600; min-height: 50px">Waze</a>
+            <a class="btn" href="https://maps.apple.com/?q=1%20All%C3%A9e%20de%20la%20Mandallaz%2C%2074370%20Epagny%20Metz-Tessy" style="display: inline-flex; align-items: center; gap: 8px; background: {{accent}}; color: #FFFFFF; padding: 13px 20px; border-radius: 999px; font-weight: 600; min-height: 50px">Plans (iPhone)</a>
+          </div>
+          <a href="#acces" style="font-weight: 600; display: inline-flex; align-items: center; gap: 8px; min-height: 44px">Voir la vue aérienne avec le chemin
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+          </a>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+          <div style="background: #F4EFFF; border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 700">Parking remboursé</span><span style="font-size: 16px; color: #4D4563">Ticket à la barrière Patients (à gauche), remboursé à l’accueil.</span></div>
+          <div style="background: #FDE3EC; border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 700">Bus Sibra</span><span style="font-size: 16px; color: #4D4563">Arrêt Hôpital, lignes 2, 6, 10, 11 et 18.</span></div>
+          <div style="background: #FDE3EC; border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 700">À vélo</span><span style="font-size: 16px; color: #4D4563">Abri vélo sur place.</span></div>
+          <div style="background: #F4EFFF; border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 700">Accessible</span><span style="font-size: 16px; color: #4D4563">2ᵉ étage, avec ascenseur.</span></div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{show.cost}}" hint-placeholder-val="{{ false }}">
+      <div class="panel" style="background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 34px 42px 36px 40px; padding: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 32px; box-shadow: 0 24px 48px -32px rgba(91,63,196,.45)">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <span style="font-family: 'Caveat', cursive; font-size: 26px; color: #B0306A">Conventionné, carte Vitale acceptée</span>
+          <h2 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.15">Soins courants remboursés à 60&#160;% par la Sécurité sociale.</h2>
+          <p style="margin: 0; color: #4D4563">Le reste peut être pris en charge par votre mutuelle. Prothèses (couronne, bridge, implant…) : toujours sur devis préalable.</p>
+          <a href="#tarifs" style="font-weight: 600; display: inline-flex; align-items: center; gap: 8px; min-height: 44px">Tout comprendre sur les tarifs
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+          </a>
+        </div>
+        <div style="background: #F4EFFF; border-radius: 28px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <span style="font-weight: 700">Moyens de paiement</span>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(130px, 100%), 1fr)); gap: 10px">
+            <div style="background: #FFFFFF; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px"><span style="flex: none; width: 42px; height: 42px; border-radius: 50% 46% 54% 48%; background: #EAE2FF; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#221B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"></rect><path d="M2 10h20M6 15h4"></path></svg></span><span style="font-weight: 600; line-height: 1.25">Carte bancaire</span></div>
+            <div style="background: #FFFFFF; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px"><span style="flex: none; width: 42px; height: 42px; border-radius: 46% 54% 48% 52%; background: #FDE3EC; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#221B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle><path d="M6 12h.01M18 12h.01"></path></svg></span><span style="font-weight: 600; line-height: 1.25">Espèces</span></div>
+            <div style="background: #FFFFFF; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px"><span style="flex: none; width: 42px; height: 42px; border-radius: 52% 48% 46% 54%; background: #DDD8F5; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#221B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 10h8M6 14h4M14 15c1-1.5 2 1 3-.5s1.5.5 2 0"></path></svg></span><span style="font-weight: 600; line-height: 1.25">Chèque</span></div>
+            <div style="background: #FFFFFF; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px"><span style="flex: none; width: 42px; height: 42px; border-radius: 48% 52% 54% 46%; background: #FDE3EC; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#221B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h15l-3-3M20 16H5l3 3"></path></svg></span><span style="font-weight: 600; line-height: 1.25">Virement</span></div>
+          </div>
+          <div style="background: #221B33; color: #FFFFFF; border-radius: 20px; padding: 14px 16px; display: flex; align-items: center; gap: 12px">
+            <span style="flex: none; width: 42px; height: 42px; border-radius: 50%; background: #B5ACE2; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#221B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><rect x="6" y="9" width="5" height="4" rx="1"></rect></svg></span>
+            <span style="display: flex; flex-direction: column; line-height: 1.3"><strong>Carte Vitale acceptée</strong><span style="font-size: 15px; color: #DCD4F5">Télétransmission : remboursement plus rapide.</span></span>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{show.care}}" hint-placeholder-val="{{ false }}">
+      <div class="panel" style="background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 40px 36px 42px 34px; padding: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 32px; box-shadow: 0 24px 48px -32px rgba(91,63,196,.45)">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <span style="font-family: 'Caveat', cursive; font-size: 26px; color: #B0306A">Expertises du cabinet</span>
+          <h2 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.15">Pour un soin précis, parlons-en au premier rendez-vous.</h2>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px">
+            <a class="btn" href="{{doctolibUrl}}" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #FFFFFF; padding: 14px 24px; border-radius: 999px; font-weight: 600; min-height: 52px">Nouveau patient : réserver sur Doctolib</a>
+            <a class="btn" href="tel:0450675514" style="display: inline-flex; align-items: center; gap: 10px; background: #FFFFFF; color: #221B33; border: 1.5px solid #221B33; padding: 14px 22px; border-radius: 999px; font-weight: 600; min-height: 52px">04 50 67 55 14</a>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start">
+          <a href="#soins" style="background: #F4EFFF; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Blanchiment des dents</a>
+          <a href="#soins" style="background: #FDE3EC; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Facette dentaire</a>
+          <a href="#soins" style="background: #DDD8F5; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Implant dentaire</a>
+          <a href="#soins" style="background: #F4EFFF; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Orthèse d’avancée mandibulaire (OAM)</a>
+          <a href="#soins" style="background: #FDE3EC; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Parodontologie</a>
+        </div>
+      </div>
+    </sc-if>
+  </section>
+
+  <section id="acces" style="background: #F4EFFF; border-radius: 56px 56px 0 0; padding: 72px 0 64px">
+    <div class="inner" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <span style="font-family: 'Caveat', cursive; font-size: 28px; color: #B0306A">Se rendre au cabinet</span>
+          <h2 class="h2" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.1">Comment venir ?</h2>
+        </div>
+        <div class="segwrap" style="display: flex; gap: 6px; flex-wrap: wrap; background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 999px; padding: 6px" role="group" aria-label="Moyen de transport">
+          <button type="button" class="seg" data-on="{{modeOn.car}}" onClick="{{setMode.car}}" style="font: inherit; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 999px; padding: 10px 18px; min-height: 46px; background: transparent; color: #221B33">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16v-3l2-5h14l2 5v3z"></path><circle cx="7" cy="17" r="2"></circle><circle cx="17" cy="17" r="2"></circle></svg>
+            En voiture
+          </button>
+          <button type="button" class="seg" data-on="{{modeOn.bus}}" onClick="{{setMode.bus}}" style="font: inherit; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 999px; padding: 10px 18px; min-height: 46px; background: transparent; color: #221B33">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="15" rx="3"></rect><path d="M5 11h14M8 21v-3M16 21v-3"></path></svg>
+            En bus
+          </button>
+          <button type="button" class="seg" data-on="{{modeOn.bike}}" onClick="{{setMode.bike}}" style="font: inherit; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 999px; padding: 10px 18px; min-height: 46px; background: transparent; color: #221B33">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="16" r="4"></circle><circle cx="18" cy="16" r="4"></circle><path d="M6 16l4-8h5l3 8M8 8h3M12 16l3-8"></path></svg>
+            À vélo
+          </button>
+        </div>
+      </div>
+
+      <figure style="margin: 0; background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 36px 32px 38px 34px; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+        <div class="mapframe" ref="{{mapRef}}" onPointerDown="{{pDown}}" onPointerMove="{{pMove}}" onPointerUp="{{pUp}}" onPointerCancel="{{pUp}}" onDoubleClick="{{dbl}}" style="position: relative; width: 100%; aspect-ratio: 1560 / 975; border-radius: 26px; overflow: hidden; background: #DDD8F5; cursor: {{cursor}}; touch-action: {{touch}}; user-select: none">
+          <div style="position: absolute; inset: 0; transform-origin: 0 0; transform: translate({{tx}}px, {{ty}}px) scale({{s}}); transition: {{layerTrans}}">
+            <img src="assets/vue-aerienne-ign.webp" alt="Vue aérienne : le cabinet, la cour intérieure, les parkings et l’avenue de l’Hôpital" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none">
+            <div style="position: absolute; inset: 0; background: rgba(91,63,196,.12); mix-blend-mode: multiply; pointer-events: none"></div>
+            <svg viewBox="0 0 1560 975" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; font-family: 'Caveat', cursive">
+              <polygon points="965,365 1240,362 1252,640 1110,652 1060,700 990,800 950,980 15,980 15,700 250,668 330,700 445,792 705,652 792,606 918,430 965,400" fill="#C9B8FF" fill-opacity="{{pkOp}}" stroke="#FFFFFF" stroke-width="2.5" stroke-dasharray="8 6" stroke-linejoin="round" vector-effect="non-scaling-stroke" style="transition: fill-opacity .25s ease"></polygon>
+
+              <path d="M300 678 L 630 513 L 692 477 L 842 291 L 876 239 L 1043 215 M1090 471 L 981 420 L 914 342 L 876 255" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity=".85" vector-effect="non-scaling-stroke"></path>
+              <path class="walk" d="M300 678 L 630 513 L 692 477 L 842 291 L 876 239 L 1043 215 M1090 471 L 981 420 L 914 342 L 876 255" fill="none" stroke="#E0569A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+
+              <g opacity="{{mapOp.car}}" style="transition: opacity .35s ease">
+                <path d="M1320 0 L 1320 418 L 1224 424 L 1111 503 M1111 503 L 1090 471" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity=".9" vector-effect="non-scaling-stroke"></path>
+                <path class="route" d="M1320 0 L 1320 418 L 1224 424 L 1111 503" fill="none" stroke="#5B3FC4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+                <path class="walk" d="M1111 503 L 1090 471" fill="none" stroke="#E0569A" stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+              </g>
+              <g opacity="{{mapOp.bus}}" style="transition: opacity .35s ease">
+                <path d="M1397 566 L 1392 645 L 1287 645 L 1283 432 L 1188 424 L 1090 471" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity=".9" vector-effect="non-scaling-stroke"></path>
+                <path class="walk" d="M1397 566 L 1392 645 L 1287 645 L 1283 432 L 1188 424 L 1090 471" fill="none" stroke="#5B3FC4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+              </g>
+              <g opacity="{{mapOp.bike}}" style="transition: opacity .35s ease">
+                <path d="M1335 0 L 1335 426 L 1240 432 L 1207 474 M1207 474 L 1090 471" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity=".9" vector-effect="non-scaling-stroke"></path>
+                <path class="route" d="M1335 0 L 1335 426 L 1240 432 L 1207 474" fill="none" stroke="#5B3FC4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+                <path class="walk" d="M1207 474 L 1090 471" fill="none" stroke="#E0569A" stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+              </g>
+
+              <text transform="translate(1372 70) rotate(90)" font-size="34" font-weight="700" fill="#FFFFFF" stroke="#221B33" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Av. de l’Hôpital</text>
+              <text transform="translate(360 618) rotate(-26.6)" font-size="30" font-weight="700" fill="#FFFFFF" stroke="#221B33" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Allée de la Mandallaz</text>
+            </svg>
+
+            <div class="hs" data-hot="{{hot.door}}" style="left: 66.9%; top: 22.1%; transform: translate(-50%, -50%) scale({{inv}})">
+              <button type="button" class="hs-dot" aria-label="Entrée Montée C" onMouseEnter="{{hover.door}}" onFocus="{{hover.door}}" onClick="{{hover.door}}" style="background: #F2A7C3; width: 44px; height: 44px">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+              </button>
+            </div>
+            <div class="hs" data-hot="{{hot.court}}" style="left: 56.2%; top: 24.5%; transform: translate(-50%, -50%) scale({{inv}})">
+              <button type="button" class="hs-dot" aria-label="Accès à la cour intérieure" onMouseEnter="{{hover.court}}" onFocus="{{hover.court}}" onClick="{{hover.court}}">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="2"></circle><path d="M9 21l2-6 3 2v5M7 12l3-4 4 1 3 4M11 15l-1-4"></path></svg>
+              </button>
+            </div>
+            <div class="hs" data-hot="{{hot.gate}}" style="left: 80.1%; top: 43.1%; transform: translate(-50%, -50%) scale({{inv}})">
+              <button type="button" class="hs-dot" aria-label="Barrière Patients" onMouseEnter="{{hover.gate}}" onFocus="{{hover.gate}}" onClick="{{hover.gate}}">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V8M5 10h15"></path></svg>
+              </button>
+            </div>
+            <div class="hs" data-hot="{{hot.park}}" style="left: 71.2%; top: 51.6%; transform: translate(-50%, -50%) scale({{inv}})">
+              <button type="button" class="hs-dot" aria-label="Parking au plus près" onMouseEnter="{{hover.park}}" onFocus="{{hover.park}}" onClick="{{hover.park}}" style="font: inherit; font-weight: 800; font-size: 17px">P</button>
+            </div>
+            <div class="hs" data-hot="{{hot.bike}}" style="left: 77.4%; top: 48.6%; transform: translate(-50%, -50%) scale({{inv}})">
+              <button type="button" class="hs-dot" aria-label="Abri vélo" onMouseEnter="{{hover.bike}}" onFocus="{{hover.bike}}" onClick="{{hover.bike}}">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="16" r="4"></circle><circle cx="18" cy="16" r="4"></circle><path d="M6 16l4-8h5l3 8M12 16l3-8"></path></svg>
+              </button>
+            </div>
+            <div class="hs" data-hot="{{hot.bus}}" style="left: 89.6%; top: 58.1%; transform: translate(-50%, -50%) scale({{inv}})">
+              <button type="button" class="hs-dot" aria-label="Arrêt de bus Hôpital" onMouseEnter="{{hover.bus}}" onFocus="{{hover.bus}}" onClick="{{hover.bus}}">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="15" rx="3"></rect><path d="M5 11h14M8 21v-3M16 21v-3"></path></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="mapctl ctlwrap" style="position: absolute; left: 14px; top: 14px; display: flex; flex-direction: column; gap: 8px; z-index: 8">
+            <button type="button" class="ctl" aria-label="Zoomer" onClick="{{zoomIn}}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+            </button>
+            <button type="button" class="ctl" aria-label="Dézoomer" onClick="{{zoomOut}}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14"></path></svg>
+            </button>
+            <button type="button" class="ctl" aria-label="Vue d’ensemble" onClick="{{resetView}}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path></svg>
+            </button>
+          </div>
+          <span class="northb" style="position: absolute; right: 14px; top: 14px; z-index: 8; width: 42px; height: 42px; border-radius: 50%; background: #FFFFFF; border: 1.5px solid #221B33; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; line-height: 1; pointer-events: none">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#221B33"><path d="M12 2l7 18-7-5-7 5z"></path></svg>N
+          </span>
+          <div class="mapinfo mapinfo-over" style="position: absolute; left: 14px; bottom: 14px; z-index: 8; width: min(380px, calc(100% - 28px)); background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 20px; padding: 12px 16px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 14px 28px -18px rgba(34,27,51,.7); pointer-events: none">
+            <span style="flex: none; width: 10px; height: 10px; margin-top: 8px; border-radius: 50%; background: #E0569A"></span>
+            <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+              <strong style="font-size: 16px; line-height: 1.3">{{info.title}}</strong>
+              <span style="font-size: 15px; line-height: 1.4; color: #4D4563">{{info.text}}</span>
+            </span>
+          </div>
+          <sc-if value="{{zoomed}}" hint-placeholder-val="{{ false }}">
+            <span style="position: absolute; right: 14px; bottom: 14px; z-index: 8; background: rgba(34,27,51,.82); color: #FFFFFF; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; pointer-events: none">Glissez pour vous déplacer</span>
+          </sc-if>
+        </div>
+        <div class="mapinfo-below" style="display: none; gap: 10px; align-items: flex-start; background: #F4EFFF; border-radius: 16px; padding: 10px 12px">
+          <span style="flex: none; width: 9px; height: 9px; margin-top: 7px; border-radius: 50%; background: #E0569A"></span>
+          <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><strong style="font-size: 15px; line-height: 1.3">{{info.title}}</strong><span style="font-size: 14px; line-height: 1.4; color: #4D4563">{{info.text}}</span></span>
+        </div>
+        <figcaption class="mapcap" style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 14px; color: #4D4563; padding: 0 8px 4px">
+          <span style="display: flex; gap: 18px; flex-wrap: wrap">
+            <span style="display: inline-flex; align-items: center; gap: 8px"><svg width="34" height="8" aria-hidden="true"><path d="M2 4h30" stroke="#5B3FC4" stroke-width="4" stroke-dasharray="8 5" stroke-linecap="round"></path></svg>{{legendMain}}</span>
+            <span style="display: inline-flex; align-items: center; gap: 8px"><svg width="34" height="8" aria-hidden="true"><path d="M2 4h30" stroke="#E0569A" stroke-width="4" stroke-dasharray="1 7" stroke-linecap="round"></path></svg>chemins piétons vers la cour</span>
+            <span style="display: inline-flex; align-items: center; gap: 8px"><span style="width: 18px; height: 12px; border-radius: 4px; background: rgba(201,184,255,.8); border: 1.5px dashed #8A7BC8"></span>parking (ticket remboursé)</span>
+            <span class="hide-m">Zoom : boutons ou double-clic</span>
+          </span>
+          <span>Vue aérienne : IGN, BD ORTHO®</span>
+        </figcaption>
+      </figure>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+        <div style="flex: 3 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 15px; color: #5E5672; font-weight: 600; padding: 0 12px 4px">Étapes : cliquez pour zoomer sur la vue</span>
+          <sc-if value="{{modeIs.car}}" hint-placeholder-val="{{ true }}">
+            <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+              <li class="step" data-hot="false" style="display: flex; gap: 14px; align-items: flex-start"><span class="num">1</span><span style="padding-top: 4px">Dans le GPS, tapez simplement <strong>« Dr MANISSE Clara »</strong>.</span></li>
+              <li class="step" data-hot="{{hot.gate}}" onMouseEnter="{{hover.gate}}" onClick="{{focus.gate}}" style="display: flex; gap: 14px; align-items: flex-start; cursor: pointer"><span class="num">2</span><span style="padding-top: 4px">À l’entrée du parking, prenez un ticket à la <strong>barrière Patients, celle de gauche</strong>. Celle de droite est réservée aux abonnés.</span></li>
+              <li class="step" data-hot="{{hot.park}}" onMouseEnter="{{hover.park}}" onClick="{{focus.park}}" style="display: flex; gap: 14px; align-items: flex-start; cursor: pointer"><span class="num">3</span><span style="padding-top: 4px">Garez-vous et gardez votre ticket : le parking vous est <strong>remboursé à l’accueil</strong>.</span></li>
+              <li class="step" data-hot="{{hot.court}}" onMouseEnter="{{hover.court}}" onClick="{{focus.court}}" style="display: flex; gap: 14px; align-items: flex-start; cursor: pointer"><span class="num">4</span><span style="padding-top: 4px">À pied, suivez le <strong>chemin rose</strong> entre les bâtiments jusqu’à la cour intérieure.</span></li>
+              <li class="step" data-hot="{{hot.door}}" onMouseEnter="{{hover.door}}" onClick="{{focus.door}}" style="display: flex; gap: 14px; align-items: flex-start; cursor: pointer"><span class="num" style="background: #F2A7C3; color: #221B33">5</span><span style="padding-top: 4px">Entrée <strong>Montée C</strong> au fond de la cour, ascenseur jusqu’au <strong>2ᵉ étage</strong>.</span></li>
+            </ol>
+          </sc-if>
+          <sc-if value="{{modeIs.bus}}" hint-placeholder-val="{{ false }}">
+            <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+              <li class="step" data-hot="{{hot.bus}}" onMouseEnter="{{hover.bus}}" onClick="{{focus.bus}}" style="display: flex; gap: 14px; align-items: flex-start; cursor: pointer"><span class="num">1</span><span style="padding-top: 4px">Bus Sibra <strong>lignes 2, 6, 10, 11 ou 18</strong>, descendez à l’arrêt <strong>Hôpital</strong>.</span></li>
+              <li class="step" data-hot="{{hot.gate}}" onMouseEnter="{{hover.gate}}" onClick="{{focus.gate}}" style="display: flex; gap: 14px; align-items: flex-start; cursor: pointer"><span class="num">2</span><span style="padding-top: 4px">Traversez l’avenue au passage piéton et entrez dans le parking du cabinet.</span></li>
+              <li class="step" data-hot="{{hot.court}}" onMouseEnter="{{hover.court}}" onClick="{{focus.court}}" style="display: flex; gap: 14px; align-items: flex-start; cursor: pointer"><span class="num">3</span><span style="padding-top: 4px">Suivez le <strong>chemin rose</strong> jusqu’à la cour intérieure.</span></li>
+              <li class="step" data-hot="{{hot.door}}" onMouseEnter="{{hover.door}}" onClick="{{focus.door}}" style="display: flex; gap: 14px; align-items: flex-start; cursor: pointer"><span class="num" style="background: #F2A7C3; color: #221B33">4</span><span style="padding-top: 4px">Entrée <strong>Montée C</strong>, ascenseur jusqu’au <strong>2ᵉ étage</strong>.</span></li>
+            </ol>
+          </sc-if>
+          <sc-if value="{{modeIs.bike}}" hint-placeholder-val="{{ false }}">
+            <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+              <li class="step" data-hot="{{hot.bike}}" onMouseEnter="{{hover.bike}}" onClick="{{focus.bike}}" style="display: flex; gap: 14px; align-items: flex-start; cursor: pointer"><span class="num">1</span><span style="padding-top: 4px">Garez votre vélo à l’<strong>abri vélo</strong>, à l’entrée du parking.</span></li>
+              <li class="step" data-hot="{{hot.court}}" onMouseEnter="{{hover.court}}" onClick="{{focus.court}}" style="display: flex; gap: 14px; align-items: flex-start; cursor: pointer"><span class="num">2</span><span style="padding-top: 4px">Suivez le <strong>chemin rose</strong> jusqu’à la cour intérieure.</span></li>
+              <li class="step" data-hot="{{hot.door}}" onMouseEnter="{{hover.door}}" onClick="{{focus.door}}" style="display: flex; gap: 14px; align-items: flex-start; cursor: pointer"><span class="num" style="background: #F2A7C3; color: #221B33">3</span><span style="padding-top: 4px">Entrée <strong>Montée C</strong>, ascenseur jusqu’au <strong>2ᵉ étage</strong>.</span></li>
+            </ol>
+          </sc-if>
+        </div>
+
+        <div style="flex: 2 1 340px; min-width: 0; background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 28px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <span style="font-size: 15px; color: #5E5672; font-weight: 600">Adresse</span>
+          <span style="font-weight: 600; line-height: 1.4">Cabinet dentaire du Pericles, Montée C<br>1 allée de la Mandallaz, 74370 Epagny Metz-Tessy</span>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap">
+            <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Dr%20MANISSE%20Clara%2C%201%20All%C3%A9e%20de%20la%20Mandallaz%2C%2074370%20Epagny%20Metz-Tessy" style="display: inline-flex; align-items: center; gap: 8px; background: {{accent}}; color: #FFFFFF; padding: 12px 18px; border-radius: 999px; font-weight: 600; min-height: 48px">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"></path></svg>
+              Lancer l’itinéraire
+            </a>
+            <button type="button" class="btn" onClick="{{copy}}" style="font: inherit; display: inline-flex; align-items: center; gap: 8px; background: #FFFFFF; color: #221B33; border: 1.5px solid #221B33; padding: 12px 18px; border-radius: 999px; font-weight: 600; min-height: 48px; cursor: pointer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h8"></path></svg>
+              {{copyLabel}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="horaires" class="sec" style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 24px; display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-family: 'Caveat', cursive; font-size: 28px; color: #B0306A">Horaires et contact</span>
+      <h2 class="h2" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.1">Quand nous joindre ?</h2>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+      <div style="flex: 3 1 560px; min-width: 0; background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 32px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; gap: 12px; min-width: 0">
+          <div style="flex: none; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.25; color: #4D4563">
+            <span style="height: 40px"></span>
+            <span style="height: 76px; display: flex; flex-direction: column; justify-content: center">Matin<strong style="color: #221B33; font-size: 17px">8h00 à 12h30</strong></span>
+            <span style="height: 76px; display: flex; flex-direction: column; justify-content: center">Après-midi<strong style="color: #221B33; font-size: 17px">13h30 à 18h00</strong></span>
+          </div>
+          <div style="flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px">
+            <sc-for list="{{week}}" as="d" hint-placeholder-count="7">
+              <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
+                <span class="dh" data-today="{{d.today}}" style="height: 40px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: #221B33; background: #F4EFFF">{{d.short}}</span>
+                <span class="slot" data-open="{{d.open}}" data-now="{{d.amNow}}" style="height: 76px; border-radius: 18px"></span>
+                <span class="slot" data-open="{{d.open}}" data-now="{{d.pmNow}}" style="height: 76px; border-radius: 18px"></span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center">
+          <span style="display: inline-flex; align-items: center; gap: 10px; font-weight: 600; color: {{statusFg}}"><span style="flex: none; width: 11px; height: 11px; border-radius: 50%; background: {{statusDot}}"></span>{{statusText}}</span>
+          <span style="display: inline-flex; gap: 16px; font-size: 14px; color: #5E5672; flex-wrap: wrap">
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 16px; height: 16px; border-radius: 5px; background: #B5ACE2; border: 1.5px solid #221B33"></span>Ouvert</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 16px; height: 16px; border-radius: 5px; background: repeating-linear-gradient(135deg,#F3F0F8 0 4px,#E0DAEC 4px 8px)"></span>Fermé</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 16px; height: 16px; border-radius: 5px; background: #221B33"></span>Aujourd’hui</span>
+          </span>
+        </div>
+      </div>
+
+      <div style="flex: 2 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+        <a href="tel:0450675514" class="btn" style="flex: 1; display: flex; align-items: center; gap: 16px; background: #221B33; color: #FFFFFF; border-radius: 28px; padding: 22px 24px">
+          <span style="width: 52px; height: 52px; border-radius: 50%; background: #B5ACE2; color: #221B33; display: flex; align-items: center; justify-content: center; flex: none"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg></span>
+          <span style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 15px; color: #DCD4F5">Téléphone du cabinet</span><span style="font-family: 'Young Serif', Georgia, serif; font-size: 28px">04 50 67 55 14</span></span>
+        </a>
+        <a href="tel:15" class="btn" style="flex: 1; display: flex; align-items: center; gap: 16px; background: #FDE3EC; color: #221B33; border-radius: 28px; padding: 22px 24px">
+          <span style="width: 52px; height: 52px; border-radius: 50%; background: #B0306A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex: none; font-weight: 700; font-size: 20px">15</span>
+          <span style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 15px; color: #6A2A47">Urgence, cabinet fermé</span><span style="font-family: 'Young Serif', Georgia, serif; font-size: 24px">Samu : composez le&#160;15</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="soins" class="sec" style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 24px; display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-family: 'Caveat', cursive; font-size: 28px; color: #B0306A">Expertises et actes</span>
+      <h2 class="h2" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.1">Les soins du cabinet</h2>
+      <p style="margin: 0; color: #4D4563; text-wrap: pretty">En plus des soins courants (carie, dévitalisation, extraction…), le Dr Manisse vous accompagne pour :</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 14px">
+      <div class="soin" style="background: #F4EFFF; border-radius: 30px 26px 32px 24px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 180px">
+        <span style="font-family: 'Young Serif', Georgia, serif; font-size: 22px; line-height: 1.2">Blanchiment des dents</span>
+        <span style="font-size: 16px; color: #4D4563">Éclaircir la teinte de vos dents, en toute sécurité.</span>
+      </div>
+      <div class="soin" style="background: #FDE3EC; border-radius: 26px 32px 24px 30px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 180px">
+        <span style="font-family: 'Young Serif', Georgia, serif; font-size: 22px; line-height: 1.2">Facette dentaire</span>
+        <span style="font-size: 16px; color: #4D4563">Une fine pellicule collée sur la face visible de la dent pour en corriger forme ou couleur.</span>
+      </div>
+      <div class="soin" style="background: #DDD8F5; border-radius: 32px 24px 30px 26px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 180px">
+        <span style="font-family: 'Young Serif', Georgia, serif; font-size: 22px; line-height: 1.2">Implant dentaire</span>
+        <span style="font-size: 16px; color: #4D4563">Une racine artificielle pour remplacer durablement une dent manquante.</span>
+      </div>
+      <div class="soin" style="background: #F4EFFF; border-radius: 24px 30px 26px 32px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 180px">
+        <span style="font-family: 'Young Serif', Georgia, serif; font-size: 22px; line-height: 1.2">Orthèse d’avancée mandibulaire (OAM)</span>
+        <span style="font-size: 16px; color: #4D4563">Une gouttière portée la nuit contre le ronflement et l’apnée du sommeil.</span>
+      </div>
+      <div class="soin" style="background: #FDE3EC; border-radius: 30px 24px 32px 26px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 180px">
+        <span style="font-family: 'Young Serif', Georgia, serif; font-size: 22px; line-height: 1.2">Parodontologie</span>
+        <span style="font-size: 16px; color: #4D4563">Le soin des gencives et de l’os qui soutient les dents.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="tarifs" class="sec" style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 24px; display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-family: 'Caveat', cursive; font-size: 28px; color: #B0306A">Tarifs et remboursement</span>
+      <h2 class="h2" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.1; text-wrap: balance">Combien ça coûte, combien c’est remboursé ?</h2>
+      <p style="margin: 0; color: #4D4563">Le cabinet est conventionné et accepte la carte Vitale.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 16px">
+
+      <div style="background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 30px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="flex: none; width: 46px; height: 46px; border-radius: 50% 46% 54% 48%; background: #EAE2FF; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#221B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3.5c-2.4 0-4 1.9-4 4.4 0 2.6 1.3 4 1.8 6.3.5 2.6.9 6.3 2.7 6.3 1.7 0 1.6-3.7 4-3.7s2.3 3.7 4 3.7c1.8 0 2.2-3.7 2.7-6.3.5-2.3 1.8-3.7 1.8-6.3 0-2.5-1.6-4.4-4-4.4-1.8 0-2.6.9-4.5.9s-2.7-.9-4.5-.9z"></path></svg></span>
+          <span style="font-family: 'Caveat', cursive; font-size: 24px; color: #5B3FC4">Soins courants</span>
+        </div>
+        <span style="font-family: 'Young Serif', Georgia, serif; font-size: 28px; line-height: 1.15">Remboursés à 60&#160;%</span>
+        <div style="min-height: 84px; display: flex; flex-direction: column; justify-content: center; gap: 10px">
+          <div style="display: flex; height: 42px; border-radius: 14px; overflow: hidden; border: 1.5px solid #221B33">
+            <span style="flex: 0 0 60%; background: #5B3FC4; color: #FFFFFF; display: flex; align-items: center; padding-left: 14px; font-weight: 700; white-space: nowrap">60&#160;%</span>
+            <span style="flex: 1 1 auto; background: repeating-linear-gradient(135deg,#FDE3EC 0 6px,#F8CCDD 6px 12px); color: #7A2348; display: flex; align-items: center; padding-left: 12px; font-weight: 700; white-space: nowrap; border-left: 1.5px solid #221B33">40&#160;%</span>
+          </div>
+          <div style="display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; color: #4D4563">
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 50%; background: #5B3FC4"></span>Sécurité sociale</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 50%; background: #F2A7C3; border: 1px solid #B0306A"></span>Votre mutuelle</span>
+          </div>
+        </div>
+        <span style="font-size: 16px; color: #4D4563">Carie, dévitalisation, extraction… au tarif de base. Les 40&#160;% restants sont le plus souvent complétés par votre mutuelle.</span>
+      </div>
+
+      <div style="background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 30px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="flex: none; width: 46px; height: 46px; border-radius: 46% 54% 48% 52%; background: #DDD8F5; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#221B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v4h4M9 12h6M9 16h4"></path></svg></span>
+          <span style="font-family: 'Caveat', cursive; font-size: 24px; color: #5B3FC4">Prothèses</span>
+        </div>
+        <span style="font-family: 'Young Serif', Georgia, serif; font-size: 28px; line-height: 1.15">Toujours sur devis</span>
+        <div style="min-height: 84px; position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; align-content: center">
+          <span style="position: absolute; left: 16%; right: 16%; top: calc(50% - 14px); border-top: 1.5px dashed #8A7BC8"></span>
+          <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center"><span style="width: 32px; height: 32px; border-radius: 50%; background: #EAE2FF; border: 1.5px solid #221B33; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">1</span><span style="font-size: 14px; font-weight: 600; line-height: 1.2">Consultation</span></div>
+          <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center"><span style="width: 32px; height: 32px; border-radius: 50%; background: #EAE2FF; border: 1.5px solid #221B33; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">2</span><span style="font-size: 14px; font-weight: 600; line-height: 1.2">Devis écrit</span></div>
+          <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center"><span style="width: 32px; height: 32px; border-radius: 50%; background: #F2A7C3; border: 1.5px solid #221B33; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">3</span><span style="font-size: 14px; font-weight: 600; line-height: 1.2">Vous décidez</span></div>
+        </div>
+        <span style="font-size: 16px; color: #4D4563">Couronne, bridge, implant, dentier, inlay ou onlay : tarifs libres, présentés sur devis avant tout traitement. Transmettez-le à votre mutuelle pour connaître votre remboursement.</span>
+      </div>
+
+      <div style="background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 30px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="flex: none; width: 46px; height: 46px; border-radius: 52% 48% 46% 54%; background: #FDE3EC; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#221B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"></rect><path d="M3 10h18M8 3v4M16 3v4M12 13v3M12 18.5h.01"></path></svg></span>
+          <span style="font-family: 'Caveat', cursive; font-size: 24px; color: #5B3FC4">Bon à savoir</span>
+        </div>
+        <span style="font-family: 'Young Serif', Georgia, serif; font-size: 28px; line-height: 1.15">Demandes particulières</span>
+        <div style="min-height: 84px; display: flex; flex-direction: column; justify-content: center; gap: 10px">
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <span style="background: #FDE3EC; color: #7A2348; border-radius: 999px; padding: 7px 14px; font-size: 15px; font-weight: 600">Week-end</span>
+            <span style="background: #FDE3EC; color: #7A2348; border-radius: 999px; padding: 7px 14px; font-size: 15px; font-weight: 600">Jour férié</span>
+            <span style="background: #FDE3EC; color: #7A2348; border-radius: 999px; padding: 7px 14px; font-size: 15px; font-weight: 600">Exigence particulière</span>
+          </div>
+          <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #221B33"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B0306A" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16.5h.01"></path></svg>Non remboursé par la Sécurité sociale</span>
+        </div>
+        <span style="font-size: 16px; color: #4D4563">Pour une demande en dehors du cadre habituel, des dépassements d’honoraires peuvent s’appliquer.</span>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 16px">
+      <div style="background: #F4EFFF; border-radius: 30px; padding: 26px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-weight: 700">Votre carte Vitale est-elle à jour ?</span>
+        <span style="font-size: 16px; color: #4D4563">Une carte à jour permet la télétransmission : vous êtes remboursé plus vite, sans feuille de soins papier. Sinon, mettez-la à jour sur une borne en pharmacie.</span>
+      </div>
+      <div style="background: #F4EFFF; border-radius: 30px; padding: 26px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-weight: 700">Moyens de paiement</span>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(130px, 100%), 1fr)); gap: 10px">
+          <div style="background: #FFFFFF; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px"><span style="flex: none; width: 42px; height: 42px; border-radius: 50% 46% 54% 48%; background: #EAE2FF; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#221B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"></rect><path d="M2 10h20M6 15h4"></path></svg></span><span style="font-weight: 600; line-height: 1.25">Carte bancaire</span></div>
+          <div style="background: #FFFFFF; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px"><span style="flex: none; width: 42px; height: 42px; border-radius: 46% 54% 48% 52%; background: #FDE3EC; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#221B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle><path d="M6 12h.01M18 12h.01"></path></svg></span><span style="font-weight: 600; line-height: 1.25">Espèces</span></div>
+          <div style="background: #FFFFFF; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px"><span style="flex: none; width: 42px; height: 42px; border-radius: 52% 48% 46% 54%; background: #DDD8F5; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#221B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 10h8M6 14h4M14 15c1-1.5 2 1 3-.5s1.5.5 2 0"></path></svg></span><span style="font-weight: 600; line-height: 1.25">Chèque</span></div>
+          <div style="background: #FFFFFF; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px"><span style="flex: none; width: 42px; height: 42px; border-radius: 48% 52% 54% 46%; background: #FDE3EC; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#221B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h15l-3-3M20 16H5l3 3"></path></svg></span><span style="font-weight: 600; line-height: 1.25">Virement bancaire</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="docteur" class="sec" style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 88px">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 40px; align-items: center">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px">
+        <div class="photo" style="position: relative; aspect-ratio: 1 / 1; max-width: 420px; width: 100%">
+          <div style="position: absolute; inset: 0; background: #B5ACE2; border-radius: 58% 42% 52% 48% / 46% 54% 46% 54%; border: 1.5px solid #221B33"></div>
+          <div style="position: absolute; inset: 9%; background: #FBF8FF; border-radius: 46% 54% 44% 56% / 54% 44% 56% 46%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; color: #5E5672; font-size: 16px; border: 1.5px dashed #8A8399">[Photo du Dr Clara Manisse]</div>
+        </div>
+        <span style="font-family: 'Caveat', cursive; font-size: 26px; color: #B0306A; transform: rotate(-3deg); text-align: center">Au plaisir de vous recevoir !</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px; min-width: 0">
+        <span style="font-family: 'Caveat', cursive; font-size: 28px; color: #B0306A">Votre praticienne</span>
+        <h2 class="h2" style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.1">Dr Clara Manisse</h2>
+        <p style="margin: 0; font-size: 20px; color: #4D4563">Chirurgien-dentiste conventionnée au cabinet dentaire du Pericles, à Epagny Metz-Tessy.</p>
+        <div style="display: flex; gap: 14px; align-items: flex-start; background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 24px; padding: 18px; margin-top: 4px">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5B3FC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M2 9l10-5 10 5-10 5z"></path><path d="M6 11v5c3 2 9 2 12 0v-5"></path></svg>
+          <span><strong>Diplôme d’État de docteur en chirurgie dentaire</strong><br><span style="color: #4D4563">Faculté d’Odontologie, Université Lyon 1</span></span>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px">
+          <a class="btn" href="{{doctolibUrl}}" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #FFFFFF; padding: 14px 24px; border-radius: 999px; font-weight: 600; min-height: 52px">Réserver sur Doctolib (nouveaux patients)</a>
+          <a class="btn" href="tel:0450675514" style="display: inline-flex; align-items: center; gap: 10px; background: #FFFFFF; color: #221B33; border: 1.5px solid #221B33; padding: 14px 22px; border-radius: 999px; font-weight: 600; min-height: 52px">04 50 67 55 14</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: #221B33; color: #EDE8FA; border-radius: 56px 56px 0 0">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 56px 24px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 32px; font-size: 16px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-family: 'Young Serif', Georgia, serif; font-size: 24px; color: #FFFFFF">Dr Clara Manisse</span>
+        <span>Chirurgien-dentiste</span>
+        <span>Cabinet dentaire du Pericles, Montée C<br>1 allée de la Mandallaz<br>74370 Epagny Metz-Tessy</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-weight: 700; color: #FFFFFF">Horaires</span>
+        <span>Mardi, mercredi et jeudi</span>
+        <span>8h00 à 12h30<br>13h30 à 18h00</span>
+        <a href="tel:0450675514" style="color: #D6CCFF; font-weight: 600">04 50 67 55 14</a>
+        <span>Urgence, cabinet fermé : <strong style="color: #FFFFFF">15</strong> (Samu)</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-weight: 700; color: #FFFFFF">Informations légales</span>
+        <span>Numéro RPPS : 10107413535</span>
+        <span>Conventionné, carte Vitale acceptée</span>
+        <a href="#mentions" style="color: #D6CCFF">Mentions légales</a>
+        <span style="font-size: 13px; color: #B9B0D4">Vue aérienne : IGN, BD ORTHO®, Licence Ouverte</span>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="mbar" aria-label="Actions rapides" style="position: sticky; bottom: 0; z-index: 30; gap: 8px; padding: 10px 12px 14px; background: rgba(252,250,255,.96); border-top: 1.5px solid #E3DCF6">
+    <a href="tel:0450675514" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; background: {{accent}}; color: #FFFFFF; border-radius: 20px; padding: 10px 6px; font-size: 14px; font-weight: 600; text-decoration: none; min-height: 56px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg>Appeler
+    </a>
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Dr%20MANISSE%20Clara%2C%201%20All%C3%A9e%20de%20la%20Mandallaz%2C%2074370%20Epagny%20Metz-Tessy" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; background: #FFFFFF; border: 1.5px solid #221B33; color: #221B33; border-radius: 20px; padding: 10px 6px; font-size: 14px; font-weight: 600; text-decoration: none; min-height: 56px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"></path></svg>Itinéraire
+    </a>
+    <a href="{{doctolibUrl}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; background: #FFFFFF; border: 1.5px solid #221B33; color: #221B33; border-radius: 20px; padding: 10px 6px; font-size: 14px; font-weight: 600; text-decoration: none; min-height: 56px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>1er RDV
+    </a>
+  </nav>
+</div>
+</div>
+<script>
+(function () {
+  'use strict';
+  var EVENTS = {
+    onclick: 'click', onmouseenter: 'mouseenter', onmouseleave: 'mouseleave',
+    onfocus: 'focus', onblur: 'blur', onpointerdown: 'pointerdown',
+    onpointermove: 'pointermove', onpointerup: 'pointerup',
+    onpointercancel: 'pointercancel', ondoubleclick: 'dblclick'
+  };
+  var HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
+
+  function lookup(scope, path) {
+    if (path === 'true') return true;
+    if (path === 'false') return false;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    var parts = path.split('.'), v = scope;
+    for (var i = 0; i < parts.length; i++) {
+      if (v == null) return undefined;
+      v = v[parts[i]];
+    }
+    return v;
+  }
+  function interp(tpl, scope, esc) {
+    return tpl.replace(HOLE, function (_, p) {
+      var v = lookup(scope, p);
+      v = v == null ? '' : String(v);
+      return esc ? v.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;') : v;
+    });
+  }
+  function single(tpl) {
+    var m = tpl.match(/^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/);
+    return m ? m[1] : null;
+  }
+
+  function DCLogic(props) { this.props = props || {}; this.state = {}; }
+  DCLogic.prototype.setState = function (p) {
+    var next = typeof p === 'function' ? p(this.state || {}) : p;
+    this.state = Object.assign({}, this.state || {}, next);
+    schedule();
+  };
+  DCLogic.prototype.forceUpdate = function () { schedule(); };
+  window.DCLogic = DCLogic;
+
+  var comp, vals = {}, binds = [], texts = [], ifs = [], fors = [], pending = false;
+
+  function schedule() {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(function () { pending = false; render(); });
+  }
+
+  function compile(root) {
+    Array.prototype.slice.call(root.querySelectorAll('sc-for')).forEach(function (node) {
+      fors.push({ el: node, list: single(node.getAttribute('list')), as: node.getAttribute('as') || 'item', tpl: node.innerHTML, last: null });
+      node.innerHTML = '';
+      node.style.display = 'contents';
+    });
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT);
+    var nodes = [], n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(function (node) {
+      if (node.nodeType === 3) {
+        if (node.nodeValue.indexOf('{{') >= 0) texts.push({ node: node, tpl: node.nodeValue });
+        return;
+      }
+      var tag = node.tagName.toLowerCase();
+      if (tag === 'sc-if') {
+        ifs.push({ el: node, path: single(node.getAttribute('value')) });
+        node.style.display = 'contents';
+      }
+      Array.prototype.slice.call(node.attributes).forEach(function (a) {
+        var name = a.name, val = a.value;
+        if (name.indexOf('hint-') === 0) { node.removeAttribute(name); return; }
+        if (tag === 'sc-for' || tag === 'sc-if') return;
+        if (EVENTS[name]) {
+          var path = single(val);
+          node.removeAttribute(name);
+          node.addEventListener(EVENTS[name], function (e) {
+            var fn = lookup(vals, path);
+            if (typeof fn === 'function') fn(e);
+          });
+          return;
+        }
+        if (name === 'ref') {
+          var rp = single(val);
+          node.removeAttribute('ref');
+          var fn = lookup(vals, rp);
+          if (typeof fn === 'function') fn(node);
+          return;
+        }
+        if (val.indexOf('{{') >= 0) binds.push({ el: node, name: name, tpl: val });
+      });
+    });
+  }
+
+  function render() {
+    vals = comp.renderVals();
+    binds.forEach(function (b) {
+      var v = interp(b.tpl, vals, false);
+      if (b.el.getAttribute(b.name) !== v) b.el.setAttribute(b.name, v);
+    });
+    texts.forEach(function (t) {
+      var v = interp(t.tpl, vals, false);
+      if (t.node.nodeValue !== v) t.node.nodeValue = v;
+    });
+    ifs.forEach(function (i) {
+      var show = !!lookup(vals, i.path);
+      var d = show ? 'contents' : 'none';
+      if (i.el.style.display !== d) i.el.style.display = d;
+    });
+    fors.forEach(function (f) {
+      var list = lookup(vals, f.list) || [];
+      var html = list.map(function (item, idx) {
+        var scope = Object.assign({}, vals);
+        scope[f.as] = item;
+        scope.$index = idx;
+        return interp(f.tpl, scope, true);
+      }).join('');
+      if (html !== f.last) { f.el.innerHTML = html; f.last = html; }
+    });
+  }
+
+  window.__mountDC = function (Component, props) {
+    var root = document.getElementById('app');
+    comp = new Component(props);
+    comp.state = comp.state || {};
+    vals = comp.renderVals();
+    compile(root);
+    render();
+    if (typeof comp.componentDidMount === 'function') comp.componentDidMount();
+  };
+})();
+
+</script>
+<script>
+
+class Component extends DCLogic {
+  componentDidMount() {
+    this._t = setInterval(() => this.setState({ now: new Date() }), 60000);
+  }
+  componentWillUnmount() {
+    clearInterval(this._t);
+    clearTimeout(this._ct);
+  }
+  dims() {
+    const el = this._mapEl;
+    return [el ? el.clientWidth : 1200, el ? el.clientHeight : 750];
+  }
+  clampT(tx, ty, s) {
+    const wh = this.dims();
+    return [Math.min(0, Math.max(wh[0] - wh[0] * s, tx)), Math.min(0, Math.max(wh[1] - wh[1] * s, ty))];
+  }
+  zoomTo(s2, cxp, cyp) {
+    const st = this.state || {};
+    const s = st.s || 1;
+    const wh = this.dims();
+    const cx = cxp == null ? wh[0] / 2 : cxp;
+    const cy = cyp == null ? wh[1] / 2 : cyp;
+    s2 = Math.max(1, Math.min(3, s2));
+    const tx = cx - (cx - (st.tx || 0)) * (s2 / s);
+    const ty = cy - (cy - (st.ty || 0)) * (s2 / s);
+    const c = this.clampT(tx, ty, s2);
+    this.setState({ s: s2, tx: c[0], ty: c[1] });
+  }
+  renderVals() {
+    const st = this.state || {};
+    const sel = st.sel || 'new';
+    const mode = st.mode || 'car';
+    const hotId = st.hot || '';
+    const now = st.now || new Date();
+    const s = st.s || 1;
+
+    const DAYS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+    const SHORT = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+    const OPEN = [2, 3, 4];
+    const SLOTS = [[480, 750], [810, 1080]];
+    const fmt = (x) => Math.floor(x / 60) + 'h' + String(x % 60).padStart(2, '0');
+    const d = now.getDay();
+    const m = now.getHours() * 60 + now.getMinutes();
+    let isOpen = false, until = 0, slotIdx = -1;
+    if (OPEN.indexOf(d) >= 0) SLOTS.forEach((sl, i) => { if (m >= sl[0] && m < sl[1]) { isOpen = true; until = sl[1]; slotIdx = i; } });
+    let next = null;
+    for (let k = 0; k < 8 && !next; k++) {
+      const dd = (d + k) % 7;
+      if (OPEN.indexOf(dd) < 0) continue;
+      for (let i = 0; i < SLOTS.length; i++) {
+        if (k > 0 || m < SLOTS[i][0]) { next = { k: k, dd: dd, t: SLOTS[i][0] }; break; }
+      }
+    }
+    const nextOpen = next ? ((next.k === 0 ? 'aujourd’hui à ' : next.k === 1 ? 'demain à ' : DAYS[next.dd] + ' à ') + fmt(next.t)) : '';
+    const forced = this.props.openState || 'auto';
+    if (forced === 'open') { isOpen = true; until = until || 1080; }
+    if (forced === 'closed') { isOpen = false; slotIdx = -1; }
+    const lunch = !isOpen && OPEN.indexOf(d) >= 0 && m >= 750 && m < 810 && forced === 'auto';
+    const statusText = isOpen ? ('Ouvert en ce moment, jusqu’à ' + fmt(until))
+      : lunch ? 'Pause déjeuner, réouverture à 13h30'
+      : ('Fermé en ce moment, réouverture ' + nextOpen);
+
+    const order = [1, 2, 3, 4, 5, 6, 0];
+    const week = order.map((i) => {
+      const open = OPEN.indexOf(i) >= 0;
+      const today = i === d;
+      return {
+        short: SHORT[i],
+        open: open ? 'true' : 'false',
+        today: today ? 'true' : 'false',
+        amNow: (today && isOpen && slotIdx === 0) ? 'true' : 'false',
+        pmNow: (today && isOpen && slotIdx === 1) ? 'true' : 'false'
+      };
+    });
+
+    const ids = ['new', 'rdv', 'pain', 'come', 'cost', 'care'];
+    const on = {}, show = {}, pick = {};
+    ids.forEach((id) => {
+      on[id] = sel === id ? 'true' : 'false';
+      show[id] = sel === id;
+      pick[id] = () => {
+        this.setState({ sel: id });
+        clearTimeout(this._st);
+        this._st = setTimeout(() => {
+          const el = this._panelEl;
+          if (!el || !el.getBoundingClientRect) return;
+          const r = el.getBoundingClientRect();
+          const vh = window.innerHeight || 800;
+          if (r.top > vh * 0.7 || r.top < 0) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 60);
+      };
+    });
+
+    const modes = ['car', 'bus', 'bike'];
+    const modeOn = {}, modeIs = {}, setMode = {}, mapOp = {};
+    modes.forEach((id) => {
+      modeOn[id] = mode === id ? 'true' : 'false';
+      modeIs[id] = mode === id;
+      setMode[id] = () => this.setState({ mode: id, hot: '' });
+      mapOp[id] = mode === id ? '1' : '0';
+    });
+
+    const SPOTS = {
+      door: [66.9, 22.1, 'Entrée Montée C', 'Au fond de la cour intérieure. Ascenseur jusqu’au 2ᵉ étage, vous êtes arrivé.'],
+      court: [56.2, 24.5, 'Accès à la cour intérieure', 'Passez entre les bâtiments : l’entrée Montée C est au fond de la cour.'],
+      gate: [80.1, 43.1, 'Barrière Patients', 'Prenez un ticket à la barrière de gauche. Celle de droite est réservée aux abonnés.'],
+      park: [71.2, 51.6, 'Parking remboursé aux patients', 'Garez-vous où vous voulez dans la zone violette. Gardez votre ticket : il vous est remboursé à l’accueil.'],
+      bike: [77.4, 48.6, 'Abri vélo', 'Garez votre vélo ici, puis suivez le chemin rose jusqu’à la cour.'],
+      bus: [89.6, 58.1, 'Arrêt Hôpital', 'Bus Sibra, lignes 2, 6, 10, 11 et 18. Traversez au passage piéton puis suivez le chemin rose.']
+    };
+    const hot = {}, hover = {}, focus = {};
+    Object.keys(SPOTS).forEach((id) => {
+      hot[id] = hotId === id ? 'true' : 'false';
+      hover[id] = () => { if ((this.state || {}).hot !== id) this.setState({ hot: id }); };
+      focus[id] = () => {
+        const p = SPOTS[id];
+        const wh = this.dims();
+        const s2 = Math.max((this.state || {}).s || 1, 2);
+        const c = this.clampT(wh[0] / 2 - p[0] / 100 * wh[0] * s2, wh[1] / 2 - p[1] / 100 * wh[1] * s2, s2);
+        this.setState({ s: s2, tx: c[0], ty: c[1], hot: id });
+      };
+    });
+    const pkOpVal = hotId === 'park' || hotId === 'gate' ? '0.5' : '0.28';
+    const info = SPOTS[hotId]
+      ? { title: SPOTS[hotId][2], text: SPOTS[hotId][3] }
+      : { title: 'Survolez ou touchez un point', text: 'Chaque point explique une étape du trajet jusqu’à la porte.' };
+
+    return {
+      accent: this.props.accent || '#5B3FC4',
+      doctolibUrl: this.props.doctolibUrl || 'https://www.doctolib.fr/dentiste/epagny-metz-tessy/clara-manisse/booking/availabilities?specialityId=1&telehealth=false&placeId=practice-659010&motiveIds%5B%5D=13814423&pid=practice-659010&source=profile',
+      isOpen: isOpen,
+      isClosed: !isOpen,
+      statusText: statusText,
+      statusFg: isOpen ? '#15603F' : '#3E3655',
+      statusDot: isOpen ? '#22A06B' : '#B0306A',
+      nextOpen: nextOpen,
+      week: week,
+      on: on, show: show, pick: pick,
+      modeOn: modeOn, modeIs: modeIs, setMode: setMode, mapOp: mapOp,
+      hot: hot, hover: hover, focus: focus, pkOp: pkOpVal, info: info,
+      s: String(s),
+      inv: String(1 / s),
+      tx: String(Math.round(st.tx || 0)),
+      ty: String(Math.round(st.ty || 0)),
+      zoomed: s > 1,
+      cursor: s > 1 ? (st.dragging ? 'grabbing' : 'grab') : 'default',
+      touch: s > 1 ? 'none' : 'pan-y',
+      layerTrans: st.dragging ? 'none' : 'transform .35s ease',
+      mapRef: (el) => { this._mapEl = el; },
+      panelRef: (el) => { this._panelEl = el; },
+      zoomIn: () => this.zoomTo(s * 1.5),
+      zoomOut: () => this.zoomTo(s / 1.5),
+      resetView: () => this.setState({ s: 1, tx: 0, ty: 0 }),
+      dbl: (e) => {
+        if (e.target && e.target.closest && e.target.closest('.hs, .mapctl')) return;
+        const r = this._mapEl ? this._mapEl.getBoundingClientRect() : null;
+        if (r) this.zoomTo(s * 1.6, e.clientX - r.left, e.clientY - r.top); else this.zoomTo(s * 1.6);
+      },
+      pDown: (e) => {
+        if (s <= 1) return;
+        if (e.target && e.target.closest && e.target.closest('.hs, .mapctl')) return;
+        this._drag = { x: e.clientX, y: e.clientY, tx: st.tx || 0, ty: st.ty || 0 };
+        try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {}
+        this.setState({ dragging: true });
+      },
+      pMove: (e) => {
+        const dr = this._drag;
+        if (!dr) return;
+        const c = this.clampT(dr.tx + e.clientX - dr.x, dr.ty + e.clientY - dr.y, (this.state || {}).s || 1);
+        this.setState({ tx: c[0], ty: c[1] });
+      },
+      pUp: () => {
+        if (this._drag) { this._drag = null; this.setState({ dragging: false }); }
+      },
+      legendMain: mode === 'car' ? 'trajet en voiture' : mode === 'bike' ? 'trajet à vélo' : 'trajet depuis l’arrêt de bus',
+      copyLabel: st.copied ? 'Adresse copiée !' : 'Copier l’adresse',
+      copy: () => {
+        try { if (navigator.clipboard) navigator.clipboard.writeText('Cabinet dentaire du Pericles, Montée C, 1 allée de la Mandallaz, 74370 Epagny Metz-Tessy'); } catch (e) {}
+        this.setState({ copied: true });
+        clearTimeout(this._ct);
+        this._ct = setTimeout(() => this.setState({ copied: false }), 2200);
+      }
+    };
+  }
+}
+
+__mountDC(Component, {"accent": "#5B3FC4", "doctolibUrl": "https://www.doctolib.fr/dentiste/epagny-metz-tessy/clara-manisse/booking/availabilities?specialityId=1&telehealth=false&placeId=practice-659010&motiveIds%5B%5D=13814423&pid=practice-659010&source=profile", "openState": "auto"});
+document.getElementById('app').classList.add('ready');
+</script>
+</body>
+</html>
