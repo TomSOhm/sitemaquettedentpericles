@@ -50,6 +50,9 @@ a{color:#4A32A8}a:hover{color:#2E1D78}
 @keyframes dash{to{stroke-dashoffset:-60}}
 @keyframes walk{to{stroke-dashoffset:-56}}
 .mbar{display:none !important}
+.sheet-head{display:none}
+.sheet-bd{display:none}
+@keyframes sheetup{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
 :focus-visible{outline:3px solid #E58AAE;outline-offset:3px}
 @media (prefers-reduced-motion: reduce){.route,.walk,.hs-dot::before,.slot[data-now="true"]{animation:none}}
 @media (max-width: 760px){
@@ -89,6 +92,22 @@ a{color:#4A32A8}a:hover{color:#2E1D78}
   .mapcap svg{width:24px}
   .mapcap > span{gap:4px 12px !important}
   .hide-m{display:none !important}
+  .secp{display:none !important}
+  .secp[data-sheet="true"]{display:block !important;position:fixed !important;left:0;right:0;bottom:0;max-height:88vh;overflow-y:auto;overscroll-behavior:contain;z-index:60;background:#FCFAFF;border-radius:28px 28px 0 0;padding:0 12px 28px !important;box-shadow:0 -20px 40px -12px rgba(34,27,51,.4);animation:sheetup .28s ease-out}
+  .sheet-bd[data-sheet="true"]{display:block;position:fixed;inset:0;background:rgba(34,27,51,.45);z-index:55}
+  .sheet-head{display:flex;position:sticky;top:0;z-index:2;align-items:center;justify-content:space-between;gap:12px;padding:18px 6px 12px;background:#FCFAFF}
+  .sheet-grab{position:absolute;left:50%;top:7px;width:44px;height:5px;border-radius:5px;background:#D6CCF0;transform:translateX(-50%)}
+  .sheet-x{width:40px;height:40px;border-radius:50%;border:1.5px solid #221B33;background:#FFFFFF;color:#221B33;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;flex:none}
+  .mapframe{aspect-ratio:1 / 1.1 !important}
+  .maplayer{inset:0 auto 0 0 !important;height:100% !important;width:auto !important;aspect-ratio:1560 / 975}
+  .mapframe path.rbg{stroke-width:7px}
+  .mapframe path.route{stroke-width:4px;stroke-dasharray:12 8}
+  .mapframe path.walk{stroke-width:3.5px;stroke-dasharray:1 7}
+  .steps ol{flex-direction:row !important;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px !important;padding:2px 2px 8px !important}
+  .steps li{flex:0 0 80%;scroll-snap-align:start;background:#FFFFFF;border:1.5px solid #221B33;border-radius:18px;padding:12px 14px !important;font-size:15px;line-height:1.4}
+  .steps li[data-hot="true"]{background:#F1EAFF}
+  .steps > span{font-size:13px !important;padding:0 2px 4px !important}
+  .addr{padding:16px !important}
   .step{padding:8px 6px !important}
   .num{width:30px !important;height:30px !important;font-size:14px}
 }
@@ -210,7 +229,14 @@ section[id]{scroll-margin-top:84px}
     </div>
   </section>
 
-  <section aria-live="polite" class="secp" ref="{{panelRef}}" style="scroll-margin-top: 84px; max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px">
+  <div class="sheet-bd" data-sheet="{{sheetOn}}" onClick="{{closeSheet}}"></div>
+  <section aria-live="polite" class="secp" data-sheet="{{sheetOn}}" ref="{{panelRef}}" style="scroll-margin-top: 84px; max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px">
+
+    <div class="sheet-head">
+      <span class="sheet-grab"></span>
+      <span style="font-weight: 700; font-size: 17px">{{selTitle}}</span>
+      <button type="button" class="sheet-x" aria-label="Fermer" onClick="{{closeSheet}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </div>
 
     <sc-if value="{{show.new}}" hint-placeholder-val="{{ true }}">
       <div class="panel" style="background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 34px 40px 36px 42px; padding: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 32px; box-shadow: 0 24px 48px -32px rgba(91,63,196,.45)">
@@ -328,7 +354,7 @@ section[id]{scroll-margin-top:84px}
             <a class="btn" href="https://waze.com/ul?q=1%20All%C3%A9e%20de%20la%20Mandallaz%2074370%20Epagny%20Metz-Tessy&amp;navigate=yes" style="display: inline-flex; align-items: center; gap: 8px; background: {{accent}}; color: #FFFFFF; padding: 13px 20px; border-radius: 999px; font-weight: 600; min-height: 50px">Waze</a>
             <a class="btn" href="https://maps.apple.com/?q=1%20All%C3%A9e%20de%20la%20Mandallaz%2C%2074370%20Epagny%20Metz-Tessy" style="display: inline-flex; align-items: center; gap: 8px; background: {{accent}}; color: #FFFFFF; padding: 13px 20px; border-radius: 999px; font-weight: 600; min-height: 50px">Plans (iPhone)</a>
           </div>
-          <a href="#acces" style="font-weight: 600; display: inline-flex; align-items: center; gap: 8px; min-height: 44px">Voir la vue aérienne avec le chemin
+          <a onClick="{{closeSheet}}" href="#acces" style="font-weight: 600; display: inline-flex; align-items: center; gap: 8px; min-height: 44px">Voir la vue aérienne avec le chemin
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
           </a>
         </div>
@@ -347,7 +373,7 @@ section[id]{scroll-margin-top:84px}
           <span style="font-family: 'Caveat', cursive; font-size: 26px; color: #B0306A">Conventionné, carte Vitale acceptée</span>
           <h2 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.15">Soins courants remboursés à 60&#160;% par la Sécurité sociale.</h2>
           <p style="margin: 0; color: #4D4563">Le reste peut être pris en charge par votre mutuelle. Prothèses (couronne, bridge, implant…) : toujours sur devis préalable.</p>
-          <a href="#tarifs" style="font-weight: 600; display: inline-flex; align-items: center; gap: 8px; min-height: 44px">Tout comprendre sur les tarifs
+          <a onClick="{{closeSheet}}" href="#tarifs" style="font-weight: 600; display: inline-flex; align-items: center; gap: 8px; min-height: 44px">Tout comprendre sur les tarifs
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
           </a>
         </div>
@@ -378,11 +404,11 @@ section[id]{scroll-margin-top:84px}
           </div>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start">
-          <a href="#soins" style="background: #F4EFFF; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Blanchiment des dents</a>
-          <a href="#soins" style="background: #FDE3EC; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Facette dentaire</a>
-          <a href="#soins" style="background: #DDD8F5; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Implant dentaire</a>
-          <a href="#soins" style="background: #F4EFFF; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Orthèse d’avancée mandibulaire (OAM)</a>
-          <a href="#soins" style="background: #FDE3EC; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Parodontologie</a>
+          <a onClick="{{closeSheet}}" href="#soins" style="background: #F4EFFF; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Blanchiment des dents</a>
+          <a onClick="{{closeSheet}}" href="#soins" style="background: #FDE3EC; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Facette dentaire</a>
+          <a onClick="{{closeSheet}}" href="#soins" style="background: #DDD8F5; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Implant dentaire</a>
+          <a onClick="{{closeSheet}}" href="#soins" style="background: #F4EFFF; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Orthèse d’avancée mandibulaire (OAM)</a>
+          <a onClick="{{closeSheet}}" href="#soins" style="background: #FDE3EC; color: #221B33; text-decoration: none; border-radius: 999px; padding: 12px 18px; font-weight: 600">Parodontologie</a>
         </div>
       </div>
     </sc-if>
@@ -413,26 +439,26 @@ section[id]{scroll-margin-top:84px}
 
       <figure style="margin: 0; background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 36px 32px 38px 34px; padding: 12px; display: flex; flex-direction: column; gap: 10px">
         <div class="mapframe" ref="{{mapRef}}" onPointerDown="{{pDown}}" onPointerMove="{{pMove}}" onPointerUp="{{pUp}}" onPointerCancel="{{pUp}}" onDoubleClick="{{dbl}}" style="position: relative; width: 100%; aspect-ratio: 1560 / 975; border-radius: 26px; overflow: hidden; background: #DDD8F5; cursor: {{cursor}}; touch-action: {{touch}}; user-select: none">
-          <div style="position: absolute; inset: 0; transform-origin: 0 0; transform: translate({{tx}}px, {{ty}}px) scale({{s}}); transition: {{layerTrans}}">
+          <div class="maplayer" ref="{{layerRef}}" style="position: absolute; inset: 0; transform-origin: 0 0; transform: translate({{tx}}px, {{ty}}px) scale({{s}}); transition: {{layerTrans}}">
             <img src="assets/vue-aerienne-ign.webp" alt="Vue aérienne : le cabinet, la cour intérieure, les parkings et l’avenue de l’Hôpital" draggable="false" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none">
             <div style="position: absolute; inset: 0; background: rgba(91,63,196,.12); mix-blend-mode: multiply; pointer-events: none"></div>
             <svg viewBox="0 0 1560 975" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; font-family: 'Caveat', cursive">
               <polygon points="965,365 1240,362 1252,640 1110,652 1060,700 990,800 950,980 15,980 15,700 250,668 330,700 445,792 705,652 792,606 918,430 965,400" fill="#C9B8FF" fill-opacity="{{pkOp}}" stroke="#FFFFFF" stroke-width="2.5" stroke-dasharray="8 6" stroke-linejoin="round" vector-effect="non-scaling-stroke" style="transition: fill-opacity .25s ease"></polygon>
 
-              <path d="M300 678 L 630 513 L 692 477 L 842 291 L 876 239 L 1043 215 M1090 471 L 981 420 L 914 342 L 876 255" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity=".85" vector-effect="non-scaling-stroke"></path>
+              <path class="rbg" d="M300 678 L 630 513 L 692 477 L 842 291 L 876 239 L 1043 215 M1090 471 L 981 420 L 914 342 L 876 255" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity=".85" vector-effect="non-scaling-stroke"></path>
               <path class="walk" d="M300 678 L 630 513 L 692 477 L 842 291 L 876 239 L 1043 215 M1090 471 L 981 420 L 914 342 L 876 255" fill="none" stroke="#E0569A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
 
               <g opacity="{{mapOp.car}}" style="transition: opacity .35s ease">
-                <path d="M1320 0 L 1320 418 L 1224 424 L 1111 503 M1111 503 L 1090 471" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity=".9" vector-effect="non-scaling-stroke"></path>
+                <path class="rbg" d="M1320 0 L 1320 418 L 1224 424 L 1111 503 M1111 503 L 1090 471" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity=".9" vector-effect="non-scaling-stroke"></path>
                 <path class="route" d="M1320 0 L 1320 418 L 1224 424 L 1111 503" fill="none" stroke="#5B3FC4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
                 <path class="walk" d="M1111 503 L 1090 471" fill="none" stroke="#E0569A" stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
               </g>
               <g opacity="{{mapOp.bus}}" style="transition: opacity .35s ease">
-                <path d="M1397 566 L 1392 645 L 1287 645 L 1283 432 L 1188 424 L 1090 471" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity=".9" vector-effect="non-scaling-stroke"></path>
+                <path class="rbg" d="M1397 566 L 1392 645 L 1287 645 L 1283 432 L 1188 424 L 1090 471" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity=".9" vector-effect="non-scaling-stroke"></path>
                 <path class="walk" d="M1397 566 L 1392 645 L 1287 645 L 1283 432 L 1188 424 L 1090 471" fill="none" stroke="#5B3FC4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
               </g>
               <g opacity="{{mapOp.bike}}" style="transition: opacity .35s ease">
-                <path d="M1335 0 L 1335 426 L 1240 432 L 1207 474 M1207 474 L 1090 471" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity=".9" vector-effect="non-scaling-stroke"></path>
+                <path class="rbg" d="M1335 0 L 1335 426 L 1240 432 L 1207 474 M1207 474 L 1090 471" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity=".9" vector-effect="non-scaling-stroke"></path>
                 <path class="route" d="M1335 0 L 1335 426 L 1240 432 L 1207 474" fill="none" stroke="#5B3FC4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
                 <path class="walk" d="M1207 474 L 1090 471" fill="none" stroke="#E0569A" stroke-width="6" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
               </g>
@@ -493,7 +519,7 @@ section[id]{scroll-margin-top:84px}
             </span>
           </div>
           <sc-if value="{{zoomed}}" hint-placeholder-val="{{ false }}">
-            <span style="position: absolute; right: 14px; bottom: 14px; z-index: 8; background: rgba(34,27,51,.82); color: #FFFFFF; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; pointer-events: none">Glissez pour vous déplacer</span>
+            <span style="position: absolute; right: 14px; bottom: 14px; z-index: 8; background: rgba(34,27,51,.82); color: #FFFFFF; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; pointer-events: none">Glissez ou pincez pour explorer</span>
           </sc-if>
         </div>
         <div class="mapinfo-below" style="display: none; gap: 10px; align-items: flex-start; background: #F4EFFF; border-radius: 16px; padding: 10px 12px">
@@ -512,8 +538,8 @@ section[id]{scroll-margin-top:84px}
       </figure>
 
       <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
-        <div style="flex: 3 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
-          <span style="font-size: 15px; color: #5E5672; font-weight: 600; padding: 0 12px 4px">Étapes : cliquez pour zoomer sur la vue</span>
+        <div class="steps" style="flex: 3 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 15px; color: #5E5672; font-weight: 600; padding: 0 12px 4px">Étapes : touchez-en une pour la voir sur la vue</span>
           <sc-if value="{{modeIs.car}}" hint-placeholder-val="{{ true }}">
             <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
               <li class="step" data-hot="false" style="display: flex; gap: 14px; align-items: flex-start"><span class="num">1</span><span style="padding-top: 4px">Dans le GPS, tapez simplement <strong>« Dr MANISSE Clara »</strong>.</span></li>
@@ -540,7 +566,7 @@ section[id]{scroll-margin-top:84px}
           </sc-if>
         </div>
 
-        <div style="flex: 2 1 340px; min-width: 0; background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 28px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+        <div class="addr" style="flex: 2 1 340px; min-width: 0; background: #FFFFFF; border: 1.5px solid #221B33; border-radius: 28px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
           <span style="font-size: 15px; color: #5E5672; font-weight: 600">Adresse</span>
           <span style="font-weight: 600; line-height: 1.4">Cabinet dentaire du Pericles, Montée C<br>1 allée de la Mandallaz, 74370 Epagny Metz-Tessy</span>
           <div style="display: flex; gap: 10px; flex-wrap: wrap">
@@ -912,18 +938,44 @@ section[id]{scroll-margin-top:84px}
 class Component extends DCLogic {
   componentDidMount() {
     this._t = setInterval(() => this.setState({ now: new Date() }), 60000);
+    this._center = (s) => {
+      const d = this.dims();
+      const st = this.state || {};
+      const sc = s || st.s || 1;
+      const c = this.clampT(d[0] / 2 - 0.66 * d[2] * sc, d[1] / 2 - 0.4 * d[3] * sc, sc);
+      this.setState({ s: sc, tx: c[0], ty: c[1] });
+    };
+    this._ci = setTimeout(() => this._center(1), 120);
+    this._rs = () => this._center();
+    window.addEventListener('resize', this._rs);
   }
   componentWillUnmount() {
     clearInterval(this._t);
     clearTimeout(this._ct);
+    clearTimeout(this._ci);
+    window.removeEventListener('resize', this._rs);
   }
   dims() {
     const el = this._mapEl;
-    return [el ? el.clientWidth : 1200, el ? el.clientHeight : 750];
+    const ly = this._layerEl;
+    const W = el ? el.clientWidth : 1200;
+    const H = el ? el.clientHeight : 750;
+    return [W, H, ly ? ly.offsetWidth : W, ly ? ly.offsetHeight : H];
   }
   clampT(tx, ty, s) {
-    const wh = this.dims();
-    return [Math.min(0, Math.max(wh[0] - wh[0] * s, tx)), Math.min(0, Math.max(wh[1] - wh[1] * s, ty))];
+    const d = this.dims();
+    return [Math.min(0, Math.max(d[0] - d[2] * s, tx)), Math.min(0, Math.max(d[1] - d[3] * s, ty))];
+  }
+  canPan(s) {
+    const d = this.dims();
+    return d[2] * s > d[0] + 1 || d[3] * s > d[1] + 1;
+  }
+  pinchPts() {
+    const ids = Object.keys(this._pts || {});
+    if (ids.length < 2) return null;
+    const a = this._pts[ids[0]], b = this._pts[ids[1]];
+    const r = this._mapEl.getBoundingClientRect();
+    return { d: Math.hypot(a.x - b.x, a.y - b.y) || 1, mx: (a.x + b.x) / 2 - r.left, my: (a.y + b.y) / 2 - r.top };
   }
   zoomTo(s2, cxp, cyp) {
     const st = this.state || {};
@@ -931,7 +983,7 @@ class Component extends DCLogic {
     const wh = this.dims();
     const cx = cxp == null ? wh[0] / 2 : cxp;
     const cy = cyp == null ? wh[1] / 2 : cyp;
-    s2 = Math.max(1, Math.min(3, s2));
+    s2 = Math.max(1, Math.min(4, s2));
     const tx = cx - (cx - (st.tx || 0)) * (s2 / s);
     const ty = cy - (cy - (st.ty || 0)) * (s2 / s);
     const c = this.clampT(tx, ty, s2);
@@ -990,6 +1042,12 @@ class Component extends DCLogic {
       on[id] = sel === id ? 'true' : 'false';
       show[id] = sel === id;
       pick[id] = () => {
+        const mobile = !!(window.matchMedia && window.matchMedia('(max-width: 760px)').matches);
+        if (mobile) {
+          try { document.body.style.overflow = 'hidden'; } catch (err) {}
+          this.setState({ sel: id, sheet: true });
+          return;
+        }
         this.setState({ sel: id });
         clearTimeout(this._st);
         this._st = setTimeout(() => {
@@ -1025,16 +1083,21 @@ class Component extends DCLogic {
       hover[id] = () => { if ((this.state || {}).hot !== id) this.setState({ hot: id }); };
       focus[id] = () => {
         const p = SPOTS[id];
-        const wh = this.dims();
+        const d = this.dims();
         const s2 = Math.max((this.state || {}).s || 1, 2);
-        const c = this.clampT(wh[0] / 2 - p[0] / 100 * wh[0] * s2, wh[1] / 2 - p[1] / 100 * wh[1] * s2, s2);
+        const c = this.clampT(d[0] / 2 - p[0] / 100 * d[2] * s2, d[1] / 2 - p[1] / 100 * d[3] * s2, s2);
         this.setState({ s: s2, tx: c[0], ty: c[1], hot: id });
+        const el = this._mapEl;
+        if (el && el.getBoundingClientRect) {
+          const r = el.getBoundingClientRect();
+          if (r.top < 0 || r.bottom > (window.innerHeight || 800)) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       };
     });
     const pkOpVal = hotId === 'park' || hotId === 'gate' ? '0.5' : '0.28';
     const info = SPOTS[hotId]
       ? { title: SPOTS[hotId][2], text: SPOTS[hotId][3] }
-      : { title: 'Survolez ou touchez un point', text: 'Chaque point explique une étape du trajet jusqu’à la porte.' };
+      : { title: 'Touchez ou survolez un point', text: 'Chaque point explique une étape du trajet jusqu’à la porte.' };
 
     return {
       accent: this.props.accent || '#5B3FC4',
@@ -1053,35 +1116,79 @@ class Component extends DCLogic {
       inv: String(1 / s),
       tx: String(Math.round(st.tx || 0)),
       ty: String(Math.round(st.ty || 0)),
-      zoomed: s > 1,
-      cursor: s > 1 ? (st.dragging ? 'grabbing' : 'grab') : 'default',
+      zoomed: this.canPan(s) && !st.touched,
+      cursor: this.canPan(s) ? (st.dragging ? 'grabbing' : 'grab') : 'default',
       touch: s > 1 ? 'none' : 'pan-y',
       layerTrans: st.dragging ? 'none' : 'transform .35s ease',
       mapRef: (el) => { this._mapEl = el; },
+      layerRef: (el) => { this._layerEl = el; },
       panelRef: (el) => { this._panelEl = el; },
+      sheetOn: st.sheet ? 'true' : 'false',
+      selTitle: ({ new: 'Premier rendez-vous', rdv: 'Prendre ou déplacer un RDV', pain: 'J’ai mal, c’est urgent', come: 'Venir au cabinet', cost: 'Tarifs et remboursement', care: 'Un soin en particulier' })[sel] || '',
+      closeSheet: () => {
+        try { document.body.style.overflow = ''; } catch (err) {}
+        if ((this.state || {}).sheet) this.setState({ sheet: false });
+      },
       zoomIn: () => this.zoomTo(s * 1.5),
       zoomOut: () => this.zoomTo(s / 1.5),
-      resetView: () => this.setState({ s: 1, tx: 0, ty: 0 }),
+      resetView: () => { if (this._center) this._center(1); else this.setState({ s: 1, tx: 0, ty: 0 }); },
       dbl: (e) => {
         if (e.target && e.target.closest && e.target.closest('.hs, .mapctl')) return;
         const r = this._mapEl ? this._mapEl.getBoundingClientRect() : null;
         if (r) this.zoomTo(s * 1.6, e.clientX - r.left, e.clientY - r.top); else this.zoomTo(s * 1.6);
       },
       pDown: (e) => {
-        if (s <= 1) return;
-        if (e.target && e.target.closest && e.target.closest('.hs, .mapctl')) return;
-        this._drag = { x: e.clientX, y: e.clientY, tx: st.tx || 0, ty: st.ty || 0 };
-        try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {}
+        if (e.target && e.target.closest && e.target.closest('.mapctl')) return;
+        const onSpot = !!(e.target && e.target.closest && e.target.closest('.hs'));
+        this._pts = this._pts || {};
+        this._pts[e.pointerId] = { x: e.clientX, y: e.clientY };
+        if (!(this.state || {}).touched) this.setState({ touched: true });
+        if (!onSpot) { try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {} }
+        const cur = this.state || {};
+        const pp = this.pinchPts();
+        if (pp) {
+          this._drag = null;
+          this._pinch = { d0: pp.d, s0: cur.s || 1, tx0: cur.tx || 0, ty0: cur.ty || 0, mx: pp.mx, my: pp.my };
+          this.setState({ dragging: true });
+          return;
+        }
+        if (onSpot || !this.canPan(cur.s || 1)) return;
+        this._drag = { x: e.clientX, y: e.clientY, tx: cur.tx || 0, ty: cur.ty || 0 };
         this.setState({ dragging: true });
       },
       pMove: (e) => {
+        if (this._pts && this._pts[e.pointerId]) this._pts[e.pointerId] = { x: e.clientX, y: e.clientY };
+        const pc = this._pinch;
+        if (pc) {
+          const pp = this.pinchPts();
+          if (!pp) return;
+          const s2 = Math.max(1, Math.min(4, pc.s0 * pp.d / pc.d0));
+          const px = (pc.mx - pc.tx0) / pc.s0, py = (pc.my - pc.ty0) / pc.s0;
+          const c = this.clampT(pp.mx - px * s2, pp.my - py * s2, s2);
+          this.setState({ s: s2, tx: c[0], ty: c[1] });
+          return;
+        }
         const dr = this._drag;
         if (!dr) return;
         const c = this.clampT(dr.tx + e.clientX - dr.x, dr.ty + e.clientY - dr.y, (this.state || {}).s || 1);
         this.setState({ tx: c[0], ty: c[1] });
       },
-      pUp: () => {
-        if (this._drag) { this._drag = null; this.setState({ dragging: false }); }
+      pUp: (e) => {
+        if (this._pts && e && e.pointerId != null) delete this._pts[e.pointerId];
+        const left = Object.keys(this._pts || {});
+        if (this._pinch && left.length < 2) {
+          this._pinch = null;
+          if (left.length === 1) {
+            const p0 = this._pts[left[0]];
+            const cur = this.state || {};
+            this._drag = { x: p0.x, y: p0.y, tx: cur.tx || 0, ty: cur.ty || 0 };
+            return;
+          }
+        }
+        if (left.length === 0) {
+          this._drag = null;
+          if ((this.state || {}).dragging) this.setState({ dragging: false });
+        }
       },
       legendMain: mode === 'car' ? 'trajet en voiture' : mode === 'bike' ? 'trajet à vélo' : 'trajet depuis l’arrêt de bus',
       copyLabel: st.copied ? 'Adresse copiée !' : 'Copier l’adresse',
