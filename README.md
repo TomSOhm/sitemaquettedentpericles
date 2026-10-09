@@ -1,4 +1,4 @@
-# Maquette site Dr Clara Manisse
+# Maquette site
 
 Site statique d'une seule page : `index.html` + dossier `assets/`. Aucune installation nécessaire.
 
@@ -10,8 +10,5 @@ Site statique d'une seule page : `index.html` + dossier `assets/`. Aucune instal
 ## Confidentialité
 - La page contient `<meta name="robots" content="noindex, nofollow">` : les moteurs de recherche ne l'indexent pas.
 - Le site reste accessible à toute personne qui a le lien.
-
-## À remplacer avant la mise en production
-- Photo du Dr Manisse : bloc « [Photo du Dr Clara Manisse] ».
 
 Vue aérienne : IGN, BD ORTHO®, Licence Ouverte Etalab 2.0.
