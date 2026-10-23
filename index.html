@@ -317,9 +317,9 @@ body{background:#ECEDEF}
   section#acces{padding:56px 16px 0 !important;border-radius:0 !important}
   .accgrid{grid-template-columns:1fr !important}
   .soinD{grid-template-columns:1fr;padding:8px}
-  .soin-list{flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;gap:6px;padding:4px;scrollbar-width:none}
+  .soin-list{flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;gap:6px;padding:4px calc(50% - 80px);scrollbar-width:none}
   .soin-list::-webkit-scrollbar{display:none}
-  .soin-it{flex:0 0 auto;width:auto;scroll-snap-align:start;padding:8px 14px 8px 8px;gap:10px}
+  .soin-it{flex:0 0 auto;width:auto;scroll-snap-align:center;padding:8px 14px 8px 8px;gap:10px}
   .soin-th{width:38px;height:38px;border-radius:11px}
   .soin-t{font-size:15px;white-space:nowrap}
   .soin-s, .soin-ch{display:none}
@@ -1437,19 +1437,20 @@ class Component extends DCLogic {
           }
           upd();
           window.addEventListener('resize', () => place(cur));
-          const row = el.querySelector('.objs');
-          if (row) {
+          [['.objs', '.obj'], ['.soin-list', '.soin-it']].forEach((pair) => {
+            const row = el.querySelector(pair[0]);
+            if (!row) return;
             let tm = 0;
             const settle = () => {
               tm = 0;
               if (row.scrollWidth <= row.clientWidth + 4) return;
               const mid = row.getBoundingClientRect().left + row.clientWidth / 2;
               let best = null, bd = 1e9;
-              row.querySelectorAll('.obj').forEach((o) => { const r = o.getBoundingClientRect(); const d = Math.abs(r.left + r.width / 2 - mid); if (d < bd) { bd = d; best = o; } });
+              row.querySelectorAll(pair[1]).forEach((o) => { const r = o.getBoundingClientRect(); const d = Math.abs(r.left + r.width / 2 - mid); if (d < bd) { bd = d; best = o; } });
               if (best && best.getAttribute('data-on') !== 'true') best.click();
             };
             row.addEventListener('scroll', () => { clearTimeout(tm); tm = setTimeout(settle, 140); }, { passive: true });
-          }
+          });
           el.querySelectorAll('.obj, .soin-it').forEach((b) => b.addEventListener('click', () => { const row = b.parentElement; if (row && row.scrollWidth > row.clientWidth + 4) row.scrollTo({ left: b.offsetLeft - (row.clientWidth - b.offsetWidth) / 2, behavior: 'smooth' }); }));
 
         };
