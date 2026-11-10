@@ -6,7 +6,8 @@ La page est exclue des moteurs de recherche (balises noindex).
 ## Contenu
 
 - `index.html` : la page d'accueil (Version B, verre clinique), autonome.
-- `assets/` : images des objets, des soins et vue aérienne.
+- `version-c/index.html` : la Version C (calme organique), autonome, accessible à l'adresse `/version-c/`.
+- `assets/` : images des objets, des soins, vue aérienne et photo d'exemple du haut de la version C (`c-hero.webp`).
 - `VersionB.dc.html`, `support.js`, `vendor/` : export brut du canevas de design, non utilisé par le site.
 - `.nojekyll` : évite le traitement Jekyll de GitHub Pages.
 
