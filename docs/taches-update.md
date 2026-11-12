@@ -25,7 +25,8 @@ Légende : `[ ]` à faire, `[x]` fait, `[?]` décision ou information attendue.
 - [x] « 1er rendez-vous » ouvre une feuille de choix du praticien (volet à droite sur ordinateur, feuille du bas sur téléphone) avec filtre « Je peux venir le… », Doctolib ou téléphone selon le praticien, et « Peu importe le praticien » (téléphone, e-mail). (C)
 - [x] « Déjà patient » retiré devant le numéro. (C)
 - [x] « Tarifs » retiré de la navigation. (C)
-- [?] Logo. (R)
+- [x] Logo dans les barres, à la place du nom en texte ; haut de page centré sur « Cabinet dentaire du Pericles » (demande de Tom).
+- [?] Choix définitif du logo (provisoire : `logo-3-ligne`). (R)
 
 ## 2. Haut de page et référencement
 
@@ -54,12 +55,16 @@ Légende : `[ ]` à faire, `[x]` fait, `[?]` décision ou information attendue.
 - [x] Photos entrée, barrière, passerelle : affichées dans la fiche du repère cliqué ; la rangée sous le plan est retirée. (C)
 - [x] Trajets redessinés d'après le deuxième schéma de Tom : bus depuis la zone d'arrivée devant l'hôpital, par la barrière et le petit parking du haut ; voiture limitée à barrière puis P (les voitures arrivent du rond-point du haut) ; vélo limité au chemin à pied depuis l'abri vélo. Chaque mode n'affiche que son propre chemin (le chemin le long de l'allée de la Mandallaz est supprimé). Icône vélo redessinée avec son guidon. Zone verte prolongée en bas à gauche, zone rouge remontée jusqu'aux façades.
 - [x] Icônes du plan réduites sur téléphone, taille normale en plein écran.
+- [x] Zoom Ctrl + molette à la souris (et molette seule en plein écran).
+- [x] Navigation de gauche : étiquette visible seulement au-delà de 1560 px de large, sinon au survol (plus de chevauchement avec le contenu).
 
 ## 5. Horaires (« Une semaine au cabinet »)
 
 - [x] Horaires du secrétariat ; statut « ouvert / fermé » calculé dessus. (C)
 - [x] Frise interactive : secrétariat par défaut (vert), un clic sur un praticien met ses jours en évidence (brique) et propose son lien de rendez-vous. (R, C)
 - [x] E-mail proposé. (C)
+- [x] Colonne de gauche structurée en lignes (téléphone, e-mail, secrétariat, hors horaires, dimanche et fériés, urgence vitale).
+- [x] Mode praticien : présence en ocre sur les mêmes plages que le secrétariat, pas sur toute la journée.
 - [x] Urgence vitale : même pictogramme que dans le bloc urgence. (R)
 
 ## 6. Soins

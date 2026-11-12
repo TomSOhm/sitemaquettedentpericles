@@ -11,7 +11,7 @@ Maquette du site du Cabinet dentaire du Pericles (Epagny Metz-Tessy), réalisée
 - `assets/` : `c-hero.webp` (photo du haut de page, exemple), `plan-acces-ign.webp` (photo IGN du plan d'accès, 1800 x 1350, cadrage élargi jusqu'à l'hôpital), `91f15153dd67bd4ab5911862d1226e00.webp` (ancien cadrage, plus utilisé), `favicon.svg`.
 - `design/maquettes/` : maquettes de choix faites pendant l'update (horaires, premier rendez-vous, accès, urgence, équipe, logos). Pas utilisées par la page.
 - `docs/taches-update.md` : liste des tâches de l'update, avec ce qui reste à fournir par le cabinet.
-- `design/logos/` : 12 propositions de logo en SVG (`logo-*` complet, `symbole-*` seul). Aucune n'est encore choisie.
+- `design/logos/` : 12 propositions de logo en SVG (`logo-*` complet, `symbole-*` seul). Aucune n'est encore choisie : `logo-3-ligne` est affiché à titre provisoire. Le logo est intégré en SVG dans `index.html` (en-tête, barre fixe, menu mobile, entre les commentaires `<!-- logo : … -->` et `<!-- /logo -->`) pour garder les polices du site ; pour en changer, remplacer ces trois blocs par le contenu du fichier choisi.
 - `docs/retours-client.md` : retours du cabinet et informations à confirmer. **À lire avant toute modification de contenu.**
 
 ## Comment la page fonctionne
@@ -29,7 +29,7 @@ Pour ajouter un contenu dynamique : calculer la valeur dans `renderVals()`, la r
 
 Repères dans `js/app.js` : `HOURS` (créneaux du secrétariat par jour, en minutes ; le statut « ouvert » en dépend), `PRACS` (praticiens : jours de présence, lien Doctolib ou téléphone), `SPOTS` (repères du plan, en % de `plan-acces-ign.webp`), `_setFull` (plan en plein écran), `openRdv` (feuille « Premier rendez-vous »), `fxRef` (effets au défilement). Les zones du parking (polygones `zone-ok` et `zone-no`) et les trajets sont dans le SVG du plan, `index.html`, en coordonnées 1800 x 1350 ; tracé validé par Tom le 12/11/2026.
 
-Plan d'accès : sur la page, le défilement tactile reste libre (pas de zoom au doigt) ; « Agrandir le plan » passe le même plan en plein écran avec pincement, glissement et boutons. Ne pas remettre `touch-action: none` hors plein écran. Les props par défaut (palette, lien Doctolib, `openState`) sont passées à `__mountDC` en bas du fichier.
+Plan d'accès : sur la page, le défilement tactile reste libre (pas de zoom au doigt) ; « Agrandir le plan » passe le même plan en plein écran avec pincement, glissement et boutons. À la souris, Ctrl + molette zoome (la molette seule fait défiler la page et affiche une aide) ; en plein écran, la molette seule zoome. Ne pas remettre `touch-action: none` hors plein écran. Les props par défaut (palette, lien Doctolib, `openState`) sont passées à `__mountDC` en bas du fichier.
 
 Le sélecteur « Couleurs » (`.palC`) est un outil de maquette pour montrer les palettes au cabinet (`foret` par défaut, `lac`, `ardoise`, `nuit`, `terre`, définies dans `style.css`). À retirer une fois la palette choisie.
 

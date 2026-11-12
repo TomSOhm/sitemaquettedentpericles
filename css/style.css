@@ -360,8 +360,9 @@ body{background:var(--paper)}
 .hr-who{font-size:14px;font-weight:600;line-height:1.35;color:var(--prac)}
 .hr-who[data-none="true"]{color:var(--muted2);font-weight:400}
 .hr-row[data-st="on"]{background:rgba(var(--prac-rgb),.08);box-shadow:inset 3px 0 0 var(--prac)}
-.hr-row[data-st="on"] .hr-track{background:rgba(var(--prac-rgb),.22);box-shadow:inset 0 0 0 1.5px rgba(var(--prac-rgb),.55)}
-.hr-row[data-st="on"] .hr-bar, .hr-row[data-st="off"] .hr-bar{opacity:.22}
+/* présence d'un praticien : mêmes plages que le secrétariat, en ocre (pas toute la journée) */
+.hr-row[data-st="on"] .hr-bar{background:var(--prac)}
+.hr-row[data-st="off"] .hr-bar{opacity:.22}
 .hr-row[data-st="on"] .hr-who{font-weight:700}
 .hr-row[data-st="off"]{opacity:.45}
 .hr-row[data-st="off"] .hr-who{color:var(--muted2);font-weight:400}
@@ -482,3 +483,42 @@ body{background:var(--paper)}
 @media (max-width: 760px){.mapframe:not([data-full="true"]) .mapfull{min-height:36px;padding:0 10px;gap:6px;font-size:13px}.mapframe:not([data-full="true"]) .mapfull svg{width:15px;height:15px}}
 @media (max-width: 760px){.mapframe:not([data-full="true"]) .mapfull{top:8px;bottom:auto}.mapframe:not([data-full="true"]) .maphint{top:auto;bottom:8px}}
 @media (min-width: 761px){.mapframe[data-full="true"] .maphint{top:auto;bottom:14px;right:14px;transform:none}}
+
+/* Horaires : colonne de gauche structurée en lignes étiquetées */
+.hr-status{align-self:flex-start;padding:8px 14px;background:#FFFFFF;border:1px solid var(--line);border-radius:2px}
+.hr-rows{margin-top:4px}
+.hr-rows > div{grid-template-columns:140px minmax(0, 1fr);align-items:baseline}
+.hr-rows dd{color:var(--ink)}
+.hr-rows a.hr-tel{font-family:'DM Serif Display', Georgia, serif;font-weight:400;font-size:28px;line-height:1.1;color:var(--deep);text-decoration:none}
+.hr-rows a.hr-tel:hover{text-decoration:underline;text-underline-offset:5px}
+.hr-rows .hr-vital dd{display:flex;align-items:center;gap:10px}
+.hr-rows .hr-vital a{color:var(--warm)}
+@media (max-width: 760px){.hr-rows > div{grid-template-columns:1fr}.hr-rows a.hr-tel{font-size:26px}}
+
+/* Logo dans les barres ; haut de page : nom du cabinet centré */
+.brand{display:inline-flex;align-items:center;flex:none;text-decoration:none;line-height:0}
+.brand-logo{display:block;height:48px;width:auto}
+.brand-stk .brand-logo{height:38px}
+.brand-mnav .brand-logo{height:40px}
+.heroC .hero-c{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px 24px 120px !important}
+.hero-h1{margin:0;font-size:84px;line-height:1.02;max-width:900px;text-wrap:balance}
+.hero-c > p{margin-left:auto !important;margin-right:auto !important;text-wrap:balance}
+.hero-c .hero-cta{justify-content:center}
+@media (max-width: 1100px){.hero-h1{font-size:68px}}
+@media (max-width: 760px){
+  .brand-logo{height:40px}
+  .brand-stk .brand-logo{height:34px}
+  .heroC .hero-c{padding:12px 16px 84px !important}
+  .heroC h1.hero-h1{font-size:46px !important}
+}
+.brand-hd .brand-logo{height:60px}
+@media (max-width: 760px){.brand-hd .brand-logo{height:44px}}
+
+/* Navigation de gauche : sans place pour l'étiquette, on ne garde que les points ;
+   l'étiquette apparaît au survol, sur un fond qui la détache du contenu */
+.trail{left:22px}
+@media (max-width: 1559px){
+  .trail a[data-cur] span{opacity:0;translate:-6px 0}
+  .trail a:hover span, .trail a:focus-visible span{opacity:1;translate:0 0;background:var(--paper);padding:3px 10px;border-radius:2px;box-shadow:0 6px 16px -10px rgba(var(--ink-rgb),.6)}
+  .trail a[data-dark]:hover span{background:var(--deep)}
+}

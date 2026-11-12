@@ -136,7 +136,7 @@ class Component extends DCLogic {
         hours: open ? sl.map((x) => fmtS(x[0]) + ' à ' + fmtS(x[1])).join(', ') : 'Secrétariat fermé',
         pracs: here.length ? here.join(', ') : 'Cabinet fermé',
         st: selP ? (pres ? 'on' : 'off') : 'sec',
-        who: selP ? (pres ? 'Au cabinet' : 'Pas de consultation') : (here.length ? here.join(', ') : 'Cabinet fermé'),
+        who: selP ? (pres ? (open ? 'Au cabinet' : 'Au cabinet, secrétariat fermé') : 'Pas de consultation') : (here.length ? here.join(', ') : 'Cabinet fermé'),
         none: here.length ? 'false' : 'true',
         amL: open ? pct(sl[0][0]) : '0%',
         amW: open ? pct(480 + sl[0][1] - sl[0][0]) : '0%',
@@ -330,16 +330,39 @@ class Component extends DCLogic {
       toggleFull: () => this._setFull(!(this.state || {}).mapFull),
       fullLabel: full ? 'Fermer le plan' : 'Agrandir le plan',
       mapFull: full, mapNotFull: !full,
-      hintText: coarse ? 'Pincez pour zoomer, glissez pour explorer' : 'Glissez pour explorer',
+      hintText: st.wheelHint ? 'Ctrl + molette pour zoomer sur le plan' : (coarse ? 'Pincez pour zoomer, glissez pour explorer' : 'Ctrl + molette pour zoomer, glissez pour explorer'),
       s: String(s),
       inv: String(1 / s),
       tx: String(Math.round(st.tx || 0)),
       ty: String(Math.round(st.ty || 0)),
-      zoomed: (full && !st.touched) || (!coarse && this.canPan(s) && !st.touched),
+      zoomed: !!st.wheelHint || (full && !st.touched) || (!coarse && this.canPan(s) && !st.touched),
       cursor: this.canPan(s) ? (st.dragging ? 'grabbing' : 'grab') : 'default',
       touch: full ? 'none' : 'pan-y pinch-zoom',
-      layerTrans: st.dragging ? 'none' : 'transform .35s ease',
-      mapRef: (el) => { this._mapEl = el; },
+      layerTrans: st.dragging || st.wheeling ? 'none' : 'transform .35s ease',
+      mapRef: (el) => {
+        this._mapEl = el;
+        if (!el || el._wheelOn) return;
+        el._wheelOn = true;
+        // Ctrl + molette (et pincement sur pavé tactile, qui envoie ctrlKey) : zoom autour du curseur.
+        // En plein écran, la molette seule zoome aussi. Sinon la page défile et une aide s'affiche.
+        el.addEventListener('wheel', (e) => {
+          const cur = this.state || {};
+          if (!e.ctrlKey && !e.metaKey && !cur.mapFull) {
+            if (!cur.wheelHint) this.setState({ wheelHint: true });
+            clearTimeout(this._wh);
+            this._wh = setTimeout(() => this.setState({ wheelHint: false }), 1400);
+            return;
+          }
+          e.preventDefault();
+          let dy = e.deltaY * (e.deltaMode === 1 ? 33 : 1);
+          dy = Math.max(-60, Math.min(60, dy));
+          const r = el.getBoundingClientRect();
+          this.setState({ touched: true, wheeling: true, wheelHint: false });
+          this.zoomTo((cur.s || 1) * Math.exp(-dy * 0.0045), e.clientX - r.left, e.clientY - r.top);
+          clearTimeout(this._wz);
+          this._wz = setTimeout(() => this.setState({ wheeling: false }), 160);
+        }, { passive: false });
+      },
       layerRef: (el) => { this._layerEl = el; },
       panelRef: (el) => { this._panelEl = el; },
       sheetOn: st.sheet ? 'true' : 'false',
