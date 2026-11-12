@@ -17,7 +17,6 @@ Légende : `[ ]` à faire, `[x]` fait, `[?]` décision ou information attendue.
 - [?] Lignes de bus à l'arrêt Hôpital : le site de l'hôpital donne 2, 6, 10, 11, 18 ; les horaires Sibra d'octobre 2026 donnent 2, 11, 21, 25, 30. Le site affiche « 2 et 11 » en attendant une vérification sur sibra.fr.
 - [?] Code postal : 74370 (fiche du cabinet) ou 74330 (Base Adresse Nationale).
 - [?] Photos : entrée Montée C, barrière Patients, passerelle, accueil, salles. Portraits en photo ou en dessin.
-- [?] Choix du logo parmi `design/logos/` (planche : `design/maquettes/logos.html`).
 
 ## 1. En-tête et navigation
 
@@ -26,7 +25,7 @@ Légende : `[ ]` à faire, `[x]` fait, `[?]` décision ou information attendue.
 - [x] « Déjà patient » retiré devant le numéro. (C)
 - [x] « Tarifs » retiré de la navigation. (C)
 - [x] Logo dans les barres, à la place du nom en texte ; haut de page centré sur « Cabinet dentaire du Pericles » (demande de Tom).
-- [?] Choix définitif du logo (provisoire : `logo-3-ligne`). (R)
+- [x] Logo : `logo-11-sommet` de Tom, repris tel quel ; version horizontale pour les barres (`design/logos/logo-11-sommet-horizontal.svg`) et favicon. (R)
 
 ## 2. Haut de page et référencement
 

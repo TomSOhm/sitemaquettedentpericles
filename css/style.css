@@ -522,3 +522,8 @@ body{background:var(--paper)}
   .trail a:hover span, .trail a:focus-visible span{opacity:1;translate:0 0;background:var(--paper);padding:3px 10px;border-radius:2px;box-shadow:0 6px 16px -10px rgba(var(--ink-rgb),.6)}
   .trail a[data-dark]:hover span{background:var(--deep)}
 }
+
+/* Logo « sommet épuré » : couleur héritée, sous-titre en gris du site */
+.brand-logo{color:var(--deep)}
+.brand-logo .bl-sub{fill:var(--muted)}
+@media (min-width: 761px){.brand-stk .brand-logo{height:42px}}

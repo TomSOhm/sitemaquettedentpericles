@@ -8,10 +8,10 @@ Maquette du site du Cabinet dentaire du Pericles (Epagny Metz-Tessy), réalisée
 - `css/style.css` : styles, palettes de couleurs, responsive (point de rupture 760 px), animations.
 - `js/app.js` : logique de la page (classe `Component`) : état, horaires, carte, contenus calculés.
 - `js/dc-runtime.js` : mini moteur qui fait vivre le balisage. À ne pas modifier sans raison.
-- `assets/` : `c-hero.webp` (photo du haut de page, exemple), `plan-acces-ign.webp` (photo IGN du plan d'accès, 1800 x 1350, cadrage élargi jusqu'à l'hôpital), `91f15153dd67bd4ab5911862d1226e00.webp` (ancien cadrage, plus utilisé), `favicon.svg`.
+- `assets/` : `c-hero.webp` (photo du haut de page, exemple), `favicon.svg` (symbole sommet), `plan-acces-ign.webp` (photo IGN du plan d'accès, 1800 x 1350, cadrage élargi jusqu'à l'hôpital), `91f15153dd67bd4ab5911862d1226e00.webp` (ancien cadrage, plus utilisé).
 - `design/maquettes/` : maquettes de choix faites pendant l'update (horaires, premier rendez-vous, accès, urgence, équipe, logos). Pas utilisées par la page.
 - `docs/taches-update.md` : liste des tâches de l'update, avec ce qui reste à fournir par le cabinet.
-- `design/logos/` : 12 propositions de logo en SVG (`logo-*` complet, `symbole-*` seul). Aucune n'est encore choisie : `logo-3-ligne` est affiché à titre provisoire. Le logo est intégré en SVG dans `index.html` (en-tête, barre fixe, menu mobile, entre les commentaires `<!-- logo : … -->` et `<!-- /logo -->`) pour garder les polices du site ; pour en changer, remplacer ces trois blocs par le contenu du fichier choisi.
+- `design/logos/` : 12 propositions de logo en SVG (`logo-*` complet, `symbole-*` seul). Logo retenu par Tom : `logo-11-sommet` (dessin à garder tel quel, avec ses détails). Dans les barres du site, on utilise `logo-11-sommet-horizontal.svg` : le même symbole, le nom à droite. `assets/favicon.svg` reprend le symbole. Le logo est intégré en SVG dans `index.html` (en-tête, barre fixe, menu mobile, entre les commentaires `<!-- logo : … -->` et `<!-- /logo -->`) pour garder les polices du site ; chaque copie a son propre identifiant de masque (`sommetk-hd`, `sommetk-stk`, `sommetk-mnav`).
 - `docs/retours-client.md` : retours du cabinet et informations à confirmer. **À lire avant toute modification de contenu.**
 
 ## Comment la page fonctionne
