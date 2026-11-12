@@ -52,7 +52,7 @@ Légende : `[ ]` à faire, `[x]` fait, `[?]` décision ou information attendue.
 - [x] Étapes en voiture réécrites, « Tournez à gauche » en premier. (R, C)
 - [x] « Vue aérienne » remplacé par « plan d'accès », crédit « Photo : IGN ». (C)
 - [x] Photos entrée, barrière, passerelle : affichées dans la fiche du repère cliqué ; la rangée sous le plan est retirée. (C)
-- [x] Trajets redessinés d'après le deuxième schéma de Tom : bus depuis la zone d'arrivée devant l'hôpital, par la barrière et le petit parking du haut ; voiture limitée à barrière puis P (les voitures arrivent du rond-point du haut). Zone verte prolongée en bas à gauche, zone rouge remontée jusqu'aux façades.
+- [x] Trajets redessinés d'après le deuxième schéma de Tom : bus depuis la zone d'arrivée devant l'hôpital, par la barrière et le petit parking du haut ; voiture limitée à barrière puis P (les voitures arrivent du rond-point du haut) ; vélo limité au chemin à pied depuis l'abri vélo. Chaque mode n'affiche que son propre chemin (le chemin le long de l'allée de la Mandallaz est supprimé). Icône vélo redessinée avec son guidon. Zone verte prolongée en bas à gauche, zone rouge remontée jusqu'aux façades.
 - [x] Icônes du plan réduites sur téléphone, taille normale en plein écran.
 
 ## 5. Horaires (« Une semaine au cabinet »)

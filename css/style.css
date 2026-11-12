@@ -481,3 +481,4 @@ body{background:var(--paper)}
 }
 @media (max-width: 760px){.mapframe:not([data-full="true"]) .mapfull{min-height:36px;padding:0 10px;gap:6px;font-size:13px}.mapframe:not([data-full="true"]) .mapfull svg{width:15px;height:15px}}
 @media (max-width: 760px){.mapframe:not([data-full="true"]) .mapfull{top:8px;bottom:auto}.mapframe:not([data-full="true"]) .maphint{top:auto;bottom:8px}}
+@media (min-width: 761px){.mapframe[data-full="true"] .maphint{top:auto;bottom:14px;right:14px;transform:none}}
