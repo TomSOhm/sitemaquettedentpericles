@@ -6,9 +6,17 @@ class Component extends DCLogic {
       const d = this.dims();
       const st = this.state || {};
       const sc = s || st.s || 1;
-      const c = this.clampT(d[0] / 2 - 0.66 * d[2] * sc, d[1] / 2 - 0.4 * d[3] * sc, sc);
+      // point de visée : entre l'entrée Montée C et le parking patients
+      const c = this.clampT(d[0] / 2 - 0.55 * d[2] * sc, d[1] / 2 - 0.42 * d[3] * sc, sc);
       this.setState({ s: sc, tx: c[0], ty: c[1] });
     };
+    this._key = (e) => {
+      if (e.key !== 'Escape') return;
+      const st = this.state || {};
+      if (st.mapFull && this._setFull) this._setFull(false);
+      else if (st.rdv && this._closeRdv) this._closeRdv();
+    };
+    window.addEventListener('keydown', this._key);
     this._ci = setTimeout(() => this._center(1), 120);
     this._rs = () => this._center();
     window.addEventListener('resize', this._rs);
@@ -18,6 +26,7 @@ class Component extends DCLogic {
     clearTimeout(this._ct);
     clearTimeout(this._ci);
     window.removeEventListener('resize', this._rs);
+    window.removeEventListener('keydown', this._key);
   }
   dims() {
     const el = this._mapEl;
@@ -28,7 +37,9 @@ class Component extends DCLogic {
   }
   clampT(tx, ty, s) {
     const d = this.dims();
-    return [Math.min(0, Math.max(d[0] - d[2] * s, tx)), Math.min(0, Math.max(d[1] - d[3] * s, ty))];
+    // calque plus petit que le cadre (plein écran) : centré ; sinon borné aux bords
+    const cl = (t, F, L) => (L <= F ? (F - L) / 2 : Math.min(0, Math.max(F - L, t)));
+    return [cl(tx, d[0], d[2] * s), cl(ty, d[1], d[3] * s)];
   }
   canPan(s) {
     const d = this.dims();
@@ -63,51 +74,102 @@ class Component extends DCLogic {
 
     const DAYS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
     const SHORT = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
-    const OPEN = [2, 3, 4];
-    const SLOTS = [[480, 750], [810, 1080]];
+    // Horaires du SECRÉTARIAT (heures où l'on peut appeler), en minutes depuis minuit, par jour (0 = dimanche).
+    const HOURS = {
+      1: [[525, 720], [840, 1080]],
+      2: [[525, 720], [840, 1080]],
+      3: [[525, 720], [840, 1080]],
+      4: [[525, 720], [840, 1080]],
+      5: [[525, 720], [840, 990]]
+    };
+    // Jours de présence des praticiens (pas d'heures : demande du cabinet). Ordre d'affichage : Dr Bernardi en premier.
+    // book : page Doctolib (vide = rendez-vous par téléphone). Dr Bernardi : pas de Doctolib (demande du cabinet).
+    // Dr Richard : lien Doctolib à fournir par le cabinet (l'ancienne page répond « supprimée »).
+    const PRACS = [
+      { id: 'bernardi', name: 'Dr Christine Bernardi', short: 'Dr Bernardi', days: [1, 4, 5, 6], book: '' },
+      { id: 'manisse', name: 'Dr Clara Manisse', short: 'Dr Manisse', days: [1, 2, 3, 5], book: this.props.doctolibUrl || 'https://www.doctolib.fr/dentiste/epagny-metz-tessy/clara-manisse' },
+      { id: 'feaud', name: 'Dr Martin Feaud', short: 'Dr Feaud', days: [1, 2, 3, 4], book: 'https://www.doctolib.fr/dentiste/epagny-metz-tessy/martin-feaud' },
+      { id: 'richard', name: 'Dr Coline Richard', short: 'Dr Richard', days: [2, 4], book: '' }
+    ];
+    this._pracs = PRACS;
+    const hsel = PRACS.some((p) => p.id === st.hsel) ? st.hsel : 'sec';
+    const selP = PRACS.filter((p) => p.id === hsel)[0] || null;
+    const slotsOf = (dd) => HOURS[dd] || [];
     const fmt = (x) => Math.floor(x / 60) + 'h' + String(x % 60).padStart(2, '0');
+    const fmtS = (x) => Math.floor(x / 60) + 'h' + (x % 60 ? String(x % 60).padStart(2, '0') : '');
     const d = now.getDay();
     const m = now.getHours() * 60 + now.getMinutes();
     let isOpen = false, until = 0, slotIdx = -1;
-    if (OPEN.indexOf(d) >= 0) SLOTS.forEach((sl, i) => { if (m >= sl[0] && m < sl[1]) { isOpen = true; until = sl[1]; slotIdx = i; } });
+    slotsOf(d).forEach((sl, i) => { if (m >= sl[0] && m < sl[1]) { isOpen = true; until = sl[1]; slotIdx = i; } });
     let next = null;
     for (let k = 0; k < 8 && !next; k++) {
       const dd = (d + k) % 7;
-      if (OPEN.indexOf(dd) < 0) continue;
-      for (let i = 0; i < SLOTS.length; i++) {
-        if (k > 0 || m < SLOTS[i][0]) { next = { k: k, dd: dd, t: SLOTS[i][0] }; break; }
+      const sl = slotsOf(dd);
+      for (let i = 0; i < sl.length; i++) {
+        if (k > 0 || m < sl[i][0]) { next = { k: k, dd: dd, t: sl[i][0] }; break; }
       }
     }
     const nextOpen = next ? ((next.k === 0 ? 'aujourd’hui à ' : next.k === 1 ? 'demain à ' : DAYS[next.dd] + ' à ') + fmt(next.t)) : '';
     const forced = this.props.openState || 'auto';
     if (forced === 'open') { isOpen = true; until = until || 1080; }
     if (forced === 'closed') { isOpen = false; slotIdx = -1; }
-    const lunch = !isOpen && OPEN.indexOf(d) >= 0 && m >= 750 && m < 810 && forced === 'auto';
-    const statusText = isOpen ? ('Ouvert en ce moment, jusqu’à ' + fmt(until))
-      : lunch ? 'Pause déjeuner, réouverture à 13h30'
-      : ('Fermé en ce moment, réouverture ' + nextOpen);
+    const todaySl = slotsOf(d);
+    const lunch = !isOpen && todaySl.length > 1 && m >= todaySl[0][1] && m < todaySl[1][0] && forced === 'auto';
+    const statusText = isOpen ? ('Secrétariat ouvert, jusqu’à ' + fmt(until))
+      : lunch ? ('Pause de midi, le secrétariat rouvre à ' + fmt(todaySl[1][0]))
+      : ('Secrétariat fermé, réouverture ' + nextOpen);
 
+    // Frise : de 8h00 (480) à 18h00 (1080), soit 600 minutes.
+    const pct = (x) => (Math.max(0, Math.min(600, x - 480)) / 6).toFixed(2) + '%';
     const order = [1, 2, 3, 4, 5, 6, 0];
     const week = order.map((i) => {
-      const open = OPEN.indexOf(i) >= 0;
+      const sl = slotsOf(i);
+      const open = sl.length > 0;
       const today = i === d;
+      const here = PRACS.filter((p) => p.days.indexOf(i) >= 0).map((p) => p.short);
+      const pres = selP ? selP.days.indexOf(i) >= 0 : false;
       return {
         short: SHORT[i],
         open: open ? 'true' : 'false',
         today: today ? 'true' : 'false',
         name: DAYS[i].charAt(0).toUpperCase() + DAYS[i].slice(1),
-        am: open ? '8h00 à 12h30' : 'Fermé',
-        pm: open ? '13h30 à 18h00' : 'Fermé',
-        amW: open ? '45%' : '0%',
-        pmW: open ? '45%' : '0%',
-        nowLeft: Math.max(0, Math.min(100, (m - 480) / 6)).toFixed(1) + '%',
+        hours: open ? sl.map((x) => fmtS(x[0]) + ' à ' + fmtS(x[1])).join(', ') : 'Secrétariat fermé',
+        pracs: here.length ? here.join(', ') : 'Cabinet fermé',
+        st: selP ? (pres ? 'on' : 'off') : 'sec',
+        who: selP ? (pres ? 'Au cabinet' : 'Pas de consultation') : (here.length ? here.join(', ') : 'Cabinet fermé'),
+        none: here.length ? 'false' : 'true',
+        amL: open ? pct(sl[0][0]) : '0%',
+        amW: open ? pct(480 + sl[0][1] - sl[0][0]) : '0%',
+        pmL: open && sl[1] ? pct(sl[1][0]) : '0%',
+        pmW: open && sl[1] ? pct(480 + sl[1][1] - sl[1][0]) : '0%',
+        nowLeft: pct(m),
         nowDisp: (today && m >= 480 && m <= 1080) ? 'block' : 'none',
         amNow: (today && isOpen && slotIdx === 0) ? 'true' : 'false',
         pmNow: (today && isOpen && slotIdx === 1) ? 'true' : 'false'
       };
     });
 
-    const ids = ['new', 'rdv', 'pain', 'come', 'cost', 'care'];
+    // Sélecteur de la frise des horaires : secrétariat (par défaut) ou un praticien.
+    const hon = {}, hpick = {}, seeDays = {};
+    ['sec'].concat(PRACS.map((p) => p.id)).forEach((k) => {
+      hon[k] = hsel === k ? 'true' : 'false';
+      hpick[k] = () => this.setState({ hsel: k });
+      seeDays[k] = (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        this.setState({ hsel: k });
+        const el = document.getElementById('horaires');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+    });
+    const listFr = (arr) => (arr.length < 2 ? arr.join('') : arr.slice(0, -1).join(', ') + ' et ' + arr[arr.length - 1]);
+    const hsum = selP
+      ? selP.short + ' consulte le ' + listFr(selP.days.map((x) => DAYS[x])) + '.' + (selP.days.indexOf(6) >= 0 ? ' Le samedi, le secrétariat est fermé.' : '')
+      : 'Les praticiens n’ont pas d’horaires détaillés : choisissez un nom pour voir ses jours de consultation.';
+    const hcta = selP
+      ? (selP.book ? { show: true, href: selP.book, label: 'Réserver en ligne avec le ' + selP.short } : { show: true, href: 'tel:0450675514', label: 'Rendez-vous au 04 50 67 55 14' })
+      : { show: false, href: '#', label: '' };
+
+    const ids = ['new', 'rdv', 'pain', 'come', 'mail', 'care'];
     const on = {}, show = {}, pick = {};
     ids.forEach((id) => {
       on[id] = sel === id ? 'true' : 'false';
@@ -120,41 +182,65 @@ class Component extends DCLogic {
     modes.forEach((id) => {
       modeOn[id] = mode === id ? 'true' : 'false';
       modeIs[id] = mode === id;
-      setMode[id] = () => this.setState({ mode: id, hot: '' });
+      setMode[id] = () => this.setState({ mode: id, hot: id === 'car' ? '' : id });
       mapOp[id] = mode === id ? '1' : '0';
     });
 
+    // Repères du plan, en % de l'image assets/plan-acces-ign.webp (1800 x 1350).
+    // [x, y, titre, texte, photo à placer ('' si aucune)]
     const SPOTS = {
-      door: [66.9, 22.1, 'Entrée Montée C', 'Au fond de la cour intérieure. Ascenseur jusqu’au 2ᵉ étage, vous êtes arrivé.'],
-      court: [56.2, 24.5, 'Accès à la cour intérieure', 'Passez entre les bâtiments : l’entrée Montée C est au fond de la cour.'],
-      gate: [80.1, 43.1, 'Barrière Patients', 'Prenez un ticket à la barrière de gauche. Celle de droite est réservée aux abonnés.'],
-      park: [71.2, 51.6, 'Parking remboursé aux patients', 'Garez-vous où vous voulez dans la zone vert pâle. Gardez votre ticket : il vous est remboursé à l’accueil.'],
-      bike: [77.4, 48.6, 'Abri vélo', 'Garez votre vélo ici, puis suivez le chemin orange jusqu’à la cour.'],
-      bus: [89.6, 58.1, 'Arrêt Hôpital', 'Bus Sibra, lignes 2, 6, 10, 11 et 18. Traversez au passage piéton puis suivez le chemin orange.']
+      door: [53.67, 22.22, 'Entrée Montée C', 'Juste après la passerelle. Ascenseur jusqu’au 2ᵉ étage, puis faites valider votre ticket au secrétariat.', 'entrée Montée C'],
+      court: [45.83, 24.44, 'Sous la passerelle', 'Passez sous la passerelle entre les bâtiments : l’entrée Montée C est juste après.', 'la passerelle'],
+      gate: [63.28, 34.96, 'Barrière Patients', 'Tournez à gauche vers la barrière Patients et prenez un ticket. L’autre barrière est réservée aux abonnés.', 'la barrière Patients'],
+      park: [54.94, 48.3, 'Parking patients', 'Garez-vous dans la zone verte. La partie en rouge, le long des bâtiments, est réservée aux abonnés.', ''],
+      bike: [61.28, 38.3, 'Abri vélo', 'Garez votre vélo ici, puis suivez le chemin orange jusqu’à la passerelle.', ''],
+      bus: [53.22, 81.11, 'Arrêt Hôpital', 'Devant l’entrée de l’hôpital, bus Sibra lignes 2 et 11. Suivez le chemin orange jusqu’à la barrière Patients, puis passez sous la passerelle.', '']
     };
-    const hot = {}, hover = {}, focus = {}, tap = {};
+    const full = !!st.mapFull;
+    const coarse = typeof window !== 'undefined' && !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+    const hot = {}, hover = {}, focus = {}, tap = {}, spotOn = {};
     const SPOT_MODE = { gate: 'car', park: 'car', bike: 'bike', bus: 'bus' };
     Object.keys(SPOTS).forEach((id) => {
       hot[id] = hotId === id ? 'true' : 'false';
+      spotOn[id] = !SPOT_MODE[id] || SPOT_MODE[id] === mode || (id === 'gate' && mode === 'bus') || hotId === id ? 'true' : 'false';
       hover[id] = () => { if ((this.state || {}).hot !== id) this.setState({ hot: id }); };
       tap[id] = () => { const m = SPOT_MODE[id]; this.setState(m ? { hot: id, mode: m } : { hot: id }); };
       focus[id] = () => {
-        const p = SPOTS[id];
-        const d = this.dims();
-        const s2 = Math.max((this.state || {}).s || 1, 2);
-        const c = this.clampT(d[0] / 2 - p[0] / 100 * d[2] * s2, d[1] / 2 - p[1] / 100 * d[3] * s2, s2);
-        this.setState({ s: s2, tx: c[0], ty: c[1], hot: id });
+        const cur = this.state || {};
+        // au doigt, hors plein écran, on ne zoome pas : le plan reste entier et la page défile
+        if (coarse && !cur.mapFull) { this.setState({ hot: id }); }
+        else {
+          const p = SPOTS[id];
+          const d = this.dims();
+          const s2 = Math.max(cur.s || 1, 2);
+          const c = this.clampT(d[0] / 2 - p[0] / 100 * d[2] * s2, d[1] / 2 - p[1] / 100 * d[3] * s2, s2);
+          this.setState({ s: s2, tx: c[0], ty: c[1], hot: id });
+        }
         const el = this._mapEl;
-        if (el && el.getBoundingClientRect) {
+        if (el && el.getBoundingClientRect && !cur.mapFull) {
           const r = el.getBoundingClientRect();
           if (r.top < 0 || r.bottom > (window.innerHeight || 800)) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       };
     });
-    const pkOpVal = hotId === 'park' || hotId === 'gate' ? '0.5' : '0.28';
-    const info = SPOTS[hotId]
-      ? { title: SPOTS[hotId][2], text: SPOTS[hotId][3] }
-      : { title: 'Entrée Montée C', text: 'Au fond de la cour intérieure, 2ᵉ étage avec ascenseur.' };
+    // zones du parking : nettes en voiture, atténuées en bus et à vélo
+    const zonesMode = mode === 'car' || hotId === 'park' || hotId === 'gate';
+    const okOp = !zonesMode ? '0.07' : (hotId === 'park' || hotId === 'gate' ? '0.42' : '0.26');
+    const noOp = okOp;
+    const sp = SPOTS[hotId] || SPOTS.door;
+    const info = { title: sp[2], text: sp[3], photo: sp[4], hasPhoto: !!sp[4] };
+    this._setFull = (f) => {
+      try { document.body.style.overflow = f ? 'hidden' : ''; } catch (err) {}
+      this._pts = {}; this._drag = null; this._pinch = null;
+      this.setState({ mapFull: f, s: 1, tx: 0, ty: 0, touched: false, dragging: false });
+      // plein écran sur téléphone (portrait) : on part zoomé sur le parking et l'entrée
+      setTimeout(() => {
+        if (!this._center) return;
+        const d = this.dims();
+        this._center(f ? Math.min(2.2, Math.max(1, (d[1] / Math.max(1, d[3])) * 0.8)) : 1);
+      }, 60);
+      if (!f && this._mapEl) setTimeout(() => { this._mapEl.scrollIntoView({ block: 'center' }); }, 80);
+    };
 
     const careIds = ['blanch', 'fac', 'imp', 'oam', 'paro'];
     const careOpen = {}, careShow = {}, careToggle = {};
@@ -169,14 +255,14 @@ class Component extends DCLogic {
       rdv: ['02', 'Rendez-vous', 'Prendre ou déplacer un rendez-vous', 'Déjà patient du cabinet ? Le plus simple est d’appeler, aux heures d’ouverture.'],
       pain: ['03', 'Urgence', 'Vous avez mal ?', 'Que faire maintenant, selon le jour et l’heure.'],
       come: ['04', 'Accès', 'Venir au cabinet', 'Adresse GPS, parking remboursé, bus et vélo.'],
-      cost: ['05', 'Tarifs', 'Tarifs et remboursement', 'Conventionné, carte Vitale acceptée, devis écrit pour les prothèses.'],
+      mail: ['05', 'E-mail', 'Écrire au cabinet', 'Documents, questions administratives, rendez-vous à déplacer.'],
       care: ['06', 'Soins', 'Un soin en particulier', 'Implant, blanchiment, facettes, orthèse, gencives.']
     };
     const QMAP = [
       [/horaire|ouvert|ferm|heure|quand/, { label: 'Voir les horaires du cabinet', href: 'horaires' }],
       [/mal|douleur|urgen|cass|abc|gonfl|saign|garde|dimanche|f[ée]ri/, { label: 'J’ai mal, c’est urgent', id: 'pain' }],
       [/park|gar[ée]|bus|v[ée]lo|adresse|acc[èe]s|gps|ascenseur|[ée]tage|itin|venir|plan|ticket/, { label: 'Venir au cabinet', id: 'come' }],
-      [/tarif|prix|co[uû]t|rembours|mutuelle|vitale|devis|pay|paiement|ch[èe]que|esp[èe]ce|carte/, { label: 'Tarifs et remboursement', id: 'cost' }],
+      [/mail|[ée]crire|courriel|document|tarif|devis|mutuelle|vitale|paiement/, { label: 'Écrire au cabinet', id: 'mail' }],
       [/implant|blanch|facette|orth[èe]se|ronfl|apn[ée]e|gencive|paro|carie|d[ée]vital|extraction|soin/, { label: 'Un soin en particulier', id: 'care' }],
       [/nouveau|nouvelle|premi|1er|inscri|doctolib/, { label: 'Premier rendez-vous', id: 'new' }],
       [/rdv|rendez|d[ée]placer|annul|modifi|cr[ée]neau|t[ée]l[ée]phone|appeler/, { label: 'Prendre ou déplacer un RDV', id: 'rdv' }]
@@ -200,10 +286,28 @@ class Component extends DCLogic {
       soinShow[id] = o;
       soinSet[id] = () => this.setState({ soin: id });
     });
-    const LOWER = { new: 'un premier rendez-vous', rdv: 'prendre ou déplacer un rendez-vous', pain: 'une douleur, une urgence', come: 'savoir comment venir', cost: 'les tarifs et remboursements', care: 'un soin en particulier' };
+    const LOWER = { new: 'un premier rendez-vous', rdv: 'prendre ou déplacer un rendez-vous', pain: 'une douleur, une urgence', come: 'savoir comment venir', mail: 'écrire au cabinet', care: 'un soin en particulier' };
     const closeSheet = () => {
       try { document.body.style.overflow = ''; } catch (err) {}
-      if ((this.state || {}).sheet) this.setState({ sheet: false });
+      const cur = this.state || {};
+      if (cur.sheet || cur.rdv) this.setState({ sheet: false, rdv: false });
+      if (cur.rdv && this._rdvFrom && this._rdvFrom.focus) { try { this._rdvFrom.focus({ preventScroll: true }); } catch (err) {} }
+    };
+    this._closeRdv = closeSheet;
+    // Feuille « Premier rendez-vous » : filtre par jour (0 = tous) et liste des praticiens
+    const rdvDayV = st.rdvDay || 0;
+    const rdvDayOn = {}, rdvDay = {}, rdvShow = {};
+    [0, 1, 2, 3, 4, 5, 6].forEach((k) => {
+      rdvDayOn['d' + k] = rdvDayV === k ? 'true' : 'false';
+      rdvDay['d' + k] = () => this.setState({ rdvDay: k });
+    });
+    PRACS.forEach((pr) => { rdvShow[pr.id] = !rdvDayV || pr.days.indexOf(rdvDayV) >= 0; });
+    const openRdv = (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      this._rdvFrom = document.activeElement;
+      try { document.body.style.overflow = 'hidden'; } catch (err) {}
+      this.setState({ rdv: true, nav: false });
+      setTimeout(() => { if (this._rdvX && this._rdvX.focus) this._rdvX.focus({ preventScroll: true }); }, 80);
     };
 
     return {
@@ -212,30 +316,46 @@ class Component extends DCLogic {
       isOpen: isOpen,
       isClosed: !isOpen,
       statusText: statusText,
+      isOpenA: isOpen ? 'true' : 'false',
+      hon: hon, hpick: hpick, seeDays: seeDays, hsum: hsum, hcta: hcta,
       statusFg: isOpen ? '#15603F' : '#3E3655',
       statusDot: isOpen ? '#22A06B' : '#B0306A',
       nextOpen: nextOpen,
       week: week,
       on: on, show: show, pick: pick,
       modeOn: modeOn, modeIs: modeIs, setMode: setMode, mapOp: mapOp,
-      hot: hot, hover: hover, focus: focus, tap: tap, pkOp: pkOpVal, info: info,
+      hot: hot, hover: hover, focus: focus, tap: tap, spotOn: spotOn, okOp: okOp, noOp: noOp, info: info,
+      zoneOn: zonesMode ? 'true' : 'false', zoneSo: zonesMode ? '1' : '0.3',
+      mapFullA: full ? 'true' : 'false',
+      toggleFull: () => this._setFull(!(this.state || {}).mapFull),
+      fullLabel: full ? 'Fermer le plan' : 'Agrandir le plan',
+      mapFull: full, mapNotFull: !full,
+      hintText: coarse ? 'Pincez pour zoomer, glissez pour explorer' : 'Glissez pour explorer',
       s: String(s),
       inv: String(1 / s),
       tx: String(Math.round(st.tx || 0)),
       ty: String(Math.round(st.ty || 0)),
-      zoomed: this.canPan(s) && !st.touched,
+      zoomed: (full && !st.touched) || (!coarse && this.canPan(s) && !st.touched),
       cursor: this.canPan(s) ? (st.dragging ? 'grabbing' : 'grab') : 'default',
-      touch: 'none',
+      touch: full ? 'none' : 'pan-y pinch-zoom',
       layerTrans: st.dragging ? 'none' : 'transform .35s ease',
       mapRef: (el) => { this._mapEl = el; },
       layerRef: (el) => { this._layerEl = el; },
       panelRef: (el) => { this._panelEl = el; },
       sheetOn: st.sheet ? 'true' : 'false',
-      selTitle: ({ new: 'Premier rendez-vous', rdv: 'Prendre ou déplacer un RDV', pain: 'J’ai mal, c’est urgent', come: 'Venir au cabinet', cost: 'Tarifs et remboursement', care: 'Un soin en particulier' })[sel] || '',
+      selTitle: ({ new: 'Premier rendez-vous', rdv: 'Prendre ou déplacer un RDV', pain: 'J’ai mal, c’est urgent', come: 'Venir au cabinet', mail: 'Écrire au cabinet', care: 'Un soin en particulier' })[sel] || '',
       closeSheet: closeSheet,
+      closeRdv: closeSheet,
+      openRdv: openRdv,
+      rdvOpenA: st.rdv ? 'true' : 'false',
+      rdvHidden: st.rdv ? 'false' : 'true',
+      rdvDayOn: rdvDayOn, rdvDay: rdvDay, rdvShow: rdvShow,
+      rdvXRef: (el) => { this._rdvX = el; },
       bdRef: (el) => { this._bdEl = el; },
       sTs: (e) => {
-        if (!(this.state || {}).sheet) return;
+        const cs = this.state || {};
+        if (!cs.sheet && !cs.rdv) return;
+        if (window.innerWidth > 760) return;
         const el = this._panelEl;
         const t = e.touches && e.touches[0];
         if (!el || !t) return;
@@ -283,12 +403,15 @@ class Component extends DCLogic {
       zoomOut: () => this.zoomTo(s / 1.5),
       resetView: () => { if (this._center) this._center(1); else this.setState({ s: 1, tx: 0, ty: 0 }); },
       dbl: (e) => {
-        if (e.target && e.target.closest && e.target.closest('.hs, .mapctl')) return;
+        if (e.target && e.target.closest && e.target.closest('.hs, .mapctl, .mapfull, .mapinfo')) return;
+        if (coarse && !(this.state || {}).mapFull) return;
         const r = this._mapEl ? this._mapEl.getBoundingClientRect() : null;
         if (r) this.zoomTo(s * 1.6, e.clientX - r.left, e.clientY - r.top); else this.zoomTo(s * 1.6);
       },
       pDown: (e) => {
-        if (e.target && e.target.closest && e.target.closest('.mapctl')) return;
+        if (e.target && e.target.closest && e.target.closest('.mapctl, .mapfull')) return;
+        // au doigt hors plein écran : on laisse la page défiler normalement
+        if (e.pointerType === 'touch' && !(this.state || {}).mapFull) return;
         const onSpot = !!(e.target && e.target.closest && e.target.closest('.hs'));
         this._pts = this._pts || {};
         this._pts[e.pointerId] = { x: e.clientX, y: e.clientY };
@@ -302,9 +425,8 @@ class Component extends DCLogic {
           this.setState({ dragging: true });
           return;
         }
-        const isTouch = e.pointerType === 'touch';
-        if (onSpot || (!isTouch && !this.canPan(cur.s || 1))) return;
-        this._drag = { x: e.clientX, y: e.clientY, tx: cur.tx || 0, ty: cur.ty || 0, lo: 0, chain: isTouch && (cur.s || 1) <= 1 };
+        if (onSpot || !this.canPan(cur.s || 1)) return;
+        this._drag = { x: e.clientX, y: e.clientY, tx: cur.tx || 0, ty: cur.ty || 0 };
         this.setState({ dragging: true });
       },
       pMove: (e) => {
@@ -321,12 +443,7 @@ class Component extends DCLogic {
         }
         const dr = this._drag;
         if (!dr) return;
-        const wantY = dr.ty + e.clientY - dr.y;
-        const c = this.clampT(dr.tx + e.clientX - dr.x, wantY, (this.state || {}).s || 1);
-        if (dr.chain) {
-          const lo = wantY - c[1];
-          if (lo !== dr.lo) { window.scrollBy(0, -(lo - dr.lo)); dr.lo = lo; }
-        }
+        const c = this.clampT(dr.tx + e.clientX - dr.x, dr.ty + e.clientY - dr.y, (this.state || {}).s || 1);
         this.setState({ tx: c[0], ty: c[1] });
       },
       pUp: (e) => {
@@ -337,7 +454,7 @@ class Component extends DCLogic {
           if (left.length === 1) {
             const p0 = this._pts[left[0]];
             const cur = this.state || {};
-            this._drag = { x: p0.x, y: p0.y, tx: cur.tx || 0, ty: cur.ty || 0, lo: 0, chain: false };
+            this._drag = { x: p0.x, y: p0.y, tx: cur.tx || 0, ty: cur.ty || 0 };
             return;
           }
         }

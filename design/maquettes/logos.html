@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Maquette : planche des logos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{--deep:#1E3B33;--deep-rgb:30,59,51;--deep2:#4E6E62;--onDeep:#CFE0D6;--mid:#8FAE9A;--sand:#EFE8DC;--line:#DDD3C2;--paper:#FAF8F4;--paper-rgb:250,248,244;--ink:#1A1F1C;--muted:#4C544F;--muted2:#6E756F}
+*{box-sizing:border-box}
+body{margin:0;background:#EFEBE3;color:var(--ink);font-family:'Karla','Segoe UI',system-ui,sans-serif;font-size:18px;line-height:1.6}
+.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+h1,h2,h3,p{margin:0}
+.page{max-width:1180px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:44px;line-height:1.1}
+.lead{max-width:780px;margin-top:12px;color:var(--muted)}
+h2.sec{font-size:32px;margin-top:56px}
+.secnote{color:var(--muted);max-width:780px;margin-top:6px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:22px}
+.fav{display:grid;grid-template-columns:1fr;gap:28px;margin-top:22px}
+.item{background:var(--paper);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:14px}
+.item h3{font-size:24px}
+.why{color:var(--muted);font-size:17px}
+.fn{font-size:16px;color:var(--muted);font-family:Consolas,monospace;word-break:break-all}
+.cap{font-size:16px;color:var(--muted);margin-bottom:4px}
+
+/* faux en-tête du site */
+.hd{background:var(--paper);border:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px}
+.hd nav{display:flex;gap:18px;font-size:16px;color:var(--deep)}
+.hd nav a{color:var(--deep);text-decoration:none}
+.hd .tel{padding:10px 16px;border:1px solid rgba(var(--deep-rgb),.5);border-radius:2px;color:var(--deep);font-weight:700;font-size:16px;white-space:nowrap}
+.hd img.h{height:60px;width:auto;display:block}
+.hd img.v{height:84px;width:auto;display:block}
+.row{display:flex;gap:20px;flex-wrap:wrap;align-items:stretch}
+.tab{display:flex;align-items:center;gap:10px;background:#E7E1D5;padding:8px 12px 8px 10px;border-radius:8px 8px 0 0;font-size:16px;color:var(--ink);min-width:230px}
+.tab img{width:32px;height:32px;object-fit:contain}
+.tab2{display:flex;align-items:center;gap:10px;font-size:16px;color:var(--muted)}
+.tab2 img{width:16px;height:16px;object-fit:contain}
+.dark{background:var(--deep);padding:22px 24px;display:flex;align-items:center;gap:28px;flex:1;min-width:260px}
+.dark img{filter:invert(1) hue-rotate(180deg) brightness(1.15)}
+.dark .h{height:56px;width:auto}
+.dark .v{height:76px;width:auto}
+.dark .s{width:40px;height:40px;object-fit:contain}
+.dark .cap{color:var(--onDeep)}
+.star{border-left:3px solid var(--deep)}
+@media (max-width:860px){.grid{grid-template-columns:1fr}.hd nav{display:none}}
+</style>
+</head>
+<body>
+<main class="page">
+  <h1 class="serif">Planche des logos</h1>
+  <p class="lead">Douze propositions, montrées dans un en-tête du site (fond papier clair, numéro de téléphone), en favicon (32 px et 16 px) et en version sur fond vert profond. Le fond vert simule une version inversée par filtre : un vrai logo en réserve demanderait un fichier dédié. Le fil conducteur retenu pour le site est le trait dessiné.</p>
+
+  <h2 class="sec serif">Mes favoris</h2>
+  <p class="secnote" id="favnote"></p>
+  <div class="fav" id="fav"></div>
+
+  <h2 class="sec serif">Les autres propositions</h2>
+  <div class="grid" id="others"></div>
+</main>
+
+<script>
+const L = [
+  {k:"1-reflet",  v:false, w:"Montagne pleine et son reflet dans le lac, deux verts."},
+  {k:"2-galet",   v:false},
+  {k:"3-ligne",   v:false},
+  {k:"4-mono",    v:false},
+  {k:"5-vallee",  v:false},
+  {k:"6-crete",   v:false},
+  {k:"7-lac",     v:false},
+  {k:"8-implant", v:false},
+  {k:"9-massif",  v:true},
+  {k:"10-chaine", v:true},
+  {k:"11-sommet", v:true},
+  {k:"12-massif-implant", v:true}
+];
+const FAV = {
+  "3-ligne": "Dent et crête de montagne tracées d'un seul trait, sans aplat : c'est le logo le plus proche du fil conducteur du trait dessiné, et il se retrouve tel quel dans les titres soulignés du site. Réserve : à 16 px le trait fin devient flou, il faudrait un favicon au trait plus épais.",
+  "2-galet": "Dent pleine en réserve dans un disque : seule forme qui reste nette en favicon (16 et 32 px) et qui se lit tout de suite comme un cabinet dentaire. Réserve : aplat, donc moins lié au trait dessiné ; à choisir si la lisibilité en petit prime.",
+  "6-crete": "Même principe que le trait continu, avec la crête qui part de la dent : l'identité montagne est plus visible que dans 3-ligne. Réserve : mêmes limites en très petit format, et deux logos au trait très proches (3, 5, 6, 7) sont à départager."
+};
+const FAVS = ["3-ligne","2-galet","6-crete"];
+document.getElementById("favnote").textContent = "Critères : lisibilité en petit, cohérence avec le trait dessiné, reconnaissance du métier. Les trois choix se complètent : deux au trait, un plein pour le petit format.";
+
+function card(o, favText){
+  const full = "../logos/logo-" + o.k + ".svg", sym = "../logos/symbole-" + o.k + ".svg";
+  const hc = o.v ? "v" : "h";
+  return '<article class="item' + (favText ? ' star' : '') + '">'
+    + '<h3 class="serif">' + o.k.replace(/^\d+-/, "").replace(/^./, c => c.toUpperCase()) + '</h3>'
+    + (favText ? '<p class="why">' + favText + '</p>' : '')
+    + '<div><p class="cap">Dans l\'en-tête du site</p><div class="hd"><img class="' + hc + '" src="' + full + '" alt="Logo proposition ' + o.k + '"><nav aria-hidden="true"><a>Accès</a><a>Horaires</a><a>Soins</a><a>Équipe</a></nav><span class="tel">04 50 67 55 14</span></div></div>'
+    + '<div class="row"><div><p class="cap">Favicon, 32 px puis 16 px</p><div class="tab"><img src="' + sym + '" alt="">Cabinet dentaire du Pericles</div><div class="tab2" style="margin-top:8px"><img src="' + sym + '" alt=""><span>16 px</span></div></div>'
+    + '<div class="dark"><div><p class="cap">Sur fond vert profond</p><img class="' + hc + '" src="' + full + '" alt=""></div><img class="s" src="' + sym + '" alt=""></div></div>'
+    + '<p class="fn">logo-' + o.k + '.svg<br>symbole-' + o.k + '.svg</p>'
+    + '</article>';
+}
+const by = {}; L.forEach(o => by[o.k] = o);
+document.getElementById("fav").innerHTML = FAVS.map(k => card(by[k], FAV[k])).join("");
+document.getElementById("others").innerHTML = L.filter(o => !FAVS.includes(o.k)).map(o => card(o)).join("");
+</script>
+</body>
+</html>

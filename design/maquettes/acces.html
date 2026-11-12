@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Maquette : Venir au cabinet, plan d’accès (variantes A et B)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#1E3B33;--deep-rgb:30,59,51;--deep2:#4E6E62;--deep3:#33554B;--deepH:#2B5246;--onDeep:#CFE0D6;--mid:#8FAE9A;--sand:#EFE8DC;--sand2-rgb:228,217,198;--sand3:#D9C9A8;--panel:#F4EFE6;--line:#DDD3C2;--line2:#E6DED0;--paper:#FAF8F4;--paper-rgb:250,248,244;--warm:#B5533C;--ink:#1A1F1C;--ink-rgb:26,31,28;--muted:#4C544F;--muted2:#6E756F;
+  --stop:#C0392B;--ok:#2E7D4F;--walk:#F08A24}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Karla','Segoe UI',system-ui,sans-serif;font-size:17px;line-height:1.5}
+.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+a{color:var(--deep)}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.page{max-width:1240px;margin:0 auto;padding:40px 24px 80px}
+h1{font-size:40px;line-height:1.1;margin:0 0 12px}
+h2{font-size:40px;line-height:1.1;margin:0}
+.intro{max-width:760px;color:var(--muted)}
+.hyp{margin:28px 0 0;padding:18px 22px;background:var(--panel);border-left:4px solid var(--stop);border-radius:2px;max-width:860px}
+.hyp h3{margin:0 0 6px;font-size:22px}
+.hyp p{margin:0 0 8px}
+.hyp code{background:#fff;border:1px solid var(--line);padding:1px 6px;border-radius:2px;font-size:15px}
+
+.variant{margin-top:64px;padding-top:40px;border-top:1px solid var(--line)}
+.vhead{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:baseline;justify-content:space-between;margin-bottom:24px}
+.vhead p{margin:0;color:var(--muted);max-width:620px}
+.grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);grid-template-areas:"map side" "map fiche";grid-template-rows:auto 1fr;gap:28px 48px;align-items:start}
+.mapcol{grid-area:map;display:flex;flex-direction:column;gap:12px;min-width:0}
+.side{grid-area:side;min-width:0}
+.fichecol{grid-area:fiche;min-width:0}
+
+/* plan */
+.frame{position:relative;width:100%;aspect-ratio:1560/975;overflow:hidden;background:#E6EDE7;border-radius:2px;cursor:zoom-in;padding:0;border:0;display:block}
+.stage{position:absolute;inset:0;--inv:1}
+.stage img{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.stage .tint{position:absolute;inset:0;background:rgba(30,59,51,.10);mix-blend-mode:multiply;pointer-events:none}
+.stage svg.plan{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;font-family:'Karla','Segoe UI',system-ui,sans-serif}
+.mkw{position:absolute;transform:translate(-50%,-50%) scale(var(--inv));z-index:2}
+.mk{position:relative;width:36px;height:36px;border-radius:50%;border:2px solid var(--ink);background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center;padding:0;font-weight:800;font-size:17px}
+.mk::before{content:"";position:absolute;inset:-5px}
+.mk[aria-pressed="true"]{background:var(--ink);color:#fff;transform:scale(1.15)}
+.mk.m-stop{background:var(--stop);border-color:#fff;color:#fff}
+.mk.m-ok{background:var(--ok);border-color:#fff;color:#fff}
+.mk.m-stop[aria-pressed="true"],.mk.m-ok[aria-pressed="true"]{outline:3px solid var(--ink)}
+.mk-tag{position:absolute;right:calc(100% + 8px);top:50%;translate:0 -50%;width:150px;text-align:right;font-size:15px;font-weight:700;line-height:1.25;background:var(--paper);border:1.5px solid var(--ink);border-radius:2px;padding:4px 8px;pointer-events:none}
+.hand .mk{border-radius:52% 48% 50% 46% / 47% 53% 49% 51%;border-width:2.5px}
+.hand .mk-tag{border-radius:3px 9px 4px 10px / 9px 4px 10px 3px}
+.zoombadge{display:none;position:absolute;left:8px;top:8px;z-index:3;background:rgba(var(--ink-rgb),.85);color:#fff;font-size:15px;font-weight:700;padding:8px 14px;border-radius:2px;pointer-events:none}
+.mapactions{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
+.btn{min-height:44px;padding:8px 18px;border-radius:2px;border:1.5px solid var(--ink);background:#fff;font-weight:700;display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink)}
+.btn:hover{background:var(--sand)}
+.btn.primary{background:var(--deep);color:var(--paper);border-color:var(--deep)}
+.btn.primary:hover{background:var(--deepH)}
+.credit{font-size:15px;color:var(--muted2)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:15px;color:var(--muted);margin:0;padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:8px}
+.legend svg{flex:none}
+
+/* colonne droite */
+.tabs{display:flex;gap:22px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.tab{background:none;border:0;border-bottom:2px solid transparent;padding:8px 0;margin-bottom:-1px;min-height:44px;font-weight:700;color:var(--muted2)}
+.tab[aria-selected="true"]{color:var(--deep);border-bottom-color:var(--deep)}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.step{display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;background:none;border:0;border-radius:2px;padding:8px 10px;min-height:44px}
+.step:hover{background:var(--sand)}
+.step[aria-current="true"]{background:var(--sand)}
+.num{flex:none;width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.hand .num{border-radius:50% 46% 52% 48% / 48% 52% 46% 50%}
+.step b{font-weight:800}
+.turn{display:flex;align-items:center;gap:12px;margin:2px 0 6px;padding:10px 14px;background:var(--deep);color:var(--paper);border-radius:2px}
+.turn span{font-family:'DM Serif Display',Georgia,serif;font-size:26px;line-height:1.1}
+.hand .turn{background:none;color:var(--deep);padding:4px 0;border-bottom:0}
+.hand .turn span{font-style:italic;font-size:30px}
+.ok{color:var(--ok);font-weight:800}
+.no{color:var(--stop);font-weight:800}
+.fiche{background:var(--panel);border-radius:2px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.fiche h3{margin:0;font-size:26px;line-height:1.15}
+.fiche p{margin:0}
+.fiche.f-stop{border-left:4px solid var(--stop)}
+.fiche.f-ok{border-left:4px solid var(--ok)}
+.photo{aspect-ratio:4/3;border:1.5px dashed var(--muted2);background:#E7E4DD;color:var(--muted);display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-size:16px;border-radius:2px}
+.fiche.small .photo{aspect-ratio:16/7}
+.links{margin-top:18px;display:flex;flex-direction:column;gap:8px}
+.links p{margin:0;color:var(--muted);font-size:16px}
+.linkrow{display:flex;flex-wrap:wrap;gap:8px}
+
+/* variante B, traits */
+.hand .tab[aria-selected="true"]{border-bottom-color:transparent;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M1 3 C20 0 35 6 55 3 S85 1 99 3' fill='none' stroke='%231E3B33' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") bottom/100% 6px no-repeat}
+.hand .btn{border-radius:3px 9px 4px 10px / 9px 4px 10px 3px}
+.hand .fiche{background:var(--paper);border:1.5px solid var(--ink);border-radius:4px 12px 5px 14px / 12px 5px 14px 4px}
+.hand .fiche.f-stop,.hand .fiche.f-ok{border-left-width:1.5px}
+.hand .fiche h3{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M1 3 C25 6 40 0 62 3 S90 5 99 2' fill='none' stroke='%231E3B33' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") bottom/100% 6px no-repeat;padding-bottom:8px}
+.hand .frame{border-radius:3px}
+
+/* aperçu mobile */
+.mobsec{margin-top:72px;padding-top:40px;border-top:1px solid var(--line)}
+.phones{display:flex;flex-wrap:wrap;gap:40px;margin-top:24px}
+.phone{width:390px;max-width:100%}
+.phone p{margin:0 0 8px;font-weight:700}
+.phone iframe{display:block;width:390px;max-width:100%;height:860px;border:2px solid var(--ink);border-radius:2px;background:var(--paper)}
+.zoomnote{max-width:760px;color:var(--muted)}
+
+/* plein écran */
+body.lock{overflow:hidden}
+.ov{position:fixed;inset:0;z-index:100;background:var(--ink);display:flex;flex-direction:column;color:#fff}
+.ovbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px 8px 16px;background:var(--deep)}
+.ovbar strong{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:22px}
+.ovx{width:44px;height:44px;border-radius:50%;border:1.5px solid #fff;background:none;color:#fff;display:flex;align-items:center;justify-content:center;padding:0}
+.ovmap{position:relative;flex:1;min-height:0;overflow:hidden;touch-action:none;background:#0f1a16;cursor:grab}
+.ovmap.drag{cursor:grabbing}
+.ovlayer{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+.ovctl{position:absolute;left:12px;top:12px;z-index:5;display:flex;flex-direction:column;gap:8px}
+.ovctl button{width:44px;height:44px;border-radius:2px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center;padding:0}
+.ovhint{position:absolute;right:12px;top:12px;z-index:5;background:rgba(var(--ink-rgb),.82);color:#fff;font-size:15px;font-weight:700;padding:6px 12px;border-radius:2px;pointer-events:none}
+.ovsheet{max-height:42%;overflow:auto;background:var(--paper);color:var(--ink);padding:12px 16px 16px;overscroll-behavior:contain}
+.ovsheet .fiche{background:none;padding:0}
+.ovsheet .fiche.f-stop,.ovsheet .fiche.f-ok{border-left:0}
+.ovsheet .photo{display:none}
+.ovsheet .fiche h3{font-size:22px}
+
+/* mobile */
+@media (max-width:760px){
+  body{font-size:17px}
+  .page{padding:24px 16px 64px}
+  h1,h2{font-size:32px}
+  .grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"map" "fiche" "side";gap:20px}
+  .zoombadge{display:block}
+  .frame .mk{pointer-events:none;width:26px;height:26px;font-size:13px}
+  .frame .mk-tag{width:136px;font-size:14px;padding:3px 6px}
+  .frame .mk svg{width:14px;height:14px}
+  .legend{font-size:16px}
+  .photo{font-size:16px}
+  .ovsheet{max-height:38%}
+  .phones{gap:28px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .mk{transition:transform .2s ease,background-color .2s ease}
+  .step{transition:background-color .2s ease}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* mode intégré (iframe) */
+body.embed .chrome{display:none}
+body.embed .page{padding:16px 16px 48px}
+body.embed .variant{margin:0;padding:0;border:0}
+body.embed .vhead p{display:none}
+body.embed .vhead{margin-bottom:12px}
+body.embed h2{font-size:28px}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="chrome">
+    <h1 class="serif">Venir au cabinet : maquette du plan d’accès</h1>
+    <p class="intro">Deux langages graphiques pour le même plan : A (surfaces teintées et panneaux routiers) et B (annotations tracées à la main sur la photo). Chaque variante contient le plan, les étapes en voiture, en bus et à vélo, la fiche du repère choisi et l’aperçu mobile à 390 px. Cliquez sur un repère, une étape ou le plan pour tester.</p>
+    <div class="hyp">
+      <h3 class="serif">Hypothèse à valider par le cabinet</h3>
+      <p><strong>Rouge, interdit aux patients :</strong> le petit parking en haut à droite, juste après la barrière Patients (au pied des bâtiments, devant la cabine de la barrière).</p>
+      <p><strong>Vert, autorisé aux patients :</strong> la bande de stationnement qui longe la voie courbe, en dessous (rangée près de l’avenue puis rangée en diagonale).</p>
+      <p>Le tracé des trajets et la position de l’abri vélo sont indicatifs. Pour déplacer la limite rouge et verte, modifier <code>ZONES</code> en tête du script (liste de points x, y dans le repère 1560 x 975 de la photo). Le « P » se place seul au centre de la zone verte.</p>
+    </div>
+  </header>
+
+  <section class="variant" id="A" data-variant="A"></section>
+  <section class="variant" id="B" data-variant="B"></section>
+
+  <section class="mobsec chrome">
+    <h2 class="serif">Version mobile (390 px)</h2>
+    <p class="zoomnote">Sur téléphone, le plan reste une vignette fixe : la page défile normalement par-dessus. Le bouton « Agrandir le plan » (ou un appui sur le plan) ouvre un plein écran où l’on zoome avec deux doigts et où l’on déplace avec un doigt. Le bouton Fermer ramène à la page. Les deux aperçus ci-dessous sont les vraies pages à 390 px.</p>
+    <div class="phones">
+      <div class="phone"><p>Variante A</p><iframe src="acces.html?embed=A" title="Aperçu mobile variante A"></iframe></div>
+      <div class="phone"><p>Variante B</p><iframe src="acces.html?embed=B" title="Aperçu mobile variante B"></iframe></div>
+    </div>
+  </section>
+</div>
+
+<script>
+/* ============================================================
+   CONFIGURATION : tout se règle ici.
+   Repère : viewBox 1560 x 975 (pixels de la photo IGN).
+   ============================================================ */
+const IMG = '../../assets/91f15153dd67bd4ab5911862d1226e00.webp';
+const W = 1560, H = 975;
+
+const ZONES = {
+  /* Partie haute du parking, interdite aux patients (abonnés). A DEPLACER SI BESOIN. */
+  forbidden: [[1005,383],[1186,376],[1190,548],[1005,546]],
+  /* Zone autorisée aux patients. A DEPLACER SI BESOIN. */
+  allowed: [[1085,580],[1266,578],[1266,624],[1100,638],[1078,652],[1030,732],[985,802],[925,776],[980,690],[1040,625]]
+};
+
+/* Repères. xy en coordonnées photo. "park" et "stop" se placent au centre des zones (voir plus bas). */
+const SPOTS = {
+  gate:   { xy:[1250,420], kind:'gate',  title:'Barrière Patients', text:'Tournez à gauche avant de prendre le ticket. Prenez-le à la barrière Patients, côté gauche.', photo:'Photo : la barrière Patients, côté gauche' },
+  stop:   { xy:null,       kind:'stop',  title:'Partie haute du parking : interdite aux patients', text:'Cette partie est réservée aux abonnés. Ne vous y garez pas : seule la zone verte est autorisée aux patients.', photo:'Photo : la partie haute du parking', tone:'stop' },
+  park:   { xy:null,       kind:'park',  title:'Zone autorisée aux patients', text:'Garez-vous uniquement dans la zone verte. Gardez votre ticket : il est validé au secrétariat.', photo:'Photo : la zone de parking des patients', tone:'ok' },
+  bike:   { xy:[1232,505], kind:'bike',  title:'Abri vélo', text:'Attachez votre vélo ici, puis suivez le chemin orange jusqu’à la passerelle.', photo:'Photo : l’abri vélo' },
+  walk:   { xy:[877,239],  kind:'walk',  title:'Sous la passerelle', text:'Passez sous la passerelle, entre les bâtiments. L’entrée Montée C est juste après.', photo:'Photo : le passage sous la passerelle' },
+  door:   { xy:[1044,215], kind:'door',  title:'Entrée Montée C, 2ᵉ étage', text:'Prenez l’ascenseur jusqu’au 2ᵉ étage : le cabinet est à cet étage.', photo:'Photo : l’entrée Montée C et l’ascenseur du 2ᵉ étage' },
+  bus:    { xy:[1342,885], kind:'bus',   title:'Arrêt Hôpital', text:'Bus Sibra, lignes 2, 6, 10, 11 et 18. L’arrêt réel est à 150 m plus bas que le cadre du plan (le plan sera élargi). Remontez le trottoir de l’avenue de l’Hôpital.', photo:'Photo : l’arrêt de bus Hôpital', tag:'Arrêt Hôpital, 150 m plus bas' }
+};
+
+/* Trajets (coordonnées photo). Tracés indicatifs. */
+const WALK = 'M1190 600 L1040 650 L968 566 L936 470 L908 392 L884 300 L877 239 L1044 215';
+const PATHS = {
+  car:  { move:'M1320 0 L1320 416 L1252 420 L1236 470 L1240 548 L1190 600', walk: WALK },
+  bus:  { move:'M1342 975 L1342 690 L1290 650 L1285 470 L1236 470', walk:'M1236 470 L1240 548 L1190 600 L1040 650 L968 566 L936 470 L908 392 L884 300 L877 239 L1044 215' },
+  bike: { move:'M1335 0 L1335 428 L1262 428 L1232 505', walk:'M1232 505 L1240 548 L1190 600 L1040 650 L968 566 L936 470 L908 392 L884 300 L877 239 L1044 215' }
+};
+
+const ADDR = '1 allée de la Mandallaz, Montée C, 74370 Epagny Metz-Tessy';
+
+/* Étapes (le premier repère de chaque étape est celui qui s’affiche). */
+const STEPS = {
+  car: [
+    { spot:'gate', html:'<span class="turn" data-turn><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5M11 6l-6 6 6 6"/></svg><span>Tournez à gauche</span></span><span>Avant de prendre le ticket, à la <b>barrière Patients</b>.</span>' },
+    { spot:'park', html:'Garez-vous <span class="ok">uniquement dans la zone verte</span>. La partie haute (rouge) est réservée aux abonnés.' },
+    { spot:'walk', html:'À pied, suivez le <b>chemin orange</b> et passez <b>sous la passerelle</b>.' },
+    { spot:'door', html:'<b>Montée C</b>, ascenseur jusqu’au 2ᵉ étage. Faites <b>valider votre ticket au secrétariat</b>.' }
+  ],
+  bus: [
+    { spot:'bus',  html:'Bus Sibra <b>2, 6, 10, 11 ou 18</b>, arrêt <b>Hôpital</b>, à 150 m plus bas que le plan.' },
+    { spot:'gate', html:'Remontez l’avenue de l’Hôpital, traversez au passage piéton, puis entrez à pied par la <b>barrière Patients</b>.' },
+    { spot:'walk', html:'Suivez le <b>chemin orange</b> sans traverser la partie rouge, puis passez <b>sous la passerelle</b>.' },
+    { spot:'door', html:'<b>Montée C</b>, ascenseur jusqu’au 2ᵉ étage.' }
+  ],
+  bike: [
+    { spot:'gate', html:'Suivez l’avenue de l’Hôpital et entrez par la voie d’accès : <b>tournez à gauche</b> au niveau de la barrière.' },
+    { spot:'bike', html:'Attachez votre vélo à <b>l’abri vélo</b>.' },
+    { spot:'walk', html:'À pied, suivez le <b>chemin orange</b> et passez <b>sous la passerelle</b>.' },
+    { spot:'door', html:'<b>Montée C</b>, ascenseur jusqu’au 2ᵉ étage.' }
+  ]
+};
+const MODE_LABEL = { car:'En voiture', bus:'En bus', bike:'À vélo' };
+
+/* ============================================================ */
+const q = new URLSearchParams(location.search);
+const EMBED = (q.get('embed') || '').toUpperCase();
+if (EMBED) document.body.classList.add('embed');
+
+function centroid(poly){
+  let a = 0, cx = 0, cy = 0;
+  for (let i = 0; i < poly.length; i++){
+    const [x1,y1] = poly[i], [x2,y2] = poly[(i+1) % poly.length];
+    const f = x1*y2 - x2*y1; a += f; cx += (x1+x2)*f; cy += (y1+y2)*f;
+  }
+  a *= 0.5; return [cx/(6*a), cy/(6*a)];
+}
+SPOTS.stop.xy = centroid(ZONES.forbidden).map(Math.round);
+SPOTS.park.xy = centroid(ZONES.allowed).map(Math.round);
+const pts = (p) => p.map(v => v.join(',')).join(' ');
+const ICON = {
+  door:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h9v17M14 9h5v12M3 21h18M8 8h3M8 12h3M8 16h3"/></svg>',
+  walk:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19h18M3 8h18M6 8v11M18 8v11"/></svg>',
+  gate:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V8M5 10h15"/></svg>',
+  stop:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7 12h10"/></svg>',
+  park:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>',
+  bike:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="16.5" r="3.5"/><circle cx="18.5" cy="16.5" r="3.5"/><path d="M5.5 16.5L9 9h6l3.5 7.5M9 9l3 7.5L15 9M12 16.5H5.5M15 9l-1-3.5h3M7.5 7h3M9 7v2"/></svg>',
+  bus:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="15" rx="3"/><path d="M5 11h14M8 21v-3M16 21v-3"/></svg>'
+};
+
+/* ---------- SVG du plan ---------- */
+function roadTexts(){
+  return '<text transform="translate(1372 70) rotate(90)" font-size="34" font-weight="700" fill="#fff" stroke="#1A1F1C" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Av. de l’Hôpital</text>'
+       + '<text transform="translate(360 618) rotate(-26.6)" font-size="30" font-weight="700" fill="#fff" stroke="#1A1F1C" stroke-width="5" paint-order="stroke" stroke-linejoin="round">Allée de la Mandallaz</text>';
+}
+function routes(v, mode){
+  const P = PATHS[mode];
+  const casing = v === 'A' ? 12 : 11;
+  const hand = v === 'B' ? ' filter="url(#wobB)"' : '';
+  const dash = v === 'B' ? '' : '';
+  return `<g${hand}>
+    <path d="${P.move}" fill="none" stroke="#fff" stroke-width="${casing}" stroke-linecap="round" stroke-linejoin="round" opacity=".9" vector-effect="non-scaling-stroke"/>
+    <path d="${P.move}" fill="none" stroke="#1E3B33" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" ${v==='B'?'stroke-dasharray="16 9"':''} vector-effect="non-scaling-stroke"/>
+    <path d="${P.walk}" fill="none" stroke="#fff" stroke-width="${casing}" stroke-linecap="round" stroke-linejoin="round" opacity=".9" vector-effect="non-scaling-stroke"/>
+    <path d="${P.walk}" fill="none" stroke="#F08A24" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" ${dash} vector-effect="non-scaling-stroke"/>
+  </g>`;
+}
+function planSVG(v, mode){
+  const fc = SPOTS.stop.xy, ac = SPOTS.park.xy;
+  let out = `<svg class="plan" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">`;
+  out += `<defs>
+    <pattern id="hatch${v}" width="26" height="26" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="26" stroke="#C0392B" stroke-width="7"/></pattern>
+    <filter id="wobB" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="12"/></filter>
+  </defs>`;
+  if (v === 'A'){
+    out += `<polygon points="${pts(ZONES.forbidden)}" fill="rgba(192,57,43,.40)" stroke="#C0392B" stroke-width="3.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`;
+    out += `<polygon points="${pts(ZONES.allowed)}" fill="rgba(46,125,79,.42)" stroke="#2E7D4F" stroke-width="3.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`;
+    out += routes(v, mode);
+    out += roadTexts();
+    // panneau sens interdit
+    out += `<g transform="translate(${fc[0]} ${fc[1]})"><circle r="50" fill="#C0392B" stroke="#fff" stroke-width="8"/><rect x="-30" y="-9" width="60" height="18" fill="#fff"/></g>`;
+    // panneau P + coche
+    out += `<g transform="translate(${ac[0]} ${ac[1]})"><rect x="-38" y="-38" width="76" height="76" rx="10" fill="#fff" stroke="#2E7D4F" stroke-width="6"/><text y="22" text-anchor="middle" font-family="DM Serif Display, Georgia, serif" font-size="64" fill="#2E7D4F">P</text></g>`;
+    out += `<g transform="translate(${ac[0]+52} ${ac[1]-44})"><circle r="26" fill="#2E7D4F" stroke="#fff" stroke-width="5"/><path d="M-12 1 L-3 10 L13 -9" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+    // panneau Tournez à gauche
+    out += `<g transform="translate(985 298)"><rect width="332" height="66" rx="10" fill="#1E3B33" stroke="#fff" stroke-width="4"/><path d="M52 33H20M32 20L18 33l14 13" transform="translate(6 0)" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><text x="70" y="43" font-size="29" font-weight="800" fill="#fff" letter-spacing="1">TOURNEZ À GAUCHE</text></g>`;
+  } else {
+    out += `<g filter="url(#wobB)">`;
+    out += `<polygon points="${pts(ZONES.forbidden)}" fill="url(#hatchB)" fill-opacity=".55" stroke="#C0392B" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>`;
+    out += `<path d="M${fc[0]-52} ${fc[1]-52} C${fc[0]-14} ${fc[1]-14} ${fc[0]+14} ${fc[1]+14} ${fc[0]+54} ${fc[1]+54} M${fc[0]+54} ${fc[1]-52} C${fc[0]+16} ${fc[1]-14} ${fc[0]-14} ${fc[1]+16} ${fc[0]-52} ${fc[1]+54}" fill="none" stroke="#C0392B" stroke-width="14" stroke-linecap="round"/>`;
+    out += `<polygon points="${pts(ZONES.allowed)}" fill="rgba(46,125,79,.20)" stroke="#2E7D4F" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>`;
+    out += `<path d="M${ac[0]+40} ${ac[1]-70} c8 14 16 26 24 34 c14 -22 30 -46 50 -64" transform="translate(0 0)" fill="none" stroke="#2E7D4F" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>`;
+    out += `<path d="M1318 318 C1322 366 1300 400 1262 414 M1262 414 L1288 398 M1262 414 L1290 428" fill="none" stroke="#1E3B33" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>`;
+    out += `</g>`;
+    out += routes(v, mode);
+    out += roadTexts();
+    out += `<text x="${ac[0]-4}" y="${ac[1]+22}" text-anchor="middle" font-family="DM Serif Display, Georgia, serif" font-style="italic" font-size="64" fill="#1E3B33" stroke="#fff" stroke-width="8" paint-order="stroke" stroke-linejoin="round">P</text>`;
+    out += `<text x="1296" y="300" text-anchor="end" font-family="DM Serif Display, Georgia, serif" font-style="italic" font-size="50" fill="#1E3B33" stroke="#fff" stroke-width="9" paint-order="stroke" stroke-linejoin="round">Tournez à gauche</text>`;
+    out += `<text x="${fc[0]}" y="${fc[1]-78}" text-anchor="middle" font-family="DM Serif Display, Georgia, serif" font-style="italic" font-size="40" fill="#9B2C20" stroke="#fff" stroke-width="8" paint-order="stroke" stroke-linejoin="round">Abonnés, interdit</text>`;
+  }
+  return out + '</svg>';
+}
+function markersHTML(v, mode, sel){
+  let s = '';
+  Object.keys(SPOTS).forEach(id => {
+    const p = SPOTS[id];
+    const cls = 'mk' + (p.tone ? ' m-' + p.tone : '');
+    const icon = id === 'park' ? '<span aria-hidden="true">P</span>' : ICON[p.kind];
+    const tag = p.tag ? `<span class="mk-tag">${p.tag}</span>` : '';
+    s += `<div class="mkw" style="left:${p.xy[0]/W*100}%;top:${p.xy[1]/H*100}%">${tag}<button type="button" class="${cls}" data-spot="${id}" aria-label="${p.title}" aria-pressed="${sel===id}">${icon}</button></div>`;
+  });
+  return s;
+}
+function stageHTML(v, mode, sel){
+  return `<img src="${IMG}" alt="Plan d’accès : le cabinet, la passerelle, les parkings et l’avenue de l’Hôpital" draggable="false"><div class="tint"></div>${planSVG(v, mode)}${markersHTML(v, mode, sel)}`;
+}
+function ficheHTML(id, small){
+  const p = SPOTS[id];
+  return `<div class="fiche ${p.tone ? 'f-' + p.tone : ''} ${small ? 'small' : ''}" aria-live="polite"><h3 class="serif">${p.title}</h3><p>${p.text}</p><div class="photo">[${p.photo}]</div></div>`;
+}
+function legendHTML(v){
+  const red = v === 'A'
+    ? '<svg width="26" height="18"><rect width="26" height="18" fill="rgba(192,57,43,.45)" stroke="#C0392B" stroke-width="2"/></svg>'
+    : '<svg width="26" height="18"><defs><pattern id="lgh" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#C0392B" stroke-width="3"/></pattern></defs><rect x="1" y="1" width="24" height="16" fill="url(#lgh)" stroke="#C0392B" stroke-width="2.5"/></svg>';
+  const green = v === 'A'
+    ? '<svg width="26" height="18"><rect width="26" height="18" fill="rgba(46,125,79,.45)" stroke="#2E7D4F" stroke-width="2"/></svg>'
+    : '<svg width="26" height="18"><rect x="1" y="1" width="24" height="16" fill="rgba(46,125,79,.2)" stroke="#2E7D4F" stroke-width="3"/></svg>';
+  return `<ul class="legend">
+    <li>${red} Interdit aux patients (abonnés)</li>
+    <li>${green} Autorisé aux patients</li>
+    <li><svg width="26" height="6"><rect width="26" height="6" rx="3" fill="#F08A24"/></svg> À pied</li>
+  </ul>`;
+}
+function linksHTML(){
+  const e = encodeURIComponent(ADDR);
+  return `<div class="links"><p>${ADDR}, 2ᵉ étage avec ascenseur.</p><div class="linkrow">
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=${e}" target="_blank" rel="noopener">Google Maps</a>
+    <a class="btn" href="https://maps.apple.com/?q=${e}" target="_blank" rel="noopener">Plans (Apple)</a>
+    <a class="btn" href="https://waze.com/ul?q=${e}&navigate=yes" target="_blank" rel="noopener">Waze</a>
+  </div></div>`;
+}
+
+/* ---------- composant variante ---------- */
+const instances = {};
+function mountVariant(root){
+  const v = root.dataset.variant;
+  const st = { v, mode:'car', sel:'gate', ov:null };
+  instances[v] = st;
+  root.classList.toggle('hand', v === 'B');
+  const desc = v === 'A'
+    ? 'Surfaces teintées (rouge et vert) et panneaux routiers simplifiés posés sur la photo.'
+    : 'Annotations tracées au feutre sur la photo : contour vert, hachures rouges, flèche « tournez à gauche ».';
+  root.innerHTML = `
+    <div class="vhead"><h2 class="serif">Variante ${v}</h2><p>${desc}</p></div>
+    <div class="grid">
+      <div class="mapcol">
+        <div class="frame"><div class="stage"></div><span class="zoombadge">Appuyer pour agrandir</span></div>
+        <div class="mapactions"><button type="button" class="btn primary" data-act="open">Agrandir le plan</button><span class="credit">Plan d’accès. Photo : IGN</span></div>
+        ${legendHTML(v)}
+      </div>
+      <div class="side">
+        <div class="tabs" role="tablist" aria-label="Moyen de transport"></div>
+        <ol class="steps"></ol>
+        ${linksHTML()}
+      </div>
+      <div class="fichecol"></div>
+    </div>`;
+  const stage = root.querySelector('.stage');
+  const tabs = root.querySelector('.tabs');
+  const steps = root.querySelector('.steps');
+  const fiche = root.querySelector('.fichecol');
+
+  st.stages = () => [stage].concat(st.ov ? [st.ov.layer] : []);
+  st.render = () => {
+    st.stages().forEach(el => { el.innerHTML = stageHTML(v, st.mode, st.sel); });
+    tabs.innerHTML = Object.keys(MODE_LABEL).map(m => `<button type="button" role="tab" class="tab" data-mode="${m}" aria-selected="${st.mode===m}">${MODE_LABEL[m]}</button>`).join('');
+    steps.innerHTML = STEPS[st.mode].map((s,i) => `<li><button type="button" class="step" data-spot="${s.spot}" aria-current="${st.sel===s.spot}"><span class="num">${i+1}</span><span>${s.html}</span></button></li>`).join('');
+    st.renderFiche();
+  };
+  st.renderFiche = () => {
+    fiche.innerHTML = ficheHTML(st.sel);
+    if (st.ov) st.ov.sheet.innerHTML = ficheHTML(st.sel, true);
+  };
+  st.select = (id) => {
+    if (st.sel === id) return;
+    st.sel = id;
+    st.stages().forEach(el => el.querySelectorAll('.mk').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.spot === id))));
+    steps.querySelectorAll('.step').forEach(b => b.setAttribute('aria-current', String(b.dataset.spot === id)));
+    st.renderFiche();
+  };
+  const canHover = window.matchMedia('(hover:hover)').matches;
+  root.addEventListener('mouseover', e => { const b = e.target.closest('.mk'); if (canHover && b && root.contains(b)) st.select(b.dataset.spot); });
+  root.addEventListener('click', e => {
+    const m = e.target.closest('[data-mode]'); if (m){ st.mode = m.dataset.mode; st.sel = STEPS[st.mode][0].spot; st.render(); return; }
+    const sp = e.target.closest('[data-spot]'); if (sp){ st.select(sp.dataset.spot); return; }
+    if (e.target.closest('[data-act="open"]') || e.target.closest('.frame')) openOverlay(st);
+  });
+  st.render();
+}
+
+/* ---------- plein écran : pincement, glissement, molette ---------- */
+function openOverlay(st){
+  if (st.ov) return;
+  const opener = document.activeElement;
+  const el = document.createElement('div');
+  el.className = 'ov' + (st.v === 'B' ? ' hand' : '');
+  el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-label', 'Plan d’accès agrandi');
+  el.innerHTML = `
+    <div class="ovbar"><strong>Plan d’accès</strong><button type="button" class="ovx" aria-label="Fermer le plan"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
+    <div class="ovmap"><div class="ovlayer stage"></div>
+      <div class="ovctl"><button type="button" data-z="in" aria-label="Zoomer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><button type="button" data-z="out" aria-label="Dézoomer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14"/></svg></button><button type="button" data-z="reset" aria-label="Vue d’ensemble"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div>
+      <span class="ovhint">Pincez ou glissez</span></div>
+    <div class="ovsheet"></div>`;
+  document.body.appendChild(el);
+  document.body.classList.add('lock');
+  const map = el.querySelector('.ovmap'), layer = el.querySelector('.ovlayer'), sheet = el.querySelector('.ovsheet');
+  st.ov = { layer, sheet };
+  st.render();
+
+  let cw = 0, ch = 0, LW = 0, LH = 0, s = 1, tx = 0, ty = 0, minS = 1;
+  const MAXS = 6;
+  const clamp = () => {
+    const w = LW * s, h = LH * s;
+    tx = w <= cw ? (cw - w) / 2 : Math.min(0, Math.max(cw - w, tx));
+    ty = h <= ch ? (ch - h) / 2 : Math.min(0, Math.max(ch - h, ty));
+  };
+  const apply = () => { clamp(); layer.style.transform = `translate(${tx}px,${ty}px) scale(${s})`; layer.style.setProperty('--inv', 1 / s); };
+  const zoomAt = (px, py, ns) => {
+    ns = Math.min(MAXS, Math.max(minS, ns));
+    const k = ns / s; tx = px - (px - tx) * k; ty = py - (py - ty) * k; s = ns; apply();
+  };
+  const reset = () => {
+    cw = map.clientWidth; ch = map.clientHeight;
+    LW = Math.min(cw, ch * W / H); LH = LW * H / W;
+    layer.style.width = LW + 'px'; layer.style.height = LH + 'px';
+    minS = 1;
+    s = Math.max(1, Math.min(ch / LH, 3.2));
+    const cx = 1150 / W * LW, cy = 450 / H * LH;
+    tx = cw / 2 - cx * s; ty = ch / 2 - cy * s; apply();
+  };
+  reset();
+  const onResize = () => { const keep = s; reset(); };
+  window.addEventListener('resize', onResize);
+
+  const ptrs = new Map(); let last = null, moved = 0;
+  const dist = () => { const a = [...ptrs.values()]; return Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y); };
+  const mid = () => { const a = [...ptrs.values()]; const r = map.getBoundingClientRect(); return [(a[0].x + a[1].x) / 2 - r.left, (a[0].y + a[1].y) / 2 - r.top]; };
+  map.addEventListener('pointerdown', e => {
+    if (e.target.closest('.ovctl') || e.target.closest('.mk')) return;
+    map.setPointerCapture(e.pointerId);
+    ptrs.set(e.pointerId, { x:e.clientX, y:e.clientY });
+    moved = 0; map.classList.add('drag');
+    last = ptrs.size === 2 ? { d:dist(), m:mid() } : null;
+  });
+  map.addEventListener('pointermove', e => {
+    if (!ptrs.has(e.pointerId)) return;
+    const p = ptrs.get(e.pointerId); const dx = e.clientX - p.x, dy = e.clientY - p.y;
+    ptrs.set(e.pointerId, { x:e.clientX, y:e.clientY });
+    moved += Math.abs(dx) + Math.abs(dy);
+    if (ptrs.size === 1){ tx += dx; ty += dy; apply(); }
+    else if (ptrs.size === 2 && last){
+      const d = dist(), m = mid();
+      tx += m[0] - last.m[0]; ty += m[1] - last.m[1];
+      zoomAt(m[0], m[1], s * d / last.d);
+      last = { d, m };
+    }
+  });
+  const up = e => { ptrs.delete(e.pointerId); last = null; if (!ptrs.size) map.classList.remove('drag'); };
+  map.addEventListener('pointerup', up); map.addEventListener('pointercancel', up);
+  map.addEventListener('wheel', e => { e.preventDefault(); const r = map.getBoundingClientRect(); zoomAt(e.clientX - r.left, e.clientY - r.top, s * Math.exp(-e.deltaY * 0.0015)); }, { passive:false });
+  map.addEventListener('dblclick', e => { if (e.target.closest('.mk')) return; const r = map.getBoundingClientRect(); zoomAt(e.clientX - r.left, e.clientY - r.top, s * 1.8); });
+  el.addEventListener('click', e => {
+    const z = e.target.closest('[data-z]');
+    if (z){ const k = z.dataset.z; if (k === 'in') zoomAt(cw/2, ch/2, s * 1.6); else if (k === 'out') zoomAt(cw/2, ch/2, s / 1.6); else reset(); return; }
+    const m = e.target.closest('.mk'); if (m) st.select(m.dataset.spot);
+  });
+  el.addEventListener('mouseover', e => { const b = e.target.closest('.mk'); if (b && window.matchMedia('(hover:hover)').matches) st.select(b.dataset.spot); });
+  const close = () => {
+    window.removeEventListener('resize', onResize); document.removeEventListener('keydown', onKey);
+    el.remove(); document.body.classList.remove('lock'); st.ov = null; st.renderFiche();
+    if (opener && opener.focus) opener.focus();
+  };
+  const onKey = e => { if (e.key === 'Escape') close(); };
+  document.addEventListener('keydown', onKey);
+  el.querySelector('.ovx').addEventListener('click', close);
+  el.querySelector('.ovx').focus();
+}
+
+/* ---------- démarrage ---------- */
+document.querySelectorAll('.variant').forEach(sec => {
+  if (EMBED && sec.dataset.variant !== EMBED) { sec.remove(); return; }
+  mountVariant(sec);
+});
+</script>
+</body>
+</html>

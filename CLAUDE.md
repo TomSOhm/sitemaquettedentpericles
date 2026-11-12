@@ -8,7 +8,9 @@ Maquette du site du Cabinet dentaire du Pericles (Epagny Metz-Tessy), réalisée
 - `css/style.css` : styles, palettes de couleurs, responsive (point de rupture 760 px), animations.
 - `js/app.js` : logique de la page (classe `Component`) : état, horaires, carte, contenus calculés.
 - `js/dc-runtime.js` : mini moteur qui fait vivre le balisage. À ne pas modifier sans raison.
-- `assets/` : `c-hero.webp` (photo du haut de page, exemple), `91f15153dd67bd4ab5911862d1226e00.webp` (vue aérienne IGN), `favicon.svg`.
+- `assets/` : `c-hero.webp` (photo du haut de page, exemple), `plan-acces-ign.webp` (photo IGN du plan d'accès, 1800 x 1350, cadrage élargi jusqu'à l'hôpital), `91f15153dd67bd4ab5911862d1226e00.webp` (ancien cadrage, plus utilisé), `favicon.svg`.
+- `design/maquettes/` : maquettes de choix faites pendant l'update (horaires, premier rendez-vous, accès, urgence, équipe, logos). Pas utilisées par la page.
+- `docs/taches-update.md` : liste des tâches de l'update, avec ce qui reste à fournir par le cabinet.
 - `design/logos/` : 12 propositions de logo en SVG (`logo-*` complet, `symbole-*` seul). Aucune n'est encore choisie.
 - `docs/retours-client.md` : retours du cabinet et informations à confirmer. **À lire avant toute modification de contenu.**
 
@@ -25,7 +27,9 @@ Le balisage vient d'un canevas de design (format « Design Component ») et gard
 
 Pour ajouter un contenu dynamique : calculer la valeur dans `renderVals()`, la renvoyer par un nom, puis l'utiliser avec `{{nom}}` dans `index.html`. Un texte fixe s'écrit directement dans le HTML.
 
-Repères dans `js/app.js` : `OPEN` et `SLOTS` (jours et créneaux d'ouverture, en minutes), `SPOTS` (points de la vue aérienne, en % de l'image), `CAPS` et `QMAP` (réponses du bloc « Je viens pour… »), `fxRef` (effets au défilement). Les props par défaut (palette, lien Doctolib, `openState`) sont passées à `__mountDC` en bas du fichier.
+Repères dans `js/app.js` : `HOURS` (créneaux du secrétariat par jour, en minutes ; le statut « ouvert » en dépend), `PRACS` (praticiens : jours de présence, lien Doctolib ou téléphone), `SPOTS` (repères du plan, en % de `plan-acces-ign.webp`), `_setFull` (plan en plein écran), `openRdv` (feuille « Premier rendez-vous »), `fxRef` (effets au défilement). Les zones du parking (polygones `zone-ok` et `zone-no`) et les trajets sont dans le SVG du plan, `index.html`, en coordonnées 1800 x 1350 ; tracé validé par Tom le 12/11/2026.
+
+Plan d'accès : sur la page, le défilement tactile reste libre (pas de zoom au doigt) ; « Agrandir le plan » passe le même plan en plein écran avec pincement, glissement et boutons. Ne pas remettre `touch-action: none` hors plein écran. Les props par défaut (palette, lien Doctolib, `openState`) sont passées à `__mountDC` en bas du fichier.
 
 Le sélecteur « Couleurs » (`.palC`) est un outil de maquette pour montrer les palettes au cabinet (`foret` par défaut, `lac`, `ardoise`, `nuit`, `terre`, définies dans `style.css`). À retirer une fois la palette choisie.
 
@@ -42,12 +46,14 @@ Le sélecteur « Couleurs » (`.palC`) est un outil de maquette pour montrer les
 ## Informations du cabinet (état actuel du site)
 
 - Adresse : 1 allée de la Mandallaz, Montée C, 74370 Epagny Metz-Tessy, 2ᵉ étage avec ascenseur.
-- Téléphone : 04 50 67 55 14. Pas encore d'e-mail.
-- Horaires affichés : mardi, mercredi, jeudi, 8h00 à 12h30 et 13h30 à 18h00 (ce sont ceux du Dr Manisse).
+- Téléphone : 04 50 67 55 14. E-mail : info@dentiste-pericles.fr (provisoire, .fr ou .com à confirmer).
+- Secrétariat : lundi à jeudi 8h45 à 12h00 et 14h00 à 18h00 ; vendredi 8h45 à 12h00 et 14h00 à 16h30.
+- Praticiens, dans cet ordre : Dr Christine Bernardi (lun, jeu, ven, sam ; pas de Doctolib), Dr Clara Manisse (lun, mar, mer, ven), Dr Martin Feaud (lun, mar, mer, jeu), Dr Coline Richard (mar, jeu ; lien Doctolib à fournir). Pas d'horaires par praticien, seulement les jours.
 - Conventionné, carte Vitale. Paiement : carte, espèces, chèque, virement.
-- RPPS Dr Clara Manisse : 10107413535. Lien Doctolib : celui du Dr Manisse (nouveaux patients uniquement).
-- Soins : blanchiment, facettes, implant, orthèse d'avancée mandibulaire (OAM), parodontologie.
-- Accès : barrière Patients à gauche, ticket remboursé à l'accueil ; bus Sibra arrêt Hôpital, lignes 2, 6, 10, 11 et 18 ; abri vélo.
+- Doctolib : Dr Manisse (lien de réservation nouveaux patients) et Dr Feaud (page profil). Le RPPS n'est plus affiché (demande du cabinet).
+- Soins : liste et explications à revoir avec le contenu du cabinet.
+- Accès : tournez à gauche, barrière Patients, ticket validé au secrétariat ; zone verte patients, partie haute le long des bâtiments réservée aux abonnés ; on passe sous la passerelle (pas de cour intérieure) ; bus Sibra arrêt Hôpital devant l'entrée de l'hôpital (lignes 2 et 11, liste complète à vérifier sur sibra.fr) ; abri vélo.
+- Pas d'emblème croix rouge (protégé) : l'urgence vitale utilise un pictogramme téléphone « 15 » dans un rond brique.
 - Urgences le dimanche et les jours fériés : dentiste de garde de Haute-Savoie (maisondentaire74.fr).
 
 ## Travailler en local

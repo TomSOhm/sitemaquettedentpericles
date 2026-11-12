@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Maquette : section équipe, 3 variantes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+:root{--deep:#1E3B33;--deep-rgb:30,59,51;--deep2:#4E6E62;--deep3:#33554B;--onDeep:#CFE0D6;--mid:#8FAE9A;--sand:#EFE8DC;--panel:#F4EFE6;--line:#DDD3C2;--line2:#E6DED0;--paper:#FAF8F4;--paper-rgb:250,248,244;--warm:#B5533C;--ink:#1A1F1C;--muted:#4C544F;--muted2:#6E756F}
+*{box-sizing:border-box}
+body{margin:0;background:#EFEBE3;color:var(--ink);font-family:'Karla','Segoe UI',system-ui,sans-serif;font-size:18px;line-height:1.6}
+.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+h1,h2,h3,p{margin:0}
+.page{max-width:1180px;margin:0 auto;padding:48px 24px 96px}
+.intro h1{font-size:44px;line-height:1.1}
+.intro p{max-width:760px;margin-top:12px;color:var(--muted)}
+.how{margin-top:28px;padding:20px 24px;background:var(--paper);border-left:3px solid var(--deep);max-width:860px}
+.how h2{font-size:24px;margin-bottom:6px}
+.how p{color:var(--muted);font-size:17px}
+.how p+p{margin-top:8px}
+.var{margin-top:72px}
+.var>h2{font-size:34px;line-height:1.15}
+.var .note{display:flex;gap:32px;flex-wrap:wrap;margin-top:8px;color:var(--muted);font-size:17px}
+.var .note span{max-width:520px}
+.var .note b{color:var(--ink)}
+.lab{margin:28px 0 8px;font-weight:700;font-size:16px;color:var(--muted)}
+.frame{background:var(--paper);border:1px solid var(--line);container-type:inline-size;overflow:hidden}
+.frame.d{width:1100px;max-width:100%}
+.frame.m{width:390px;max-width:100%}
+.sec{padding:80px 48px 72px}
+.sec h2{font-size:48px;line-height:1.05}
+.sec .sub{margin-top:14px;color:var(--muted)}
+.ul{display:block;width:230px;max-width:70%;height:14px;margin-top:6px;color:var(--deep)}
+.ul path{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+
+/* trait dessiné */
+.ink{fill:none;stroke:var(--deep);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ink.ghost{stroke:var(--mid);stroke-width:1.6;opacity:.8}
+.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.7s ease-out forwards;animation-delay:var(--d,0s)}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+.nm{font-size:26px;line-height:1.2}
+.dip{color:var(--muted);font-size:17px}
+.sp{list-style:none;margin:0;padding:0;font-size:17px}
+.sp li+li{margin-top:2px}
+.sp small{color:var(--muted);font-size:inherit}
+.tbc{color:var(--muted2)}
+.days-l{font-size:16px;color:var(--muted)}
+
+/* A */
+.A .row{display:grid;grid-template-columns:104px 1.05fr 1.7fr 1fr;gap:28px;padding:26px 0;border-top:1px solid var(--line);align-items:start}
+.A .row:last-child{border-bottom:1px solid var(--line)}
+.A .list{margin-top:36px}
+.A .pt svg{display:block;width:104px;height:120px}
+
+/* B */
+.B .grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:40px}
+.B .col{padding:0 22px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.B .col:first-child{border-left:0;padding-left:0}
+.B .col:last-child{padding-right:0}
+.B .ini{width:96px;height:96px;display:block}
+.B .wk{display:grid;grid-template-columns:repeat(6,1fr);margin-top:auto;padding-top:8px}
+.B .wk span{position:relative;text-align:center;font-size:16px;line-height:26px;color:var(--muted2);height:34px}
+.B .wk span[data-on="true"]{color:var(--ink);font-weight:700}
+.B .wk svg{position:absolute;left:3px;bottom:0;width:calc(100% - 6px);height:8px;overflow:visible}
+.B .wk svg path{fill:none;stroke:var(--deep);stroke-width:1.8;stroke-linecap:round}
+.B .wk-t{margin-top:auto;font-size:16px;color:var(--muted)}
+.B .col .sp{flex:1}
+
+/* C */
+.C .scene{display:block;width:100%;height:auto;margin-top:36px}
+.C .names{display:grid;grid-template-columns:repeat(4,1fr);margin-top:-6px;font-size:16px;color:var(--muted)}
+.C .names span{text-align:center}
+.C .list{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;margin-top:36px}
+.C .it{padding:22px 0;border-top:1px solid var(--line)}
+.C .it .sp{margin-top:8px}
+.C .it .days-l{margin-top:8px}
+
+/* mobile (cadre étroit) */
+@container (max-width:700px){
+  .sec{padding:48px 16px 44px}
+  .sec h2{font-size:34px}
+  .A .row{grid-template-columns:72px 1fr;gap:4px 16px;padding:22px 0}
+  .A .pt{grid-row:1 / span 3}
+  .A .pt svg{width:72px;height:84px}
+  .A .row>div:not(.pt){grid-column:2}
+  .B .grid{grid-template-columns:1fr;margin-top:28px}
+  .B .col{border-left:0;border-top:1px solid var(--line);padding:22px 0}
+  .B .col:first-child{border-top:0;padding-top:0}
+  .B .col .sp{flex:none}
+  .C .list{grid-template-columns:1fr}
+  .C .names{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .draw{animation:none;stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="rough" x="-15%" y="-15%" width="130%" height="130%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="4" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="3"/>
+  </filter>
+</svg>
+
+<main class="page">
+  <div class="intro">
+    <h1 class="serif">Section équipe : trois variantes</h1>
+    <p>Quatre praticiens, dans l'ordre du retour de réunion. Chaque variante est montrée au format bureau (1100 px) puis mobile (390 px). Les portraits sont volontairement neutres : aucun visage n'est dessiné.</p>
+    <div class="how">
+      <h2 class="serif">Comment seraient faits les vrais portraits</h2>
+      <p>Les silhouettes et initiales ci-dessous sont des repères de mise en page. Pour de vrai, deux voies : un illustrateur dessine chaque portrait au trait à partir d'une photo fournie par le praticien (quatre portraits dans un même style, un seul trait, deux à trois jours de travail) ; ou une vectorisation de la photo (contours extraits puis simplifiés à la main), moins coûteuse mais moins fine.</p>
+      <p>Dans les deux cas, chaque praticien valide son portrait avant publication, et le fichier final est un SVG léger, tracé en une couleur (le vert du site) pour rester cohérent avec les autres éléments dessinés.</p>
+    </div>
+  </div>
+
+  <section class="var" id="A">
+    <h2 class="serif">A. Liste éditoriale, portraits au trait</h2>
+    <div class="note"><span><b>Intérêt :</b> lecture claire, chaque terme est expliqué, proche de la page actuelle.</span><span><b>Limite :</b> long sur mobile, quatre fois la même silhouette.</span></div>
+    <p class="lab">Bureau 1100 px</p>
+    <div class="frame d A"><div class="sec" data-v="A"></div></div>
+    <p class="lab">Mobile 390 px</p>
+    <div class="frame m A"><div class="sec" data-v="A"></div></div>
+  </section>
+
+  <section class="var" id="B">
+    <h2 class="serif">B. Rangée de quatre, semaine de présence</h2>
+    <div class="note"><span><b>Intérêt :</b> on voit d'un coup d'oeil quel jour trouver quel praticien, sans horaires.</span><span><b>Limite :</b> colonnes serrées ; sur mobile la semaine passe sous chaque fiche.</span></div>
+    <p class="lab">Bureau 1100 px</p>
+    <div class="frame d B"><div class="sec" data-v="B"></div></div>
+    <p class="lab">Mobile 390 px</p>
+    <div class="frame m B"><div class="sec" data-v="B"></div></div>
+  </section>
+
+  <section class="var" id="C">
+    <h2 class="serif">C. Portrait de groupe dessiné, puis liste</h2>
+    <div class="note"><span><b>Intérêt :</b> image d'équipe chaleureuse, un seul dessin à commander à l'illustrateur.</span><span><b>Limite :</b> le groupe doit être dessiné d'après les quatre photos, et l'ordre des noms doit suivre le dessin.</span></div>
+    <p class="lab">Bureau 1100 px</p>
+    <div class="frame d C"><div class="sec" data-v="C"></div></div>
+    <p class="lab">Mobile 390 px</p>
+    <div class="frame m C"><div class="sec" data-v="C"></div></div>
+  </section>
+</main>
+
+<script>
+const T = {
+  omni:["Omnipratique","soins dentaires courants"],
+  impl:["Implantologie","pose d'implants"],
+  endo:["Endodontie","traitement des canaux"],
+  oam:["Orthèse d'avancée mandibulaire","contre le ronflement et l'apnée du sommeil"],
+  pedo:["Pédodontie","soins des enfants"]
+};
+const DAYS = ["lun","mar","mer","jeu","ven","sam"];
+const DAYS_FULL = {lun:"lundi",mar:"mardi",mer:"mercredi",jeu:"jeudi",ven:"vendredi",sam:"samedi"};
+const P = [
+  {n:"Dr Christine Bernardi", i:"CB", f:true,  fac:"Reims", sp:["omni","impl"], d:["lun","jeu","ven","sam"]},
+  {n:"Dr Clara Manisse",      i:"CM", f:true,  fac:"Lyon",  sp:["impl","omni","oam"], d:["lun","mar","mer","ven"]},
+  {n:"Dr Martin Feaud",       i:"MF", f:false, fac:"Lyon",  sp:["omni","endo"], d:["lun","mar","mer","jeu"]},
+  {n:"Dr Coline Richard",     i:"CR", f:true,  fac:"Lyon",  sp:["omni","pedo"], d:["mar","jeu"], tbc:"pedo"}
+];
+const dip = p => (p.f ? "Diplômée" : "Diplômé") + " de la Faculté d'odontologie de " + p.fac;
+const dayText = p => { const t = p.d.map(x => DAYS_FULL[x]).join(", "); return t.charAt(0).toUpperCase() + t.slice(1); };
+const spList = p => '<ul class="sp">' + p.sp.map(k => {
+  const t = T[k];
+  return '<li>' + t[0] + ', <small>' + t[1] + (p.tbc === k ? ' <span class="tbc">(à confirmer)</span>' : '') + '</small></li>';
+}).join("") + '</ul>';
+
+/* silhouette neutre : une ligne continue, épaules et tête esquissées */
+const SIL = "M6 136 C8 118 24 112 46 106 C51 104 51 98 48 92 C40 88 35 78 35 64 C35 44 46 30 60 30 C75 30 85 44 85 64 C85 78 80 88 72 92 C69 98 69 104 74 106 C96 112 112 118 114 136";
+const sil = (d, w) => '<svg viewBox="0 0 120 140" role="img" aria-label="Portrait dessiné à venir" style="' + (w||'') + '"><g filter="url(#rough)">'
+  + '<path class="ink ghost" transform="translate(2.5 2)" d="' + SIL + '"/>'
+  + '<path class="ink draw" pathLength="1" style="--d:' + d + 's" d="' + SIL + '"/></g></svg>';
+
+/* initiales tracées */
+const ini = (t, d) => '<svg class="ini" viewBox="0 0 96 96" role="img" aria-label="Initiales ' + t + '"><g filter="url(#rough)">'
+  + '<path class="ink draw" pathLength="1" style="--d:' + d + 's" d="M48 6 C74 5 91 24 90 50 C89 76 70 91 46 90 C22 89 6 71 7 46 C8 24 24 8 50 7"/>'
+  + '<text x="48" y="62" text-anchor="middle" font-family="DM Serif Display, Georgia, serif" font-size="40" fill="none" stroke="var(--deep)" stroke-width="1.5">' + t + '</text></g></svg>';
+
+/* semaine : jours présents entourés au crayon */
+const CIRC = ["M1 5 C8 2 14 7 20 4 C26 2 30 5 35 3","M1 3 C7 6 13 2 19 5 C25 7 31 3 35 5"];
+const week = (p, k) => '<div role="group" aria-label="Jours de présence : ' + p.d.map(x => DAYS_FULL[x]).join(", ") + '"><div class="wk">'
+  + DAYS.map((d, j) => {
+    const on = p.d.includes(d);
+    return '<span data-on="' + on + '" aria-hidden="true">' + (on ? '<svg viewBox="0 0 36 8" preserveAspectRatio="none"><path filter="url(#rough)" d="' + CIRC[(j + k) % 2] + '"/></svg>' : '') + d + '</span>';
+  }).join("") + '</div></div>';
+
+/* groupe dessiné : quatre silhouettes sur une ligne de crête */
+function group(){
+  const pos = [[30,0.9,0],[200,1,0],[380,0.94,0],[550,0.84,0]]; // x, échelle, décalage y
+  let s = '<svg class="scene" viewBox="0 105 720 195" role="img" aria-label="Portrait de groupe dessiné à venir, quatre silhouettes"><g filter="url(#rough)">'
+    + '<path class="ink ghost" pathLength="1" d="M0 250 C60 232 110 200 170 196 C230 192 262 224 330 214 C400 204 440 150 500 140 C560 130 610 190 660 200 C690 206 710 214 720 218"/>';
+  pos.forEach((q, i) => {
+    s += '<g transform="translate(' + q[0] + ' ' + (288 - 136*q[1]*1.5) + ') scale(' + (q[1]*1.5) + ')">'
+      + '<path class="ink draw" pathLength="1" style="--d:' + (i*0.35) + 's;stroke-width:' + (2.2/(q[1]*1.5)).toFixed(2) + '" d="' + SIL + '"/></g>';
+  });
+  s += '<path class="ink" pathLength="1" d="M10 290 C140 284 260 292 380 287 C500 282 620 291 712 286"/></g></svg>';
+  return s;
+}
+const ulSvg = '<svg class="ul" viewBox="0 0 230 14" preserveAspectRatio="none" aria-hidden="true"><path class="draw" pathLength="1" filter="url(#rough)" d="M3 9 C40 3 70 12 110 7 C150 2 190 11 227 5"/></svg>';
+const head = '<h2 class="serif">Les praticiens du cabinet</h2>' + ulSvg + '<p class="sub">Cabinet conventionné. Les jours indiqués sont les jours de consultation.</p>';
+
+const R = {
+  A(){
+    return head + '<div class="list">' + P.map((p, i) =>
+      '<div class="row"><div class="pt">' + sil(i*0.25) + '</div>'
+      + '<div><h3 class="serif nm">' + p.n + '</h3><p class="dip">' + dip(p) + '</p></div>'
+      + '<div>' + spList(p) + '</div>'
+      + '<div><p class="days-l">Consulte le</p><p>' + dayText(p) + '</p></div></div>'
+    ).join("") + '</div>';
+  },
+  B(){
+    return head + '<div class="grid">' + P.map((p, i) =>
+      '<div class="col">' + ini(p.i, i*0.25)
+      + '<div><h3 class="serif nm">' + p.n + '</h3><p class="dip">' + dip(p) + '</p></div>'
+      + spList(p)
+      + '<div><p class="days-l">Jours de consultation</p>' + week(p, i) + '</div></div>'
+    ).join("") + '</div>';
+  },
+  C(){
+    return head + group()
+      + '<div class="names" aria-hidden="true">' + P.map(p => '<span>' + p.n + '</span>').join("") + '</div>'
+      + '<div class="list">' + P.map(p =>
+        '<div class="it"><h3 class="serif nm">' + p.n + '</h3><p class="dip">' + dip(p) + '</p>' + spList(p)
+        + '<p class="days-l">Consulte le ' + p.d.map(x => DAYS_FULL[x]).join(", ") + '</p></div>'
+      ).join("") + '</div>';
+  }
+};
+document.querySelectorAll('[data-v]').forEach(el => { el.innerHTML = R[el.dataset.v](); });
+</script>
+</body>
+</html>
