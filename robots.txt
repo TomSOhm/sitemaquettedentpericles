@@ -1,0 +1,6 @@
+# Préparé pour la mise en ligne sur dentiste-pericles.fr.
+# Tant que le site est une maquette, la page reste exclue des moteurs par la balise noindex de index.html.
+User-agent: *
+Allow: /
+
+Sitemap: https://dentiste-pericles.fr/sitemap.xml

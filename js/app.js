@@ -133,10 +133,10 @@ class Component extends DCLogic {
         open: open ? 'true' : 'false',
         today: today ? 'true' : 'false',
         name: DAYS[i].charAt(0).toUpperCase() + DAYS[i].slice(1),
-        hours: open ? sl.map((x) => fmtS(x[0]) + ' à ' + fmtS(x[1])).join(', ') : 'Secrétariat fermé',
+        hours: open ? sl.map((x) => fmtS(x[0]) + ' à ' + fmtS(x[1])).join(', ') : (here.length ? 'Secrétariat fermé' : 'Fermé'),
         pracs: here.length ? here.join(', ') : 'Cabinet fermé',
         st: selP ? (pres ? 'on' : 'off') : 'sec',
-        who: selP ? (pres ? (open ? 'Au cabinet' : 'Au cabinet, secrétariat fermé') : 'Pas de consultation') : (here.length ? here.join(', ') : 'Cabinet fermé'),
+        who: selP ? (pres ? 'Au cabinet' : 'Pas de consultation') : (here.length ? here.join(', ') : 'Cabinet fermé'),
         none: here.length ? 'false' : 'true',
         amL: open ? pct(sl[0][0]) : '0%',
         amW: open ? pct(480 + sl[0][1] - sl[0][0]) : '0%',
@@ -164,7 +164,7 @@ class Component extends DCLogic {
     const listFr = (arr) => (arr.length < 2 ? arr.join('') : arr.slice(0, -1).join(', ') + ' et ' + arr[arr.length - 1]);
     const hsum = selP
       ? selP.short + ' consulte le ' + listFr(selP.days.map((x) => DAYS[x])) + '.' + (selP.days.indexOf(6) >= 0 ? ' Le samedi, le secrétariat est fermé.' : '')
-      : 'Les praticiens n’ont pas d’horaires détaillés : choisissez un nom pour voir ses jours de consultation.';
+      : '';
     const hcta = selP
       ? (selP.book ? { show: true, href: selP.book, label: 'Réserver en ligne avec le ' + selP.short } : { show: true, href: 'tel:0450675514', label: 'Rendez-vous au 04 50 67 55 14' })
       : { show: false, href: '#', label: '' };
@@ -189,7 +189,7 @@ class Component extends DCLogic {
     // Repères du plan, en % de l'image assets/plan-acces-ign.webp (1800 x 1350).
     // [x, y, titre, texte, photo à placer ('' si aucune)]
     const SPOTS = {
-      door: [53.67, 22.22, 'Entrée Montée C', 'Juste après la passerelle. Ascenseur jusqu’au 2ᵉ étage, puis faites valider votre ticket au secrétariat.', 'entrée Montée C'],
+      door: [53.67, 22.22, 'Entrée Montée C', 'Juste après la passerelle. Ascenseur jusqu’au 2ᵉ étage, puis présentez votre ticket à l’accueil : le parking vous est remboursé.', 'entrée Montée C'],
       court: [45.83, 24.44, 'Sous la passerelle', 'Passez sous la passerelle entre les bâtiments : l’entrée Montée C est juste après.', 'la passerelle'],
       gate: [63.28, 34.96, 'Barrière Patients', 'Tournez à gauche vers la barrière Patients et prenez un ticket. L’autre barrière est réservée aux abonnés.', 'la barrière Patients'],
       park: [54.94, 48.3, 'Parking patients', 'Garez-vous dans la zone verte. La partie en rouge, le long des bâtiments, est réservée aux abonnés.', ''],
@@ -261,7 +261,7 @@ class Component extends DCLogic {
     const QMAP = [
       [/horaire|ouvert|ferm|heure|quand/, { label: 'Voir les horaires du cabinet', href: 'horaires' }],
       [/mal|douleur|urgen|cass|abc|gonfl|saign|garde|dimanche|f[ée]ri/, { label: 'J’ai mal, c’est urgent', id: 'pain' }],
-      [/park|gar[ée]|bus|v[ée]lo|adresse|acc[èe]s|gps|ascenseur|[ée]tage|itin|venir|plan|ticket/, { label: 'Venir au cabinet', id: 'come' }],
+      [/park|gar[ée]|bus|v[ée]lo|adresse|acc[èe]s|gps|ascenseur|[ée]tage|itin|venir|plan|ticket|rembours/, { label: 'Venir au cabinet', id: 'come' }],
       [/mail|[ée]crire|courriel|document|tarif|devis|mutuelle|vitale|paiement/, { label: 'Écrire au cabinet', id: 'mail' }],
       [/implant|blanch|facette|orth[èe]se|ronfl|apn[ée]e|gencive|paro|carie|d[ée]vital|extraction|soin/, { label: 'Un soin en particulier', id: 'care' }],
       [/nouveau|nouvelle|premi|1er|inscri|doctolib/, { label: 'Premier rendez-vous', id: 'new' }],

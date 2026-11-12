@@ -9,7 +9,7 @@ Maquette du site du Cabinet dentaire du Pericles (Epagny Metz-Tessy), réalisée
 - `js/app.js` : logique de la page (classe `Component`) : état, horaires, carte, contenus calculés.
 - `js/dc-runtime.js` : mini moteur qui fait vivre le balisage. À ne pas modifier sans raison.
 - `assets/` : `c-hero.webp` (photo du haut de page, exemple), `favicon.svg` (symbole sommet), `plan-acces-ign.webp` (photo IGN du plan d'accès, 1800 x 1350, cadrage élargi jusqu'à l'hôpital), `91f15153dd67bd4ab5911862d1226e00.webp` (ancien cadrage, plus utilisé).
-- `design/maquettes/` : maquettes de choix faites pendant l'update (horaires, premier rendez-vous, accès, urgence, équipe, logos). Pas utilisées par la page.
+- `design/maquettes/` : maquettes de choix faites pendant l'update (horaires, premier rendez-vous, accès, urgence, équipe, logos, honoraires). Pas utilisées par la page.
 - `docs/taches-update.md` : liste des tâches de l'update, avec ce qui reste à fournir par le cabinet.
 - `design/logos/` : 12 propositions de logo en SVG (`logo-*` complet, `symbole-*` seul). Logo retenu par Tom : `logo-11-sommet` (dessin à garder tel quel, avec ses détails). Dans les barres du site, on utilise `logo-11-sommet-horizontal.svg` : le même symbole, le nom à droite. `assets/favicon.svg` reprend le symbole. Le logo est intégré en SVG dans `index.html` (en-tête, barre fixe, menu mobile, entre les commentaires `<!-- logo : … -->` et `<!-- /logo -->`) pour garder les polices du site ; chaque copie a son propre identifiant de masque (`sommetk-hd`, `sommetk-stk`, `sommetk-mnav`).
 - `docs/retours-client.md` : retours du cabinet et informations à confirmer. **À lire avant toute modification de contenu.**
@@ -41,7 +41,9 @@ Le sélecteur « Couleurs » (`.palC`) est un outil de maquette pour montrer les
 - Pas de pastilles ou badges décoratifs. Éviter les informations évidentes ou répétées.
 - Mobile d'abord : vérifier chaque modification à 390 px et à 1440 px.
 - Respecter `prefers-reduced-motion` pour toute nouvelle animation.
-- La page reste exclue des moteurs de recherche (`noindex`) tant que c'est une maquette.
+- La page reste exclue des moteurs de recherche (`noindex`) tant que c'est une maquette. `robots.txt` et `sitemap.xml` sont prêts pour `dentiste-pericles.fr`.
+- Obligations de l’Ordre pour le site : informer sur les honoraires, les moyens de paiement et l’accès de tous aux soins sans discrimination (R.4127-240, II), sans grille de prix (choix du cabinet) : repli « Honoraires, paiement et accès aux soins » en bas du pied de page (`footer .law`) ; pas de témoignages ni d’avis de patients, pas de référencement payant (R.4127-215-1).
+- Le pied de page crédite Frema Labs (« Site réalisé par Frema Labs », lien vers fremaconsulting.ch).
 
 ## Informations du cabinet (état actuel du site)
 
@@ -52,7 +54,7 @@ Le sélecteur « Couleurs » (`.palC`) est un outil de maquette pour montrer les
 - Conventionné, carte Vitale. Paiement : carte, espèces, chèque, virement.
 - Doctolib : Dr Manisse (lien de réservation nouveaux patients) et Dr Feaud (page profil). Le RPPS n'est plus affiché (demande du cabinet).
 - Soins : liste et explications à revoir avec le contenu du cabinet.
-- Accès : tournez à gauche, barrière Patients, ticket validé au secrétariat ; zone verte patients, partie haute le long des bâtiments réservée aux abonnés ; on passe sous la passerelle (pas de cour intérieure) ; bus Sibra arrêt Hôpital devant l'entrée de l'hôpital (lignes 2 et 11, liste complète à vérifier sur sibra.fr) ; abri vélo.
+- Accès : tournez à gauche, barrière Patients, prendre un ticket : le parking est remboursé à l’accueil (ne pas écrire « gratuit », le patient paie à la borne) ; zone verte patients, partie haute le long des bâtiments réservée aux abonnés ; on passe sous la passerelle (pas de cour intérieure) ; bus Sibra arrêt Hôpital devant l'entrée de l'hôpital (lignes 2 et 11, liste complète à vérifier sur sibra.fr) ; abri vélo.
 - Pas d'emblème croix rouge (protégé) : l'urgence vitale utilise un pictogramme téléphone « 15 » dans un rond brique.
 - Urgences le dimanche et les jours fériés : dentiste de garde de Haute-Savoie (maisondentaire74.fr).
 

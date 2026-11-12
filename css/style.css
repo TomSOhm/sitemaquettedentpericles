@@ -527,3 +527,47 @@ body{background:var(--paper)}
 .brand-logo{color:var(--deep)}
 .brand-logo .bl-sub{fill:var(--muted)}
 @media (min-width: 761px){.brand-stk .brand-logo{height:42px}}
+
+/* Horaires : bande teintée pour séparer la section du plan d'accès */
+.hr-band{background:var(--panel);--muted2:var(--muted)}
+.hr-band .hr-track{background:var(--paper)}
+.hr-band .hr-track[data-open="false"]{background:repeating-linear-gradient(135deg, var(--paper) 0 6px, var(--line2) 6px 12px)}
+
+/* Horaires sur téléphone : la semaine passe en liste (heures exactes en texte, sans barres),
+   juste sous le statut ; les coordonnées viennent après. La ligne « Secrétariat » est masquée (reprise jour par jour). */
+@media (max-width: 760px){
+  section#horaires{padding:56px 16px 32px !important}
+  #horaires .split{gap:16px !important}
+  #horaires .hr-left{display:contents !important}
+  #horaires .hr-left > h2{order:1}
+  #horaires .hr-status{order:2}
+  #horaires .hr-plan{order:3;margin-top:8px}
+  #horaires .hr-rows{order:4;width:100%;margin-top:28px}
+  .hr-secrow{display:none !important}
+  .hr-rows > div{grid-template-columns:104px minmax(0, 1fr);gap:12px;align-items:baseline}
+  .hr-rows dd{overflow-wrap:anywhere}
+  .hr-rows a.hr-tel{font-size:24px}
+  .hr-axis, .hr-track{display:none !important}
+  .hr-row{grid-template-columns:92px minmax(0, 1fr);gap:2px 12px;padding:10px 8px;align-items:baseline}
+  .hr-day{display:contents}
+  .hr-day strong{grid-column:1;grid-row:1}
+  .hr-day small{display:block;grid-column:2;grid-row:1;font-size:16px;line-height:1.4;color:var(--ink)}
+  .hr-who{grid-column:2;grid-row:2}
+  .hr-who[data-none="true"]{display:none}
+}
+
+/* Pas de texte sous la frise quand le secrétariat est sélectionné */
+.hr-foot:has(> .hr-sum:empty){display:none}
+
+/* Pied de page : repli « Honoraires, paiement et accès aux soins » (information obligatoire, discrète) */
+footer .law{grid-column:1 / -1;border-top:1px solid var(--line);padding-top:12px}
+footer .law summary{display:inline-flex;align-items:center;gap:8px;min-height:44px;cursor:pointer;font-weight:600;color:var(--deep);text-decoration:underline;text-underline-offset:4px;list-style:none}
+footer .law summary::-webkit-details-marker{display:none}
+footer .law summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-3px);transition:transform .2s ease}
+footer .law[open] summary::after{transform:rotate(225deg) translateX(-2px)}
+footer .law dl{margin:8px 0 0;max-width:860px;display:grid;grid-template-columns:170px minmax(0, 1fr);gap:10px 20px;font-size:14px;line-height:1.55}
+footer .law dt{font-weight:700;color:var(--ink)}
+footer .law dd{margin:0}
+footer .law a{color:var(--deep)}
+@media (max-width: 760px){footer .law dl{grid-template-columns:1fr;gap:2px}footer .law dd{margin-bottom:10px}}
+@media (prefers-reduced-motion: reduce){footer .law summary::after{transition:none}}

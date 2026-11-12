@@ -17,6 +17,8 @@ Légende : `[ ]` à faire, `[x]` fait, `[?]` décision ou information attendue.
 - [?] Lignes de bus à l'arrêt Hôpital : le site de l'hôpital donne 2, 6, 10, 11, 18 ; les horaires Sibra d'octobre 2026 donnent 2, 11, 21, 25, 30. Le site affiche « 2 et 11 » en attendant une vérification sur sibra.fr.
 - [?] Code postal : 74370 (fiche du cabinet) ou 74330 (Base Adresse Nationale).
 - [?] Photos : entrée Montée C, barrière Patients, passerelle, accueil, salles. Portraits en photo ou en dessin.
+- [?] « Nouveaux patients acceptés » : affiché dans la description de la page et les données structurées (`isAcceptingNewPatients`). À retirer si le cabinet ne prend plus de nouveaux patients.
+- [?] Honoraires, paiement et accès aux soins : faire valider les textes du repli en bas du pied de page (conventionné, devis, annuaire santé ameli, C2S et AME).
 
 ## 1. En-tête et navigation
 
@@ -31,16 +33,21 @@ Légende : `[ ]` à faire, `[x]` fait, `[?]` décision ou information attendue.
 
 - [x] « Annecy », « Epagny Metz-Tessy », « conventionnés » dans le titre de page, la description et le sous-titre. (C)
 - [x] Données structurées schema.org `Dentist` (adresse, téléphone, e-mail, horaires du secrétariat).
-- [ ] À la mise en ligne : retirer `noindex`, aligner la fiche Google (nom, adresse, téléphone identiques au site).
+- [x] Réglages : titre « Dentiste près d’Annecy à Epagny Metz-Tessy », description avec l’hôpital et les nouveaux patients, balises de partage (`og:`), praticiens dans les données structurées, titre « Les soins du cabinet », repère « À côté du Centre hospitalier Annecy Genevois » dans l’accès.
+- [x] `robots.txt` et `sitemap.xml` préparés pour `dentiste-pericles.fr` (adresse avec ou sans www à confirmer).
+- [ ] À la mise en ligne : retirer `noindex` et « (maquette) » du titre ; ajouter l’URL canonique, `og:url`, `og:image` et `url` dans les données structurées ; déclarer le site dans Google Search Console et envoyer le sitemap.
+- [ ] Fiche Google Business : catégorie « Dentiste », horaires, lien vers le site et Doctolib, vraies photos ; nom, adresse et téléphone identiques partout (site, fiche Google, Doctolib, PagesJaunes, annuaire santé ameli). Pas d’« Annecy » ajouté au nom de la fiche.
+- [ ] Plus tard, avec le contenu du cabinet : une page par soin, une page « Urgence dentaire », une page par praticien. Pas de page par ville.
+- Règles de l’Ordre : pas de référencement payant (pas de Google Ads), pas de témoignages ni d’avis de patients sur le site (R.4127-215-1).
 
 ## 3. Bloc « Je viens pour… »
 
 - [x] « Tarifs et remboursement » remplacé par « Écrire au cabinet ». (C)
 - [x] « Un soin en particulier » conservé (choix de Tom).
-- [x] Premier rendez-vous : parking précisé (tournez à gauche, barrière Patients, ticket validé au secrétariat), lien vers le plan, bouton « Choisir un praticien ». (C)
+- [x] Premier rendez-vous : parking précisé (tournez à gauche, barrière Patients, ticket, parking remboursé à l’accueil), lien vers le plan, bouton « Choisir un praticien ». (C)
 - [x] Rendez-vous existant : horaires du secrétariat, bouton e-mail. (C)
 - [x] Une douleur, une urgence : dentiste de garde cité une seule fois, premiers secours en accordéon, pictogramme SAMU 15 (pas de croix rouge, emblème protégé). (R, C)
-- [x] Venir au cabinet : Google Maps, Plans, Waze ; ticket validé au secrétariat ; « sous la passerelle ». (C)
+- [x] Venir au cabinet : Google Maps, Plans, Waze ; parking remboursé à l’accueil (on ne dit pas « gratuit » : le patient paie à la borne) ; « sous la passerelle ». (C)
 
 ## 4. Venir au cabinet (plan d'accès)
 
@@ -65,6 +72,8 @@ Légende : `[ ]` à faire, `[x]` fait, `[?]` décision ou information attendue.
 - [x] Colonne de gauche structurée en lignes (téléphone, e-mail, secrétariat, hors horaires, dimanche et fériés, urgence vitale).
 - [x] Mode praticien : présence en ocre sur les mêmes plages que le secrétariat, pas sur toute la journée.
 - [x] Urgence vitale : même pictogramme que dans le bloc urgence. (R)
+- [x] Bande de fond teintée : la section se détache du plan d’accès.
+- [x] Sur téléphone : la semaine passe juste sous le statut, en liste avec les heures exactes (sans barres) ; la ligne « Secrétariat » est masquée, les coordonnées viennent après.
 
 ## 6. Soins
 
@@ -85,7 +94,9 @@ Légende : `[ ]` à faire, `[x]` fait, `[?]` décision ou information attendue.
 
 - [x] RPPS retiré. (C)
 - [x] Contact : téléphone et e-mail ; horaires du secrétariat. (C)
-- [ ] Mentions légales : le lien ne mène encore nulle part.
+- [ ] Mentions légales : le lien ne mène encore nulle part. Y ajouter « Conception et réalisation : Frema Labs ».
+- [x] Crédit « Site réalisé par Frema Labs » (lien vers fremaconsulting.ch) dans la colonne « Informations ».
+- [x] Honoraires, paiement et accès aux soins (obligatoire, R.4127-240, II) : repli discret en bas du pied de page (variante A de `design/maquettes/honoraires.html`, choisie par Tom), sans grille de prix ; renvoi vers l’annuaire santé d’ameli.fr.
 
 ## 10. Fin de chantier
 

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Maquette : honoraires et accès aux soins</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#1E3B33;--sand:#EFE8DC;--panel:#F4EFE6;--line:#DDD3C2;--line2:#E6DED0;--paper:#FAF8F4;--ink:#1A1F1C;--muted:#4C544F;--muted2:#687069}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Karla',system-ui,sans-serif;font-size:16px;line-height:1.5}
+a{color:var(--deep)}
+.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+:focus-visible{outline:3px solid var(--deep);outline-offset:2px}
+
+/* Présentation de la maquette */
+.intro{max-width:1240px;margin:0 auto;padding:40px 24px 8px}
+.intro h1{margin:0 0 8px;font-size:34px}
+.intro p{margin:0 0 6px;max-width:820px;color:var(--muted)}
+.variant{max-width:1240px;margin:0 auto;padding:40px 24px 0}
+.variant h2{margin:0 0 4px;font-size:26px}
+.variant > p{margin:0 0 18px;max-width:820px;color:var(--muted)}
+.tag{display:inline-block;margin-left:8px;font-family:'Karla',sans-serif;font-size:13px;font-weight:700;color:var(--deep);vertical-align:4px}
+.frames{display:grid;grid-template-columns:1fr;gap:24px;align-items:start}
+.phone{max-width:390px}
+.frame{border:1px solid var(--line);background:#fff}
+.frame-l{font-size:13px;font-weight:700;color:var(--muted2);padding:6px 10px;border-bottom:1px solid var(--line)}
+
+/* Pied de page du site (repris de index.html) */
+.ft{background:var(--sand)}
+.ft-in{padding:40px 24px 32px;display:grid;grid-template-columns:repeat(auto-fit, minmax(min(220px, 100%), 1fr));gap:28px;font-size:15px;color:var(--muted)}
+.ft-in strong{color:var(--ink)}
+.ft-in a{color:var(--deep)}
+
+/* Variante A : repli « Honoraires, paiement et accès aux soins » */
+.law{grid-column:1 / -1;border-top:1px solid var(--line);padding-top:14px}
+.law summary{display:inline-flex;align-items:center;gap:8px;min-height:44px;cursor:pointer;font-weight:600;color:var(--deep);text-decoration:underline;text-underline-offset:4px;list-style:none}
+.law summary::-webkit-details-marker{display:none}
+.law summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-3px);transition:transform .2s ease}
+.law[open] summary::after{transform:rotate(225deg) translateX(-2px)}
+.law dl{margin:8px 0 0;max-width:860px;display:grid;grid-template-columns:170px minmax(0,1fr);gap:10px 20px;font-size:14px;line-height:1.55}
+.law dt{font-weight:700;color:var(--ink)}
+.law dd{margin:0}
+.phone .law dl{grid-template-columns:1fr;gap:2px}
+.phone .law dd{margin-bottom:10px}
+@media (prefers-reduced-motion: reduce){.law summary::after{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <h1 class="serif">Honoraires, paiement et accès aux soins</h1>
+  <p>Le code de déontologie (art. R.4127-240, II) impose au site une information sur les honoraires pratiqués, les modes de paiement et l’accès de tous aux soins sans discrimination. Une grille de prix n’est pas exigée par le texte.</p>
+  <p>Les deux variantes donnent cette information sans afficher de prix ; le renvoi vers l’annuaire santé d’ameli.fr couvre les tarifs. Textes à faire valider par le cabinet.</p>
+</div>
+
+<!-- ============ Variante A ============ -->
+<section class="variant">
+  <h2 class="serif">A. Repli en bas du pied de page <span class="tag">Recommandée</span></h2>
+  <p>Une seule ligne discrète, « Honoraires, paiement et accès aux soins », sous les colonnes. Le texte complet s’ouvre au clic, sur place.</p>
+  <div class="frames">
+    <div class="frame"><div class="frame-l">Ordinateur (ouvert)</div>
+      <footer class="ft"><div class="ft-in">
+        <span><span class="serif" style="font-size:26px;color:var(--ink)">Cabinet dentaire du Pericles</span><br>Montée C, 1 allée de la Mandallaz<br>74370 Epagny Metz-Tessy, près d’Annecy</span>
+        <span><strong>Secrétariat</strong><br>Lundi à jeudi : 8h45 à 12h00, 14h00 à 18h00<br>Vendredi : 8h45 à 12h00, 14h00 à 16h30</span>
+        <span><strong>Contact</strong><br><a href="#">04 50 67 55 14</a><br><a href="#">info@dentiste-pericles.fr</a><br>Dimanche et jours fériés : <a href="#">dentiste de garde</a></span>
+        <span><strong>Informations</strong><br>Cabinet conventionné, carte Vitale<br>Carte bancaire, espèces, chèque, virement<br><a href="#">Mentions légales</a><br>Photo du plan d’accès : IGN<br>Site réalisé par <a href="#">Frema Labs</a></span>
+        <details class="law" open>
+          <summary>Honoraires, paiement et accès aux soins</summary>
+          <dl>
+            <dt>Honoraires</dt><dd>Le cabinet est conventionné : les soins courants sont facturés aux tarifs fixés par l’Assurance maladie. Pour une prothèse, un implant, un traitement d’orthodontie ou un soin non remboursé, un devis détaillé vous est remis avant les soins. Les tarifs pratiqués par chaque dentiste sont consultables sur l’<a href="#">annuaire santé d’ameli.fr</a>. Pour toute question sur le coût d’un traitement, le secrétariat vous répond.</dd>
+            <dt>Paiement</dt><dd>Carte bancaire, espèces, chèque, virement.</dd>
+            <dt>Accès aux soins</dt><dd>Conformément à la loi (article L.1110-3 du code de la santé publique), le cabinet reçoit toute personne sans discrimination, y compris les bénéficiaires de la complémentaire santé solidaire (C2S) et de l’aide médicale de l’État (AME).</dd>
+          </dl>
+        </details>
+      </div></footer>
+    </div>
+    <div class="frame phone"><div class="frame-l">Téléphone (fermé)</div>
+      <footer class="ft"><div class="ft-in">
+        <span><span class="serif" style="font-size:26px;color:var(--ink)">Cabinet dentaire du Pericles</span><br>Montée C, 1 allée de la Mandallaz<br>74370 Epagny Metz-Tessy, près d’Annecy</span>
+        <span><strong>Informations</strong><br>Cabinet conventionné, carte Vitale<br>Carte bancaire, espèces, chèque, virement<br><a href="#">Mentions légales</a><br>Photo du plan d’accès : IGN<br>Site réalisé par <a href="#">Frema Labs</a></span>
+        <details class="law">
+          <summary>Honoraires, paiement et accès aux soins</summary>
+          <dl>
+            <dt>Honoraires</dt><dd>Le cabinet est conventionné : les soins courants sont facturés aux tarifs fixés par l’Assurance maladie. Pour une prothèse, un implant, un traitement d’orthodontie ou un soin non remboursé, un devis détaillé vous est remis avant les soins. Les tarifs pratiqués par chaque dentiste sont consultables sur l’<a href="#">annuaire santé d’ameli.fr</a>. Pour toute question sur le coût d’un traitement, le secrétariat vous répond.</dd>
+            <dt>Paiement</dt><dd>Carte bancaire, espèces, chèque, virement.</dd>
+            <dt>Accès aux soins</dt><dd>Conformément à la loi (article L.1110-3 du code de la santé publique), le cabinet reçoit toute personne sans discrimination, y compris les bénéficiaires de la complémentaire santé solidaire (C2S) et de l’aide médicale de l’État (AME).</dd>
+          </dl>
+        </details>
+      </div></footer>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Variante B ============ -->
+<section class="variant" style="padding-bottom:56px">
+  <h2 class="serif">B. Lignes courtes, toujours visibles</h2>
+  <p>Tout tient dans la colonne « Informations », en phrases très courtes. Rien à ouvrir, mais la colonne s’allonge.</p>
+  <div class="frames">
+    <div class="frame"><div class="frame-l">Ordinateur</div>
+      <footer class="ft"><div class="ft-in">
+        <span><span class="serif" style="font-size:26px;color:var(--ink)">Cabinet dentaire du Pericles</span><br>Montée C, 1 allée de la Mandallaz<br>74370 Epagny Metz-Tessy, près d’Annecy</span>
+        <span><strong>Secrétariat</strong><br>Lundi à jeudi : 8h45 à 12h00, 14h00 à 18h00<br>Vendredi : 8h45 à 12h00, 14h00 à 16h30</span>
+        <span><strong>Contact</strong><br><a href="#">04 50 67 55 14</a><br><a href="#">info@dentiste-pericles.fr</a><br>Dimanche et jours fériés : <a href="#">dentiste de garde</a></span>
+        <span><strong>Informations</strong><br>Cabinet conventionné, carte Vitale<br>Soins aux tarifs de l’Assurance maladie, devis avant prothèse ou implant<br>Tarifs : <a href="#">annuaire santé d’ameli.fr</a><br>Carte bancaire, espèces, chèque, virement<br>Toute personne est reçue sans discrimination, y compris C2S et AME<br><a href="#">Mentions légales</a><br>Photo du plan d’accès : IGN<br>Site réalisé par <a href="#">Frema Labs</a></span>
+      </div></footer>
+    </div>
+    <div class="frame phone"><div class="frame-l">Téléphone</div>
+      <footer class="ft"><div class="ft-in">
+        <span><span class="serif" style="font-size:26px;color:var(--ink)">Cabinet dentaire du Pericles</span><br>Montée C, 1 allée de la Mandallaz<br>74370 Epagny Metz-Tessy, près d’Annecy</span>
+        <span><strong>Informations</strong><br>Cabinet conventionné, carte Vitale<br>Soins aux tarifs de l’Assurance maladie, devis avant prothèse ou implant<br>Tarifs : <a href="#">annuaire santé d’ameli.fr</a><br>Carte bancaire, espèces, chèque, virement<br>Toute personne est reçue sans discrimination, y compris C2S et AME<br><a href="#">Mentions légales</a><br>Photo du plan d’accès : IGN<br>Site réalisé par <a href="#">Frema Labs</a></span>
+      </div></footer>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
