@@ -136,7 +136,7 @@ class Component extends DCLogic {
         hours: open ? sl.map((x) => fmtS(x[0]) + ' à ' + fmtS(x[1])).join(', ') : (here.length ? 'Secrétariat fermé' : 'Fermé'),
         pracs: here.length ? here.join(', ') : 'Cabinet fermé',
         st: selP ? (pres ? 'on' : 'off') : 'sec',
-        who: selP ? (pres ? (i === 6 ? 'Au cabinet, patients déjà suivis' : 'Au cabinet') : 'Pas de consultation') : (here.length ? here.join(', ') + (i === 6 ? ', patients déjà suivis' : '') : 'Cabinet fermé'),
+        who: selP ? (pres ? (i === 6 ? 'Au cabinet, exclusivement patients déjà suivis' : 'Au cabinet') : 'Pas de consultation') : (here.length ? here.join(', ') + (i === 6 ? ', exclusivement patients déjà suivis' : '') : 'Cabinet fermé'),
         none: here.length ? 'false' : 'true',
         amL: open ? pct(sl[0][0]) : '0%',
         amW: open ? pct(480 + sl[0][1] - sl[0][0]) : '0%',
