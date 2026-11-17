@@ -1,3 +1,8 @@
+/* Polices hébergées sur le site (pas de Google Fonts : aucune adresse IP de visiteur transmise). Licences SIL OFL dans assets/fonts/. */
+@font-face{font-family:'DM Serif Display';font-style:normal;font-weight:400;font-display:swap;src:url('../assets/fonts/dm-serif-display-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'DM Serif Display';font-style:normal;font-weight:400;font-display:swap;src:url('../assets/fonts/dm-serif-display-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Karla';font-style:normal;font-weight:400 700;font-display:swap;src:url('../assets/fonts/karla-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Karla';font-style:normal;font-weight:400 700;font-display:swap;src:url('../assets/fonts/karla-latin.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 .root{--deep:#1E3B33;--deep-rgb:30,59,51;--deep2:#4E6E62;--deep3:#33554B;--deepH:#2B5246;--onDeep:#CFE0D6;--mid:#8FAE9A;--sand:#EFE8DC;--sand2-rgb:228,217,198;--sand3:#D9C9A8;--panel:#F4EFE6;--line:#DDD3C2;--line2:#E6DED0;--paper:#FAF8F4;--paper-rgb:250,248,244;--warm:#B5533C;--prac:#8A5A12;--prac-rgb:138,90,18;--ink:#1A1F1C;--ink-rgb:26,31,28;--muted:#4C544F;--muted2:#687069}
 .root[data-pal="lac"]{--deep:#1F4E6B;--deep-rgb:31,78,107;--deep2:#55809A;--deep3:#33637F;--deepH:#2A6385;--onDeep:#CFE2EE;--mid:#8DB6CC;--sand:#E8EEF1;--sand2-rgb:214,226,233;--sand3:#C9D9E3;--panel:#EEF3F6;--line:#D3DEE5;--line2:#E0E8ED;--paper:#F8FAFB;--paper-rgb:248,250,251;--warm:#B8703A;--ink:#172026;--ink-rgb:23,32,38;--muted:#4A5761;--muted2:#6B7882}
 .root[data-pal="ardoise"]{--deep:#2C3E50;--deep-rgb:44,62,80;--deep2:#5C6F82;--deep3:#3E5266;--deepH:#3A5068;--onDeep:#D3DCE5;--mid:#A4B5C6;--sand:#ECEFF2;--sand2-rgb:220,226,232;--sand3:#CDD5DD;--panel:#F2F4F6;--line:#D8DEE4;--line2:#E4E8EC;--paper:#FAFBFC;--paper-rgb:250,251,252;--warm:#A8603F;--ink:#1B2128;--ink-rgb:27,33,40;--muted:#4D5661;--muted2:#6E7782}
@@ -65,6 +70,7 @@ a{color:var(--deep)}a:hover{color:#12261F}
 @media (prefers-reduced-motion: reduce){.mapframe path.route,.mapframe path.walk,.route,.walk,.hs-dot::before,.slot[data-now="true"]{animation:none}}
 @media (max-width: 760px){
   .mbar{display:flex !important}
+  .mbar a{flex:1 1 auto !important;padding-left:4px !important;padding-right:4px !important}
   .navlinks{display:none !important}
   .root{font-size:16px !important}
   .h1{font-size:34px !important}
@@ -379,21 +385,13 @@ body{background:var(--paper)}
 }
 @media (prefers-reduced-motion: reduce){.hr-row, .hr-chip{transition:none}}
 
-/* Urgence : premiers secours et urgence vitale */
+/* Urgence vitale */
 .vital{display:flex;align-items:center;gap:14px;margin-top:26px;padding-top:18px;border-top:1px solid var(--line2);color:var(--muted);line-height:1.45}
 .vital .samu48{flex:none}
 .vital strong{display:block;color:var(--ink)}
 .vital a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--warm);text-underline-offset:4px}
-.fa{border-top:1px solid var(--line2)}
-.fa details{border-bottom:1px solid var(--line2)}
-.fa summary{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:54px;padding:6px 0;cursor:pointer;font-weight:700;color:var(--ink);list-style:none}
-.fa summary::-webkit-details-marker{display:none}
-.fa summary::after{content:"";flex:none;width:9px;height:9px;margin-right:6px;border-right:2px solid var(--deep);border-bottom:2px solid var(--deep);transform:rotate(45deg) translate(-2px, -2px);transition:transform .2s ease}
-.fa details[open] summary::after{transform:rotate(-135deg) translate(-2px, -2px)}
-.fa-b{padding:0 0 16px;color:var(--muted);font-size:16px}
-.fa-b p{margin:0 0 8px}
-.fa-b p:last-child{margin:0}
-.fa-note{margin:10px 0 0;font-size:13px;color:var(--muted2)}
+.pain-vital .vital{margin-top:0;padding-top:0;border-top:0}
+@media (max-width: 760px){.pain-vital .vital{padding-top:18px;border-top:1px solid var(--line2)}}
 
 /* Équipe */
 .team{display:flex;flex-direction:column;border-bottom:1px solid var(--line)}
@@ -425,6 +423,7 @@ body{background:var(--paper)}
 .rdv-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .rdv-h .serif{font-size:22px;line-height:1.2;color:var(--ink)}
 .rdv-it p{margin:0;font-size:15px;color:var(--muted)}
+.rdv-it .rdv-note{font-size:14px;color:var(--muted2)}
 .rdv-it .btnP, .rdv-it .btnS{align-self:flex-start;min-height:46px;margin-top:6px}
 .wk{display:inline-flex;gap:3px;flex:none}
 .wk b{width:26px;text-align:center;font-size:13px;font-weight:600;color:var(--muted);padding:2px 0;border-bottom:2px solid transparent}

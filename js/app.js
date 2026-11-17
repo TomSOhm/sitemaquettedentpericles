@@ -136,7 +136,7 @@ class Component extends DCLogic {
         hours: open ? sl.map((x) => fmtS(x[0]) + ' à ' + fmtS(x[1])).join(', ') : (here.length ? 'Secrétariat fermé' : 'Fermé'),
         pracs: here.length ? here.join(', ') : 'Cabinet fermé',
         st: selP ? (pres ? 'on' : 'off') : 'sec',
-        who: selP ? (pres ? 'Au cabinet' : 'Pas de consultation') : (here.length ? here.join(', ') : 'Cabinet fermé'),
+        who: selP ? (pres ? (i === 6 ? 'Au cabinet, patients déjà suivis' : 'Au cabinet') : 'Pas de consultation') : (here.length ? here.join(', ') + (i === 6 ? ', patients déjà suivis' : '') : 'Cabinet fermé'),
         none: here.length ? 'false' : 'true',
         amL: open ? pct(sl[0][0]) : '0%',
         amW: open ? pct(480 + sl[0][1] - sl[0][0]) : '0%',
@@ -163,10 +163,10 @@ class Component extends DCLogic {
     });
     const listFr = (arr) => (arr.length < 2 ? arr.join('') : arr.slice(0, -1).join(', ') + ' et ' + arr[arr.length - 1]);
     const hsum = selP
-      ? selP.short + ' consulte le ' + listFr(selP.days.map((x) => DAYS[x])) + '.' + (selP.days.indexOf(6) >= 0 ? ' Le samedi, le secrétariat est fermé.' : '')
+      ? selP.short + ' consulte le ' + listFr(selP.days.map((x) => DAYS[x])) + '.' + (selP.days.indexOf(6) >= 0 ? ' Le samedi est réservé aux patients déjà suivis (secrétariat fermé).' : '')
       : '';
     const hcta = selP
-      ? (selP.book ? { show: true, href: selP.book, label: 'Réserver en ligne avec le ' + selP.short } : { show: true, href: 'tel:0450675514', label: 'Rendez-vous au 04 50 67 55 14' })
+      ? (selP.book ? { show: true, href: selP.book, label: 'Doctolib (nouveau patient)' } : { show: true, href: 'tel:0450675514', label: 'Rendez-vous au 04 50 67 55 14' })
       : { show: false, href: '#', label: '' };
 
     const ids = ['new', 'rdv', 'pain', 'come', 'mail', 'care'];
@@ -189,12 +189,12 @@ class Component extends DCLogic {
     // Repères du plan, en % de l'image assets/plan-acces-ign.webp (1800 x 1350).
     // [x, y, titre, texte, photo à placer ('' si aucune)]
     const SPOTS = {
-      door: [53.67, 22.22, 'Entrée Montée C', 'Juste après la passerelle. Ascenseur jusqu’au 2ᵉ étage, puis présentez votre ticket à l’accueil : le parking vous est remboursé.', 'entrée Montée C'],
+      door: [53.67, 22.22, 'Entrée Montée C', 'Juste après la passerelle. Ascenseur jusqu’au 2ᵉ étage. Faites valider votre ticket au secrétariat pour le remboursement du parking.', 'entrée Montée C'],
       court: [45.83, 24.44, 'Sous la passerelle', 'Passez sous la passerelle entre les bâtiments : l’entrée Montée C est juste après.', 'la passerelle'],
       gate: [63.28, 34.96, 'Barrière Patients', 'Tournez à gauche vers la barrière Patients et prenez un ticket. L’autre barrière est réservée aux abonnés.', 'la barrière Patients'],
       park: [54.94, 48.3, 'Parking patients', 'Garez-vous dans la zone verte. La partie en rouge, le long des bâtiments, est réservée aux abonnés.', ''],
       bike: [61.28, 38.3, 'Abri vélo', 'Garez votre vélo ici, puis suivez le chemin orange jusqu’à la passerelle.', ''],
-      bus: [53.22, 81.11, 'Arrêt Hôpital', 'Devant l’entrée de l’hôpital, bus Sibra lignes 2 et 11. Suivez le chemin orange jusqu’à la barrière Patients, puis passez sous la passerelle.', '']
+      bus: [53.22, 81.11, 'Arrêt Hôpital', 'Devant l’entrée de l’hôpital, plusieurs lignes Sibra, dont la Rythmo 2. Suivez le chemin orange jusqu’à la barrière Patients, puis passez sous la passerelle.', '']
     };
     const full = !!st.mapFull;
     const coarse = typeof window !== 'undefined' && !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
@@ -242,28 +242,28 @@ class Component extends DCLogic {
       if (!f && this._mapEl) setTimeout(() => { this._mapEl.scrollIntoView({ block: 'center' }); }, 80);
     };
 
-    const careIds = ['blanch', 'fac', 'imp', 'oam', 'paro'];
+    const careIds = ['imp', 'paro', 'oam', 'blanch', 'fac'];
     const careOpen = {}, careShow = {}, careToggle = {};
     careIds.forEach((id) => {
-      const o = (st.care || 'blanch') === id;
+      const o = (st.care || 'imp') === id;
       careOpen[id] = o ? 'true' : 'false';
       careShow[id] = o;
-      careToggle[id] = () => this.setState({ care: (this.state || {}).care === id || (!(this.state || {}).care && id === 'blanch') ? 'none' : id });
+      careToggle[id] = () => this.setState({ care: (this.state || {}).care === id || (!(this.state || {}).care && id === 'imp') ? 'none' : id });
     });
     const CAPS = {
       new: ['01', 'Premier rendez-vous', 'Bienvenue au cabinet', 'Réservation en ligne pour les nouveaux patients, et ce qu’il faut apporter le jour du rendez-vous.'],
       rdv: ['02', 'Rendez-vous', 'Prendre ou déplacer un rendez-vous', 'Déjà patient du cabinet ? Le plus simple est d’appeler, aux heures d’ouverture.'],
       pain: ['03', 'Urgence', 'Vous avez mal ?', 'Que faire maintenant, selon le jour et l’heure.'],
-      come: ['04', 'Accès', 'Venir au cabinet', 'Adresse GPS, parking remboursé, bus et vélo.'],
+      come: ['04', 'Accès', 'Venir au cabinet', 'Adresse GPS, parking, bus et vélo.'],
       mail: ['05', 'E-mail', 'Écrire au cabinet', 'Documents, questions administratives, rendez-vous à déplacer.'],
-      care: ['06', 'Soins', 'Un soin en particulier', 'Implant, blanchiment, facettes, orthèse, gencives.']
+      care: ['06', 'Soins', 'Un soin en particulier', 'Implant, parodontologie, orthèse, blanchiment, facettes.']
     };
     const QMAP = [
       [/horaire|ouvert|ferm|heure|quand/, { label: 'Voir les horaires du cabinet', href: 'horaires' }],
       [/mal|douleur|urgen|cass|abc|gonfl|saign|garde|dimanche|f[ée]ri/, { label: 'J’ai mal, c’est urgent', id: 'pain' }],
-      [/park|gar[ée]|bus|v[ée]lo|adresse|acc[èe]s|gps|ascenseur|[ée]tage|itin|venir|plan|ticket|rembours/, { label: 'Venir au cabinet', id: 'come' }],
+      [/park|gar[ée]|bus|v[ée]lo|adresse|acc[èe]s|gps|ascenseur|[ée]tage|itin|venir|plan|ticket|rembours|sibra|rythmo/, { label: 'Venir au cabinet', id: 'come' }],
       [/mail|[ée]crire|courriel|document|tarif|devis|mutuelle|vitale|paiement/, { label: 'Écrire au cabinet', id: 'mail' }],
-      [/implant|blanch|facette|orth[èe]se|ronfl|apn[ée]e|gencive|paro|carie|d[ée]vital|extraction|soin/, { label: 'Un soin en particulier', id: 'care' }],
+      [/implant|blanch|facette|orth[èe]se|ronfl|apn[ée]e|gencive|paro|carie|d[ée]vital|extraction|soin|endodont|canal|omniprat/, { label: 'Un soin en particulier', id: 'care' }],
       [/nouveau|nouvelle|premi|1er|inscri|doctolib/, { label: 'Premier rendez-vous', id: 'new' }],
       [/rdv|rendez|d[ée]placer|annul|modifi|cr[ée]neau|t[ée]l[ée]phone|appeler/, { label: 'Prendre ou déplacer un RDV', id: 'rdv' }]
     ];

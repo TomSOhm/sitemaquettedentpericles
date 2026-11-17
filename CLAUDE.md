@@ -8,6 +8,8 @@ Maquette du site du Cabinet dentaire du Pericles (Epagny Metz-Tessy), réalisée
 - `css/style.css` : styles, palettes de couleurs, responsive (point de rupture 760 px), animations.
 - `js/app.js` : logique de la page (classe `Component`) : état, horaires, carte, contenus calculés.
 - `js/dc-runtime.js` : mini moteur qui fait vivre le balisage. À ne pas modifier sans raison.
+- `mentions-legales.html` : mentions légales et confidentialité (page à part, même feuille de style, sans JavaScript). Les champs `span.todo` « [À compléter] » attendent les informations du cabinet.
+- `assets/fonts/` : polices DM Serif Display et Karla en woff2 (latin et latin-ext), licences OFL. Déclarées en tête de `css/style.css`.
 - `assets/` : `c-hero.webp` (photo du haut de page, exemple), `favicon.svg` (symbole sommet), `plan-acces-ign.webp` (photo IGN du plan d'accès, 1800 x 1350, cadrage élargi jusqu'à l'hôpital), `91f15153dd67bd4ab5911862d1226e00.webp` (ancien cadrage, plus utilisé).
 - `design/maquettes/` : maquettes de choix faites pendant l'update (horaires, premier rendez-vous, accès, urgence, équipe, logos, honoraires). Pas utilisées par la page.
 - `docs/taches-update.md` : liste des tâches de l'update, avec ce qui reste à fournir par le cabinet.
@@ -27,7 +29,7 @@ Le balisage vient d'un canevas de design (format « Design Component ») et gard
 
 Pour ajouter un contenu dynamique : calculer la valeur dans `renderVals()`, la renvoyer par un nom, puis l'utiliser avec `{{nom}}` dans `index.html`. Un texte fixe s'écrit directement dans le HTML.
 
-Repères dans `js/app.js` : `HOURS` (créneaux du secrétariat par jour, en minutes ; le statut « ouvert » en dépend), `PRACS` (praticiens : jours de présence, lien Doctolib ou téléphone), `SPOTS` (repères du plan, en % de `plan-acces-ign.webp`), `_setFull` (plan en plein écran), `openRdv` (feuille « Premier rendez-vous »), `fxRef` (effets au défilement). Les zones du parking (polygones `zone-ok` et `zone-no`) et les trajets sont dans le SVG du plan, `index.html`, en coordonnées 1800 x 1350 ; tracé validé par Tom le 12/11/2026.
+Repères dans `js/app.js` : `HOURS` (créneaux du secrétariat par jour, en minutes ; le statut « ouvert » en dépend), `PRACS` (praticiens : jours de présence, lien Doctolib ou téléphone), `SPOTS` (repères du plan, en % de `plan-acces-ign.webp`), `_setFull` (plan en plein écran), `openRdv` (feuille « Prendre rendez-vous »), `fxRef` (effets au défilement). Les zones du parking (polygones `zone-ok` et `zone-no`) et les trajets sont dans le SVG du plan, `index.html`, en coordonnées 1800 x 1350 ; tracé validé par Tom le 12/11/2026.
 
 Plan d'accès : sur la page, le défilement tactile reste libre (pas de zoom au doigt) ; « Agrandir le plan » passe le même plan en plein écran avec pincement, glissement et boutons. À la souris, Ctrl + molette zoome (la molette seule fait défiler la page et affiche une aide) ; en plein écran, la molette seule zoome. Ne pas remettre `touch-action: none` hors plein écran. Les props par défaut (palette, lien Doctolib, `openState`) sont passées à `__mountDC` en bas du fichier.
 
@@ -42,19 +44,24 @@ Le sélecteur « Couleurs » (`.palC`) est un outil de maquette pour montrer les
 - Mobile d'abord : vérifier chaque modification à 390 px et à 1440 px.
 - Respecter `prefers-reduced-motion` pour toute nouvelle animation.
 - La page reste exclue des moteurs de recherche (`noindex`) tant que c'est une maquette. `robots.txt` et `sitemap.xml` sont prêts pour `dentiste-pericles.fr`.
-- Obligations de l’Ordre pour le site : informer sur les honoraires, les moyens de paiement et l’accès de tous aux soins sans discrimination (R.4127-240, II), sans grille de prix (choix du cabinet) : repli « Honoraires, paiement et accès aux soins » en bas du pied de page (`footer .law`) ; pas de témoignages ni d’avis de patients, pas de référencement payant (R.4127-215-1).
-- Le pied de page crédite Frema Labs (« Site réalisé par Frema Labs », lien vers fremaconsulting.ch).
+- Obligations de l’Ordre pour le site : informer sur les honoraires, les moyens de paiement et l’accès de tous aux soins sans discrimination (R.4127-240, II), sans grille de prix (choix du cabinet) : repli « Honoraires, paiement et accès aux soins » en bas du pied de page (`footer .law`), textes du cabinet : « Le cabinet est conventionné. » seulement pour les honoraires, et pour l’accès aux soins la phrase du cabinet citant l’article L. 1110-3 du Code de la santé publique (ne pas citer C2S ni AME) ; pas de témoignages ni d’avis de patients, pas de référencement payant (R.4127-215-1).
+- Le pied de page crédite Frema Labs (« Site réalisé par Frema Labs », lien vers fremaconsulting.ch) et mène à `mentions-legales.html`.
+- RGPD : le site ne charge rien depuis un service tiers (pas de Google Fonts, pas de cookie, pas de mesure d’audience, pas d’iframe). Garder les polices dans `assets/fonts/` ; tout ajout de ce genre doit être déclaré dans la page de confidentialité, et peut demander un bandeau de consentement.
+- Le cabinet parle de lui-même avec « nous » (« écrivez-nous », jamais « écrivez-lui »).
+- Aucun conseil médical ni consigne de premiers secours sur le site (demande du cabinet : responsabilité). La réponse « Une douleur, une urgence » oriente seulement : appeler le cabinet, dentiste de garde, SAMU 15.
+- Boutons de rendez-vous : « Prendre rendez-vous » (pas « premier rendez-vous », pas d’abréviation « RDV » ; « Rendez-vous » dans la barre mobile).
 
 ## Informations du cabinet (état actuel du site)
 
 - Adresse : 1 allée de la Mandallaz, Montée C, 74370 Epagny Metz-Tessy, 2ᵉ étage avec ascenseur.
 - Téléphone : 04 50 67 55 14. E-mail : info@dentiste-pericles.fr (provisoire, .fr ou .com à confirmer).
 - Secrétariat : lundi à jeudi 8h45 à 12h00 et 14h00 à 18h00 ; vendredi 8h45 à 12h00 et 14h00 à 16h30.
-- Praticiens, dans cet ordre : Dr Christine Bernardi (lun, jeu, ven, sam ; pas de Doctolib), Dr Clara Manisse (lun, mar, mer, ven), Dr Martin Feaud (lun, mar, mer, jeu), Dr Coline Richard (mar, jeu ; lien Doctolib à fournir). Pas d'horaires par praticien, seulement les jours.
+- Praticiens, dans cet ordre : Dr Christine Bernardi (lun, jeu, ven, sam ; pas de Doctolib), Dr Clara Manisse (lun, mar, mer, ven), Dr Martin Feaud (lun, mar, mer, jeu), Dr Coline Richard (mar, jeu ; lien Doctolib à fournir). Pas d'horaires par praticien, seulement les jours. Le samedi (Dr Bernardi) est réservé aux patients déjà suivis ; le secrétariat est fermé.
+- Actes affichés (termes du cabinet) : Dr Bernardi omnipratique, implantologie ; Dr Manisse omnipratique, implantologie, orthèse d’avancée mandibulaire ; Dr Feaud omnipratique, endodontie ; Dr Richard omnipratique.
 - Conventionné, carte Vitale. Paiement : carte, espèces, chèque, virement.
-- Doctolib : Dr Manisse (lien de réservation nouveaux patients) et Dr Feaud (page profil). Le RPPS n'est plus affiché (demande du cabinet).
-- Soins : liste et explications à revoir avec le contenu du cabinet.
-- Accès : tournez à gauche, barrière Patients, prendre un ticket : le parking est remboursé à l’accueil (ne pas écrire « gratuit », le patient paie à la borne) ; zone verte patients, partie haute le long des bâtiments réservée aux abonnés ; on passe sous la passerelle (pas de cour intérieure) ; bus Sibra arrêt Hôpital devant l'entrée de l'hôpital (lignes 2 et 11, liste complète à vérifier sur sibra.fr) ; abri vélo.
+- Doctolib (nouveaux patients) : Dr Manisse (lien de réservation) et Dr Feaud (page profil). Dans la feuille de rendez-vous, leurs cartes ont « Doctolib (nouveau patient) » puis « Par téléphone » ; Dr Bernardi et Dr Richard : « Par téléphone ». Le RPPS n'est plus affiché (demande du cabinet).
+- Soins, dans l’ordre du cabinet : implant, parodontologie, orthèse d’avancée mandibulaire, blanchiment, facettes ; textes courts fournis par le cabinet (section `#soins` et réponse « Un soin en particulier »).
+- Accès : tournez à gauche, barrière Patients, prendre un ticket : il est à faire valider au secrétariat pour remboursement (ne pas écrire « gratuit », le patient paie à la borne) ; zone verte patients, partie haute le long des bâtiments réservée aux abonnés ; on passe sous la passerelle (pas de cour intérieure) ; bus Sibra arrêt Hôpital devant l'entrée de l'hôpital : on ne liste pas les numéros de ligne (« Plusieurs lignes Sibra, dont la Rythmo 2 », lien vers sibra.fr), la liste du site de l’hôpital date d’avant la refonte du réseau d’avril 2024 ; abri vélo.
 - Pas d'emblème croix rouge (protégé) : l'urgence vitale utilise un pictogramme téléphone « 15 » dans un rond brique.
 - Urgences le dimanche et les jours fériés : dentiste de garde de Haute-Savoie (maisondentaire74.fr).
 

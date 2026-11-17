@@ -81,3 +81,20 @@ Bien indiquer que nous sommes **conventionnés**
 * Enlever "tarif et remboursement"
 * Enlever "déjà patient" art le numéro de tel.
 * Finalement pour le nom de domaine : dentiste-pericles -> valider si bon pour seo
+
+## Correction2 (17/11/2026)
+
+Questions du cabinet : à qui appartient le site (Frema Labs ou le cabinet) ? Le RGPD est-il respecté ?
+
+* Samedi : préciser « jour réservé aux patients déjà suivis ».
+* « Prendre rendez-vous » à la place de « Premier rendez-vous » (navigation et fenêtre de rendez-vous).
+* Fenêtre de rendez-vous : « Doctolib (nouveau patient) » à la place de « Réserver sur Doctolib », et « Par téléphone » en dessous pour Dr Manisse et Dr Feaud.
+* Actes des praticiens : omnipratique, implantologie, endodontie, orthèse d'avancée mandibulaire.
+* Un premier RDV et Venir au cabinet : le ticket de parking est à faire valider au secrétariat pour remboursement.
+* Un RDV existant : « écrivez-nous » et non « écrivez-lui » ; vérifier partout.
+* Une douleur, une urgence : pas de conseils (responsabilité), nettoyer et réorganiser.
+* Bus : Rythmo 2, lignes 6, 10, 11, 18 (liste du site de l'hôpital, périmée ; choix retenu : « Plusieurs lignes Sibra, dont la Rythmo 2 » et lien sibra.fr).
+* Soins, dans l'ordre : implant (« Solution fixe pour remplacer une ou plusieurs dents manquantes. »), parodontologie (« Prévention, diagnostic et traitement des tissus de soutien de la dent. »), orthèse d'avancée mandibulaire (« Sous prescription ou non, orthèse contre l'apnée du sommeil. »), blanchiment (« Éclaircissement des dents. »), facettes (« Réhabilitation esthétique des altérations de teinte ou de forme. »). Même ordre dans « Un soin en particulier ».
+* « Prenez soin de vous, au calme. » jugé creux : remplacé par « Une question, un rendez-vous ? ».
+* Honoraires : « Le cabinet est conventionné. » seulement.
+* Accès aux soins : « Soucieux de l'égalité d'accès aux soins, notre cabinet reçoit chaque patient sans distinction, dans le strict respect de l'article L. 1110-3 du Code de la santé publique. » (sans C2S ni AME).
