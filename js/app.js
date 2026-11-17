@@ -163,7 +163,7 @@ class Component extends DCLogic {
     });
     const listFr = (arr) => (arr.length < 2 ? arr.join('') : arr.slice(0, -1).join(', ') + ' et ' + arr[arr.length - 1]);
     const hsum = selP
-      ? selP.short + ' consulte le ' + listFr(selP.days.map((x) => DAYS[x])) + '.' + (selP.days.indexOf(6) >= 0 ? ' Le samedi est réservé aux patients déjà suivis (secrétariat fermé).' : '')
+      ? selP.short + ' consulte le ' + listFr(selP.days.map((x) => DAYS[x])) + '.' + (selP.days.indexOf(6) >= 0 ? ' Le samedi est réservé exclusivement aux patients déjà suivis (secrétariat fermé).' : '')
       : '';
     const hcta = selP
       ? (selP.book ? { show: true, href: selP.book, label: 'Doctolib (nouveau patient)' } : { show: true, href: 'tel:0450675514', label: 'Rendez-vous au 04 50 67 55 14' })
