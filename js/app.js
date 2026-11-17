@@ -194,7 +194,7 @@ class Component extends DCLogic {
       gate: [63.28, 34.96, 'Barrière Patients', 'Tournez à gauche vers la barrière Patients et prenez un ticket. L’autre barrière est réservée aux abonnés.', 'la barrière Patients'],
       park: [54.94, 48.3, 'Parking patients', 'Garez-vous dans la zone verte. La partie en rouge, le long des bâtiments, est réservée aux abonnés.', ''],
       bike: [61.28, 38.3, 'Abri vélo', 'Garez votre vélo ici, puis suivez le chemin orange jusqu’à la passerelle.', ''],
-      bus: [53.22, 81.11, 'Arrêt Hôpital', 'Devant l’entrée de l’hôpital, plusieurs lignes Sibra, dont la Rythmo 2. Suivez le chemin orange jusqu’à la barrière Patients, puis passez sous la passerelle.', '']
+      bus: [53.22, 81.11, 'Arrêt Hôpital', 'Devant l’entrée de l’hôpital, bus Sibra Rythmo 2, lignes 11, 21, 25 et 30. Suivez le chemin orange jusqu’à la barrière Patients, puis passez sous la passerelle.', '']
     };
     const full = !!st.mapFull;
     const coarse = typeof window !== 'undefined' && !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);

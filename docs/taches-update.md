@@ -12,7 +12,7 @@ Légende : `[ ]` à faire, `[x]` fait, `[?]` décision ou information attendue.
 - [?] Lien Doctolib du Dr Richard (l'ancienne page répond « supprimée ») ; en attendant, la feuille propose le téléphone. Dr Feaud : page trouvée (`doctolib.fr/dentiste/epagny-metz-tessy/martin-feaud`), à confirmer.
 - [?] Dr Richard : la pédodontie (soins des enfants) est-elle à afficher ?
 - [x] Samedi : affiché « réservé aux patients déjà suivis » (secrétariat fermé). (Correction2)
-- [x] Bus : le site ne liste plus les numéros (« Plusieurs lignes Sibra, dont la Rythmo 2, arrêt Hôpital », lien vers sibra.fr). La liste du site de l'hôpital (2, 6, 10, 11, 18) date d'avant la refonte du réseau d'avril 2024 (la 18 est devenue la 21, la 6 est supprimée). (Correction2, choix de Tom)
+- [x] Bus : arrêt Hôpital, Rythmo 2 et lignes 11, 21, 25, 30 (plan Sibra « Cœur d’Annecy » du 31/08/2026), lien vers sibra.fr pour les horaires. La liste du site de l'hôpital (2, 6, 10, 11, 18) date d'avant la refonte du réseau d'avril 2024 (la 18 est devenue la 21, la 6 est supprimée). (Correction2, choix de Tom)
 - [?] Code postal : 74370 (fiche du cabinet) ou 74330 (Base Adresse Nationale).
 - [?] Photos : entrée Montée C, barrière Patients, passerelle, accueil, salles. Portraits en photo ou en dessin.
 - [?] « Nouveaux patients acceptés » : affiché dans la description de la page et les données structurées (`isAcceptingNewPatients`). À retirer si le cabinet ne prend plus de nouveaux patients.
