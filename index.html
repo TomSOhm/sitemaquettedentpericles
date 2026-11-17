@@ -53,7 +53,7 @@
 <body>
 <div id="app">
 
-<div class="root" ref="{{fxRef}}" data-pal="{{palId}}" data-mapfull="{{mapFullA}}" style="font-family: 'Karla', 'Segoe UI', system-ui, sans-serif; color: var(--ink); background: var(--paper); font-size: 18px; line-height: 1.6; width: 100%; overflow-x: clip">
+<div class="root" ref="{{fxRef}}" data-mapfull="{{mapFullA}}" style="font-family: 'Karla', 'Segoe UI', system-ui, sans-serif; color: var(--ink); background: var(--paper); font-size: 18px; line-height: 1.6; width: 100%; overflow-x: clip">
 
   <section class="heroC" id="top" style="position: relative; min-height: 760px; display: flex; flex-direction: column; background: #EADFD2; color: var(--deep); overflow: hidden">
     <div class="hero-bgw" aria-hidden="true"><img class="hero-bg" src="assets/c-hero.webp" alt=""></div>
@@ -462,7 +462,6 @@
       </div>
     </div>
   </div>
-  <div class="palC" role="group" aria-label="Palette de couleurs, outil de maquette"><span class="palC-t">Couleurs</span><button type="button" class="palB" data-on="{{palOn.foret}}" aria-pressed="{{palOn.foret}}" aria-label="Forêt" onClick="{{setPal.foret}}"><i style="background: linear-gradient(135deg, #1E3B33 50%, #8FAE9A 50%)"></i><i style="background: #8FAE9A"></i><i style="background: #EFE8DC"></i><span>Forêt</span></button><button type="button" class="palB" data-on="{{palOn.lac}}" aria-pressed="{{palOn.lac}}" aria-label="Lac" onClick="{{setPal.lac}}"><i style="background: linear-gradient(135deg, #1F4E6B 50%, #8DB6CC 50%)"></i><i style="background: #8DB6CC"></i><i style="background: #E8EEF1"></i><span>Lac</span></button><button type="button" class="palB" data-on="{{palOn.ardoise}}" aria-pressed="{{palOn.ardoise}}" aria-label="Ardoise" onClick="{{setPal.ardoise}}"><i style="background: linear-gradient(135deg, #2C3E50 50%, #A4B5C6 50%)"></i><i style="background: #A4B5C6"></i><i style="background: #ECEFF2"></i><span>Ardoise</span></button><button type="button" class="palB" data-on="{{palOn.nuit}}" aria-pressed="{{palOn.nuit}}" aria-label="Nuit alpine" onClick="{{setPal.nuit}}"><i style="background: linear-gradient(135deg, #16304F 50%, #8AA7CB 50%)"></i><i style="background: #8AA7CB"></i><i style="background: #E9EDF4"></i><span>Nuit alpine</span></button><button type="button" class="palB" data-on="{{palOn.terre}}" aria-pressed="{{palOn.terre}}" aria-label="Terre" onClick="{{setPal.terre}}"><i style="background: linear-gradient(135deg, #5A3E2B 50%, #C8A98A 50%)"></i><i style="background: #C8A98A"></i><i style="background: #F1E8DC"></i><span>Terre</span></button></div>
 
   <nav class="mbar" aria-label="Actions rapides" style="position: sticky; bottom: 0; z-index: 30; gap: 8px; padding: 10px 12px 14px; background: rgba(var(--paper-rgb),.96); border-top: 1px solid var(--line)">
     <a href="tel:0450675514" style="flex: 1; display: flex; align-items: center; justify-content: center; background: var(--deep); color: var(--paper); border-radius: 2px; padding: 14px 6px; font-weight: 700; text-decoration: none">Appeler</a>

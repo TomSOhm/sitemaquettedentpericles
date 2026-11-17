@@ -5,7 +5,7 @@ Maquette du site du Cabinet dentaire du Pericles (Epagny Metz-Tessy), réalisée
 ## Structure
 
 - `index.html` : toute la page (balisage). Les textes se modifient ici.
-- `css/style.css` : styles, palettes de couleurs, responsive (point de rupture 760 px), animations.
+- `css/style.css` : styles, couleurs (variables sur `.root`), responsive (point de rupture 760 px), animations.
 - `js/app.js` : logique de la page (classe `Component`) : état, horaires, carte, contenus calculés.
 - `js/dc-runtime.js` : mini moteur qui fait vivre le balisage. À ne pas modifier sans raison.
 - `mentions-legales.html` : mentions légales et confidentialité (page à part, même feuille de style, sans JavaScript). Les champs `span.todo` « [À compléter] » attendent les informations du cabinet.
@@ -31,9 +31,9 @@ Pour ajouter un contenu dynamique : calculer la valeur dans `renderVals()`, la r
 
 Repères dans `js/app.js` : `HOURS` (créneaux du secrétariat par jour, en minutes ; le statut « ouvert » en dépend), `PRACS` (praticiens : jours de présence, lien Doctolib ou téléphone), `SPOTS` (repères du plan, en % de `plan-acces-ign.webp`), `_setFull` (plan en plein écran), `openRdv` (feuille « Prendre rendez-vous »), `fxRef` (effets au défilement). Les zones du parking (polygones `zone-ok` et `zone-no`) et les trajets sont dans le SVG du plan, `index.html`, en coordonnées 1800 x 1350 ; tracé validé par Tom le 12/11/2026.
 
-Plan d'accès : sur la page, le défilement tactile reste libre (pas de zoom au doigt) ; « Agrandir le plan » passe le même plan en plein écran avec pincement, glissement et boutons. À la souris, Ctrl + molette zoome (la molette seule fait défiler la page et affiche une aide) ; en plein écran, la molette seule zoome. Ne pas remettre `touch-action: none` hors plein écran. Les props par défaut (palette, lien Doctolib, `openState`) sont passées à `__mountDC` en bas du fichier.
+Plan d'accès : sur la page, le défilement tactile reste libre (pas de zoom au doigt) ; « Agrandir le plan » passe le même plan en plein écran avec pincement, glissement et boutons. À la souris, Ctrl + molette zoome (la molette seule fait défiler la page et affiche une aide) ; en plein écran, la molette seule zoome. Ne pas remettre `touch-action: none` hors plein écran. Les props par défaut (lien Doctolib, `openState`) sont passées à `__mountDC` en bas du fichier.
 
-Le sélecteur « Couleurs » (`.palC`) est un outil de maquette pour montrer les palettes au cabinet (`foret` par défaut, `lac`, `ardoise`, `nuit`, `terre`, définies dans `style.css`). À retirer une fois la palette choisie.
+Couleurs : palette verte « forêt » choisie par Tom le 17/11/2026, variables CSS définies sur `.root` en tête de `style.css`. Le sélecteur de palettes de la maquette est retiré.
 
 ## Règles de rédaction et de design
 

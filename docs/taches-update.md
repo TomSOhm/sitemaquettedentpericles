@@ -104,7 +104,7 @@ Légende : `[ ]` à faire, `[x]` fait, `[?]` décision ou information attendue.
 ## 10. Fin de chantier
 
 - [x] `CLAUDE.md` mis à jour.
-- [ ] Retirer l'outil « Couleurs » une fois la palette choisie.
+- [x] Outil « Couleurs » retiré : palette verte « forêt » retenue (Tom, 17/11/2026).
 - [x] Vérifié à 390 px et 1440 px.
 
 ## Notes

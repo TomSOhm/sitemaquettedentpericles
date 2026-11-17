@@ -637,9 +637,6 @@ class Component extends DCLogic {
       goSug: goSug,
       menuOpen: !!st.menu,
       toggleMenu: () => this.setState({ menu: !(this.state || {}).menu }),
-      palId: st.pal || this.props.palette || 'foret',
-      palOn: ['foret', 'lac', 'ardoise', 'nuit', 'terre'].reduce((o, k) => { o[k] = (st.pal || this.props.palette || 'foret') === k ? 'true' : 'false'; return o; }, {}),
-      setPal: ['foret', 'lac', 'ardoise', 'nuit', 'terre'].reduce((o, k) => { o[k] = () => this.setState({ pal: k }); return o; }, {}),
       navOpen: !!st.nav,
       navOpenA: st.nav ? 'true' : 'false',
       toggleNav: () => this.setState({ nav: !(this.state || {}).nav }),
@@ -656,5 +653,5 @@ class Component extends DCLogic {
   }
 }
 
-__mountDC(Component, {"palette": "foret", "accent": "#1E3B33", "doctolibUrl": "https://www.doctolib.fr/dentiste/epagny-metz-tessy/clara-manisse/booking/availabilities?specialityId=1&telehealth=false&placeId=practice-659010&motiveIds%5B%5D=13814423&pid=practice-659010&source=profile", "openState": "auto"});
+__mountDC(Component, {"accent": "#1E3B33", "doctolibUrl": "https://www.doctolib.fr/dentiste/epagny-metz-tessy/clara-manisse/booking/availabilities?specialityId=1&telehealth=false&placeId=practice-659010&motiveIds%5B%5D=13814423&pid=practice-659010&source=profile", "openState": "auto"});
 document.getElementById('app').classList.add('ready');
